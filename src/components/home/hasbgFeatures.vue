@@ -31,6 +31,7 @@ export default {
     }
   },
   mounted(){
+    console.log(this.hasbgdata)
       var arrDom = this.$refs.block.childNodes;
       arrDom[3].style='margin-right:0;';
   },
@@ -41,6 +42,13 @@ export default {
           path:'/insightData',
           query:{
             type:2
+          }
+        });
+      }else if(index === 1){
+        this.$router.push({
+          path:'/houseData',
+          query:{
+            type:1
           }
         });
       }

@@ -101,6 +101,11 @@ const Routers = [
     path:'/insightData', //数据洞察部分
     name:'insightData',
     component:resolve=>(require(["@/components/insightData/insightData"],resolve))
+  },
+  {
+    path:'/houseData', //数据洞察部分
+    name:'houseData',
+    component:resolve=>(require(["@/components/houseData/houseData"],resolve))
   }
 ];
 

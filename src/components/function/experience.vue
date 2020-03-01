@@ -35,9 +35,13 @@
     <div class="duanyuyin_experience_container" v-else-if="detailType == 'duanyuyin'">
       <div class="left">
         <img :src="duanyuyin_experience_img" alt="" srcset="">
+        <div class="times">
+            <i-button type="success" shape="circle" @click="startRecord">{{buttonMsg}}</i-button>
+        </div>
+        
       </div>
       <div class="right">
-        兆京调通了性别分析和人脸表情接口应该在ai智能应用里体现
+        {{transMsg}}
       </div>
     </div>
   </div>
@@ -75,6 +79,9 @@
     },
     data() {
       return {
+        transMsg:"请说出你想说的话...",
+        buttonMsg:"开始录音",
+        flag:0,
         cihui:'',
         cixing:'',
         shitishibie:'',
@@ -84,6 +91,67 @@
       }
     },
     methods:{
+      startRecord(){
+        this.$Recorder.start();
+        let num=10;
+        this.flag=!this.flag;
+        console.log(this.flag)
+        //当为true，暂停状态
+        var timer=null;
+        if(this.flag){
+          this.buttonMsg="暂停录音"+10+"s";
+          timer=setInterval(()=>{
+          if(num==0){
+              this.buttonMsg="开始录音";
+              this.flag=false;
+              clearInterval(timer)
+              this.sendRecord();
+            }else{
+              num--;
+              if(this.flag){
+                this.buttonMsg="暂停录音"+num+"s";
+              }else{
+                this.sendRecord();
+                clearInterval(timer)
+                this.buttonMsg="开始录音";
+              }
+            }
+          },1000)
+        }else{
+          this.buttonMsg="开始录音";
+          if(timer){
+              clearInterval(timer)
+          }
+          
+        }
+
+        
+      },
+      sendRecord(){
+        this.$Recorder.stop();
+        let wav=this.$Recorder.getWAVBlob();
+        console.log(wav)
+        let formData = new FormData(); //创建form对象
+        formData.append('files', wav);//
+        this.$axios({
+          headers: {
+              'Accept': '*/*',
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          method: "post",
+          url: "/v1/api/zhujian/speechRecognize",
+          data: formData,
+        }).then(res => {
+          if(res.data.status == 0){
+            this.transMsg=res.data.result.hypotheses[0].transcript;
+          }
+        }).catch(err=>{
+          console.log(err);
+        });
+      },
+      rePlay(){
+        this.$Recorder.play();
+      },
       changeBgc(index,item){
         var domArr = this.$refs.item;
         for(var i =0 ;i < domArr.length;i++){
@@ -230,11 +298,25 @@
       align-items: center;
       justify-content: space-between;
       .left{
+        position: relative;
         width: 585px;
         height: 100%;
         img{
           width: 100%;
           height: 100%;
+        }
+        .times{
+          width:60%;
+          position: absolute;
+          right:0;
+          top:0;
+          height: 100%;
+          color:#fff;
+          font-size: 80px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content:center;
         }
       }
       .right{
@@ -242,7 +324,7 @@
         height: 100%;
         background: rgba(192,204,218,0.10);
         border: 1px solid #EBECF0;
-        padding: 40px;
+        padding: 10px;
         font-size: 14px;
         color: #7A8499;
         text-align: justify;

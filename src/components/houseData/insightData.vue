@@ -133,7 +133,6 @@ export default {
     }
   },
   mounted(){
-    document.documentElement.scrollTop=0;
     if(this.$route.query.type == 2){
       this.$refs.navTextTop[2].style='box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
     }

@@ -35,8 +35,8 @@
         <div class="drop_down_menu_container">
             <div class="drop_down_menu">
                 <div class="left">
-                    <span>法律综合分析</span>
-                    <span> > 案件分析报告</span>
+                    <span>房产综合分析</span>
+                    <span> > 楼盘</span>
                 </div>
                 <div class="right">
                     <div class="address">
@@ -45,13 +45,13 @@
                                 全国
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
-                            <DropdownMenu slot="list">
+                            <!-- <DropdownMenu slot="list">
                                 <DropdownItem>全国</DropdownItem>
                                 <DropdownItem>上海</DropdownItem>
                                 <DropdownItem>广州</DropdownItem>
                                 <DropdownItem>深圳</DropdownItem>
                                 <DropdownItem>兰州</DropdownItem>
-                            </DropdownMenu>
+                            </DropdownMenu> -->
                         </Dropdown>
                     </div>
                     <div class="in_type">
@@ -61,14 +61,13 @@
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
                             <DropdownMenu slot="list">
-                                <DropdownItem name='case'>案件</DropdownItem>
-                                <DropdownItem name='lawyer'>律师</DropdownItem>
-                                <DropdownItem name='parties'>当事人</DropdownItem>
+                                <DropdownItem name='case'>楼盘</DropdownItem>
+                                <DropdownItem name='lawyer'>物业</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="请输入您想要匹配的案件名称/案件号/案由">
+                        <input type="text" placeholder="请输入您要查询的楼盘小区">
                         <div class="search_btn"></div>
                     </div>
                 </div>
@@ -108,7 +107,7 @@ export default {
       ifShowParties:false,
       ifShowRealEstate:false,
       showMenu:false,
-      menuText:'案件',
+      menuText:'楼盘',
       navType:2,
       ifShowLogin:false,
       ifShowSubBtn:true,

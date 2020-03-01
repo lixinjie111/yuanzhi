@@ -1,7 +1,7 @@
 <template>
   <div class="case_container">
       <div class="case_analysis_report">案件分析报告</div>
-      <div class="map_statistics"></div>
+      <div class="map_statistics"><img src="../../assets/images/insightData/map.jpg" alt=""></div>
       <div class="total_num">
           <div class="case_total_num">
               <div>累计案件总数</div>
@@ -66,7 +66,7 @@
       </div>
       <div class="judgment_analy_report">法院判决分析报告</div>
       <div class="court_navigation">
-          <div class="court_navigation_left"></div>
+          <div class="court_navigation_left"><img src="../../assets/images/insightData/china_map.jpg" alt=""></div>
           <div class="court_navigation_right">
               <div class="top">
                   <div class="left">法院导航</div>
@@ -536,9 +536,10 @@ export default {
     .map_statistics{
         width: 100%;
         height: 590px;
-        background-image: url('../../assets/images/insightData/map.jpg');
-        background-size: 100% 100%;
         margin-bottom: 40.6px;
+        img{
+            width: 100%;
+        }
     }
     .total_num{
         width: 100%;
@@ -637,8 +638,9 @@ export default {
         .court_navigation_left{
             width: 892px;
             height: 600px;
-            background-image: url('../../assets/images/insightData/china_map.jpg');
-            background-size: 100% 100%;
+            img{
+                width: 100%;
+            }
         }
         .court_navigation_right{
             width: 308px;
