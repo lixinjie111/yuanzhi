@@ -198,21 +198,9 @@ export default {
         this.ifShowLawyer = false;
         this.ifShowParties = false;
         this.ifShowRealEstate = false;
-        this.menuText = '案件';
-      }
-      else if(arg == 'lawyer'){
-        this.ifShowCase = false;
-        this.ifShowLawyer = true;
-        this.ifShowParties = false;
-        this.menuText='律师';
-        this.ifShowRealEstate = false;
-      }
-      else if(arg == 'parties'){
-        this.ifShowCase = false;
-        this.ifShowLawyer = false;
-        this.ifShowParties = true;
-        this.ifShowRealEstate = false;
-        this.menuText = '当事人'
+        this.menuText = '楼盘';
+      }else{
+        this.goLogin()
       }
     },
     goLogin(){

@@ -32,24 +32,26 @@ export default {
     },
     methods:{
         goObserStarList(index,item){
-            if(this.showData.dataType == 1){  //政治数据跳转列表subTitleCode
+            if(this.showData.dataType == 1){   
                 this.$router.push({
-                    path:'/obserStarList',
+                    path:'/obserStarPoliticDetail',     //obserStarList列表页
                     query:{
                         type:3,
                         dataType:1,
                         pointType:index,
                         subTitleCode:item.subTitleCode,
-                        subTitleName:item.subTitleName
+                        subTitleName:item.subTitleName,
+                        parentTitle:2
                     }
                 });
             }
             else if(this.showData.dataType == 2){  //民生数据跳转列表
                 this.$router.push({
-                    path:'/obserStarList',
+                    path:'/obserStarLiveDetail',
                     query:{
                         type:3,
                         dataType:2,
+                        parentTitle:3,
                         pointType:index,
                         subTitleCode:item.subTitleCode,
                         subTitleName:item.subTitleName
@@ -58,10 +60,11 @@ export default {
             }
             else if(this.showData.dataType == 3){  //经济数据跳转列表
                 this.$router.push({
-                    path:'/obserStarList',
+                    path:'/obserStarEconoDetail',
                     query:{
                         type:3,
                         dataType:3,
+                        parentTitle:4,
                         pointType:index,
                         subTitleCode:item.subTitleCode,
                         subTitleName:item.subTitleName
@@ -70,10 +73,11 @@ export default {
             }
             else if(this.showData.dataType == 4){  //文化数据跳转列表
                 this.$router.push({
-                    path:'/obserStarList',
+                    path:'/obserStarCulturDetail',
                     query:{
                         type:3,
                         dataType:4,
+                        parentTitle:1,
                         pointType:index,
                         subTitleCode:item.subTitleCode,
                         subTitleName:item.subTitleName

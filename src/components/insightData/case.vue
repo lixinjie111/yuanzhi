@@ -1,7 +1,7 @@
 <template>
   <div class="case_container">
       <div class="case_analysis_report">案件分析报告</div>
-      <div class="map_statistics"><img src="../../assets/images/insightData/map.jpg" alt=""></div>
+      <div class="map_statistics" id="map"></div>
       <div class="total_num">
           <div class="case_total_num">
               <div>累计案件总数</div>
@@ -107,18 +107,120 @@
 </template>
 
 <script>
+import 'echarts/map/js/china.js'
 export default {
   data () {
     return {
         totalNum:[1,3,2,1,3,2,1,3],
-        firstInstanceNum:[1,3,2,1,3,2,1,3],
-        twoInstanceNum:[1,3,2,1,3,2,1,3],
-        threeInstanceNum:[1,3,2,1,3,2,1,3]
+        firstInstanceNum:[1,5,2,1,3,2,1,3],
+        twoInstanceNum:[1,3,7,1,3,2,1,3],
+        threeInstanceNum:[1,3,6,1,3,2,1,3]
     }
+  },
+  methods:{
+      getEchartData(){
+          var echarts = require('echarts');
+           //上边中间   中国地图
+           let baseUrl='http://106.13.122.156:8083';
+            this.$axios({
+                method: "get",
+                url: baseUrl + "/insight/lawQuery/client_caseType_distribute",
+            }).then(res => {
+                console.log(res.data.data)
+                if(res.status==200){
+                    console.log(res.data)
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
+
+            
+            this.$axios({
+                method: "get",
+                url: baseUrl + "/insight/lawQuery/client_caseArea_distribute",
+            }).then(res => {
+                if(res.status == 200){
+                    var topCenterData = res.data.data.map.name;
+                    var cockpitDatatList = res.data.data.map.value;
+                    var mapData = [];
+                    for(var i = 0; i < topCenterData.length;i++){
+                         for(var j = 0; j < cockpitDatatList.length;j++){
+                             if(i==j){
+                                mapData.push({
+                                    name:topCenterData[i].replace(/\s*/g,''),
+                                    value:parseInt(cockpitDatatList[i])
+                                });
+                             }
+                           
+                         }
+                    }
+                     console.log(mapData)
+                    var myMapChart = echarts.init(document.getElementById('map'));        
+                    var mayMap_option = {
+                        title: {//这里是整个图的标题
+                            text: topCenterData.chartName,//大标题
+                            x: 'center',//标题的位置，左边中间或者右边
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:14
+                            }
+                        },
+                        tooltip: {//图例
+                            trigger: 'item',
+                            //文本上方的浮动小块
+                            backgroundColor:'rgba(255,255,255,0.7)',//文本上方的浮动小块的颜色
+                            padding:[20,20],//文字与边框之间的内边距
+                            textStyle:{//文本样式设置
+                                color:'#00000',//这里要注意一下，必须是标准6位，否则可能显现不出来
+                                fontSize:18,//字号大小
+                                lineHeight:'300px'//最后一个属性不加逗号，行高
+                            }
+                            
+                        },
+                        series: [{
+                            name: '数据',
+                            type: 'map',
+                            mapType: 'china',
+                            roam: false,//是否允许鼠标滚轮控制大小
+                            label: {
+                                normal:{
+                                    show:true,
+                                    textStyle:{
+                                        color:'rgba(255,255,255,0.3)'
+                                    }
+                                },
+                                emphasis: {//鼠标移入动态时显示的样式
+                                    show: true,
+                                    //backgroundColor控制的就是鼠标移入的时候文字的背景颜色而不是模块的背景颜色
+                                    //color:鼠标移入的时候文字的颜色
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5, //区域边框宽度
+                                    borderColor: 'rgba(255,255,255,0.3)',//区域边框颜色
+                                    areaColor: "rgba(3,169,113,0.3)", //区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor: "#2D8C6A",
+                                }
+                            },
+                            data: mapData   // 数据
+                        }]
+                    };
+                    myMapChart.setOption(mayMap_option);
+
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
+      }
   },
   mounted(){
     var echarts = require('echarts');
-
+    this.getEchartData();
     //top10案件分布
     var topTenChart = echarts.init(document.getElementById('top_ten'));
     var top_ten_option = {

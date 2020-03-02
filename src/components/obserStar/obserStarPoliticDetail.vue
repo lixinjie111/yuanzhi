@@ -9,14 +9,19 @@
             </div>
             <div class="right">
             <div class="nav_text">
-                <div v-for="(item,index) in nav_text" :key="index" @click="jumpFn(index)" @mouseover="changeShow(index)" class="nav_text_container">
+                <div v-for="(item,index) in nav_text" :key="index" @click="jumpFn(index)" @mouseover="changeShow(index)" @mouseout="hideChange" class="nav_text_container">
                 <div class="top" ref="navTextTop">{{item}}</div>
+                <div class="bottom" v-show="(index ==1 ) && showTrian1"></div>
+                <div class="bottom" v-show="(index ==2 ) && showTrian2"></div>
+                <div class="bottom" v-show="(index == 3) && showTrian3"></div>
                 </div>
             </div>
             <div class="sub_btn">{{sub_btn}}</div>
             </div>
         </div>
     </div>
+
+    <vMenu v-show="showMenu" :navType='navType'></vMenu>
 
     <!--图形统计区域-->
     <div class="echarts_container">
@@ -50,6 +55,7 @@
 
 <script>
 import vFooterCopy from '../footerCopyright/footerCopyright';
+import vMenu from '../menu/menu';
 export default {
     name:'obserStarLiveDetail',
     data(){
@@ -58,11 +64,17 @@ export default {
         en_title:'YUANZHI AI Research Institute',
         nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
         sub_btn:'立即登录',
+        showTrian1:false,
+        showTrian2:false,
+        showTrian3:false,
+        showMenu:false,
+        navType:3,
         subTitleName:''
         }
     },
     components:{
-        vFooterCopy
+        vFooterCopy,
+        vMenu
     },
     mounted(){
         if(this.$route.query.type == 3){
@@ -81,12 +93,59 @@ export default {
                 });
             }
             else if(index === 1){
-            this.$router.push({
-                path:'aiSmartAppList',
+                this.$router.push({
+                path:'/aiSmartAppList',
+                query:{type:1}
+                });
+            }else if(index === 2){
+                this.$router.push({
+                path:'/insightData',
+                query:{type:2}
+                });
+            }else if(index === 3){
+                this.$router.push({
+                path:'/obserStarData',
                 query:{
-                    type:1
+                    type:3,
+                    featurType:0
                 }
-            });
+                });
+            }else if(index === 4 || index === 5){
+                this.ifShowLogin = true;
+            }
+        },
+        changeShow(index){
+            this.navType=index;
+            this.$refs.navTextTop[index].style='box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
+            if(index == 1){
+                this.showMenu = true;
+                this.showTrian1 = true;
+                this.showTrian2 = false;
+                this.showTrian3 = false;
+            }
+            else if(index == 2){
+                this.showMenu = true;
+                this.showTrian1 = false;
+                this.showTrian2 = true;
+                this.showTrian3 = false;
+            }
+            else if(index == 3){
+                this.showMenu = false; //是否显示菜单
+                this.showTrian1 = false;
+                this.showTrian2 = false;
+                this.showTrian3 = false; //是否显示下拉三角形
+            }
+            else{
+                this.showMenu = false;
+                this.showTrian1 = false;
+                this.showTrian2 = false;
+                this.showTrian3 = false;
+            }
+        },
+        hideChange(){
+            var navTextArrDom = this.$refs.navTextTop;
+            for(var i = 0; i < navTextArrDom.length;i++){
+                navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
             }
         },
         getChartData(){
@@ -97,23 +156,7 @@ export default {
             var that = this;
             this.subTitleName = this.$route.query.subTitleName;
 
-
-
-
-
-
-
-
-
-
-
-            var echarts = require('echarts');
-            var baseUrl = 'http://106.13.122.156:8086'; 
-            var parentTitle = this.$route.query.parentTitle;
-            var subTitleCode = this.$route.query.subTitleCode;
-            var that = this;
-            this.subTitleName = this.$route.query.subTitleName;
-            //上左上数据  柱状图
+            //上面左上 柱状图
             this.$axios({
                 method: "post",
                 url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
@@ -126,23 +169,23 @@ export default {
                 }
             }).then(res => {
                 if(res.status == 200){
-                    var topLeftTopData = res.data.data;
-                    var yiZaoguimo = echarts.init(document.getElementById('yiliaozhizaoyeguimo'));  //
+                    var topLeftTopBarData = res.data.data;
+                    var topLeftTopBarChart = echarts.init(document.getElementById('topLeftTopBar'));  //
                     var xAxisDataObj = {
                         xAxisData:[],
                         data:[],
                         name:''
                     };
-                    var strDara = topLeftTopData;
+                    var strDara = topLeftTopBarData;
                     var topLeftTopDataArr = strDara.cockpitDatatList;
                     for(var i = 0; i < topLeftTopDataArr.length;i++){
                         xAxisDataObj.xAxisData.push(topLeftTopDataArr[i].statisticalIndicator);
                         xAxisDataObj.data.push(topLeftTopDataArr[i].firstStatisticalContent);
                         xAxisDataObj.name = topLeftTopDataArr[i].firstDescription;
                     }
-                    var yiZaoguimo_option = {
+                    var topLeftTopBar_option = {
                         title:{
-                            text:topLeftTopData.chartName,
+                            text:topLeftTopBarData.chartName,
                             textStyle:{
                                 color:'#fff',
                                 fontSize:14
@@ -208,14 +251,76 @@ export default {
                             }
                         ]
                     };;
-                    yiZaoguimo.setOption(yiZaoguimo_option);
+                    topLeftTopBarChart.setOption(topLeftTopBar_option);
                 }
             }).catch(err=>{
                 console.log(err);
             });
 
+            //上面左下 饼图
+            this.$axios({
+                method: "post",
+                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
+                data: {
+                    chartLocation:2,
+                    chartType:2,
+                    parentTitle:parentTitle,
+                    subTitleCode:subTitleCode,
+                    statisticsYear:''
+                }
+            }).then(res => {
+                if(res.status == 200){
+                    var topLeftBottomPieChart = echarts.init(document.getElementById('topLeftBottomPie'));
+                    var topLeftBottomPieData = res.data.data;
+                    var cockpitDatatList = topLeftBottomPieData.cockpitDatatList;
+                    var formatData = [];
+                    var tipName;
+                    for(var i = 0;i<cockpitDatatList.length;i++){
+                        formatData.push({
+                            value:cockpitDatatList[i].firstStatisticalContent,
+                            name:cockpitDatatList[i].statisticalIndicator,
+                            itemStyle:{color:'#2D8C6A'}
+                        });
+                    }
+                    var topLeftBottomPieData_option = {
+                        background:'#2D8C6A',
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{b}:{c}({d}%)'
+                        },
+                        title:{
+                            text:topLeftBottomPieData.chartName,
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:14
+                            },
+                            left:'center'
+                        },
+                        series: [
+                            {
+                                type: 'pie',
+                                radius: '75%',
+                                center: ['50%', '50%'],
+                                data:formatData,
+                                // label: {normal: {position: 'inner',formatter: "{b}\n {c} ({d}%)"}},labelLine: {normal: {show: false}},
+                                emphasis: {
+                                    itemStyle: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    topLeftBottomPieChart.setOption(topLeftBottomPieData_option);
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
 
-            //上边中间   中国地图
+            //上右中国地图  topRightChinaMap
+
             this.$axios({
                 method: "post",
                 url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
@@ -246,7 +351,8 @@ export default {
                         }
 
                     }
-                    var myMapChart = echarts.init(document.getElementById('map'));        
+                    console.log(mapData+'aaaaaaaaa')
+                    var myMapChart = echarts.init(document.getElementById('topRightChinaMap'));        
                     var mayMap_option = {
                         title: {//这里是整个图的标题
                             text: topCenterData.chartName,//大标题
@@ -308,69 +414,7 @@ export default {
                 console.log(err);
             });
 
-            //上面左边的饼图
-            this.$axios({
-                method: "post",
-                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
-                data: {
-                    chartLocation:2,
-                    chartType:2,
-                    parentTitle:parentTitle,
-                    subTitleCode:subTitleCode,
-                    statisticsYear:''
-                }
-            }).then(res => {
-                if(res.status == 200){
-                    var yiliaozhizaoChart = echarts.init(document.getElementById('yiliaozhizaojiegoufenbu'));
-                    var topLeftBottomData = res.data.data;
-                    var cockpitDatatList = topLeftBottomData.cockpitDatatList;
-                    var formatData = [];
-                    var tipName;
-                    for(var i = 0;i<cockpitDatatList.length;i++){
-                        formatData.push({
-                            value:cockpitDatatList[i].firstStatisticalContent,
-                            name:cockpitDatatList[i].statisticalIndicator,
-                            itemStyle:{color:'#2D8C6A'}
-                        });
-                    }
-                    var yiliaozhizao_option = {
-                        background:'#2D8C6A',
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: '{b}:{c}({d}%)'
-                        },
-                        title:{
-                            text:topLeftBottomData.chartName,
-                            textStyle:{
-                                color:'#fff',
-                                fontSize:14
-                            },
-                            left:'center'
-                        },
-                        series: [
-                            {
-                                type: 'pie',
-                                radius: '75%',
-                                center: ['50%', '50%'],
-                                data:formatData,
-                                // label: {normal: {position: 'inner',formatter: "{b}\n {c} ({d}%)"}},labelLine: {normal: {show: false}},
-                                emphasis: {
-                                    itemStyle: {
-                                        shadowBlur: 10,
-                                        shadowOffsetX: 0,
-                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                    }
-                                }
-                            }
-                        ]
-                    };
-                    yiliaozhizaoChart.setOption(yiliaozhizao_option);
-                }
-            }).catch(err=>{
-                console.log(err);
-            });
-
-            //上面右边折线图
+            //中左柱状图middleLeftBar
             this.$axios({
                 method: "post",
                 url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
@@ -383,8 +427,8 @@ export default {
                 }
             }).then(res => {
                 if(res.status == 200){
-                    var topRightTopData = res.data.data;
-                    var cockpitDatatList = topRightTopData.cockpitDatatList;
+                    var middleLeftBarData = res.data.data;
+                    var cockpitDatatList = middleLeftBarData.cockpitDatatList;
                     var xAxisDataObj = {
                         xAxisData:[],
                         data:[],
@@ -395,173 +439,10 @@ export default {
                         xAxisDataObj.data.push(cockpitDatatList[i].firstStatisticalContent);
                         xAxisDataObj.name = cockpitDatatList[i].firstDescription;
                     }
-                    var yiweijigouChart = echarts.init(document.getElementById('yiweijigouzhenliaorenci'));  
-                    var yiweijigou_option = {
+                    var middleLeftBarDataChart = echarts.init(document.getElementById('middleLeftBar'));
+                    var middleLeftBar_option = {
                         title:{
-                            text:topRightTopData.chartName,
-                            textStyle:{
-                                color:'#fff',
-                                fontSize:14
-                            },
-                            left:'center'
-                        },
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        color: ['#0FA16D'],
-                        xAxis: {
-                            type: 'category',
-                            boundaryGap: false,
-                            data: xAxisDataObj.xAxisData,
-                            axisTick: {
-                                alignWithLabel: true,
-                                lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
-                            },
-                            axisLabel:{
-                                color:'#fff',
-                                fontSize:12
-                            },
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        yAxis: {
-                            type: 'value',
-                            axisTick: {
-                                    alignWithLabel: true,
-                                    lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
-                            },
-                            axisLine:{
-                                lineStyle:{
-                                    color:'#2D8C6A' //坐标轴颜色
-                                }
-                            },
-                            axisLabel:{
-                                color:'#fff',
-                                fontSize:12
-                            },
-                            splitLine:{
-                                show:true,  //是否显示后面的网格线
-                                lineStyle:{
-                                    color:'#2D8C6A'  //网格线颜色
-                                }
-                            }
-                        },
-                        series: [{
-                            data: xAxisDataObj.data,
-                            type: 'line',
-                            areaStyle: {}
-                        }]
-                    };
-                    yiweijigouChart.setOption(yiweijigou_option);
-                }
-            }).catch(err=>{
-                console.log(err);
-            });
-
-            //上面右边环形饼图
-            this.$axios({
-                method: "post",
-                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
-                data: {
-                    chartLocation:6,
-                    chartType:2,
-                    parentTitle:parentTitle,
-                    subTitleCode:subTitleCode,
-                    statisticsYear:''
-                }
-            }).then(res => {
-                if(res.status == 200){
-                    var topRightBottomData = res.data.data;
-                    var cockpitDatatList = topRightBottomData.cockpitDatatList;
-                    var formatData = [];
-                    for(var i = 0;i<cockpitDatatList.length;i++){
-                        formatData.push({
-                            value:cockpitDatatList[i].firstStatisticalContent,
-                            name:cockpitDatatList[i].statisticalIndicator,
-                            itemStyle:{color:'#2D8C6A'}
-                        });
-                    }
-                    var yiliaozhizaoChart = echarts.init(document.getElementById('yiliaozhizaozijin'));
-                    var yiliaozhizao_option = {
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: '{b}: {c} ({d}%)'
-                        },
-                        title:{
-                            text:topRightBottomData.chartName,
-                            textStyle:{
-                                color:'#fff',
-                                fontSize:14
-                            },
-                            left:'center'
-                        },
-                        series: [
-                            {
-                                type: 'pie',
-                                radius: ['40%', '70%'],
-                                avoidLabelOverlap: false,
-                                label: {
-                                    normal: {
-                                        show: false,
-                                        position: 'center'
-                                    },
-                                    emphasis: {
-                                        show: true,
-                                        textStyle: {
-                                            fontSize: '30',
-                                            fontWeight: 'bold'
-                                        }
-                                    }
-                                },
-                                labelLine: {
-                                    normal: {
-                                        show: false
-                                    }
-                                },
-                                data:formatData
-                            }
-                        ]
-                    };
-                    yiliaozhizaoChart.setOption(yiliaozhizao_option);
-                }
-            }).catch(err=>{
-                console.log(err);
-            });
-
-
-            //下面左边的  柱状图
-            this.$axios({
-                method: "post",
-                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
-                data: {
-                    chartLocation:3,
-                    chartType:1,
-                    parentTitle:parentTitle,
-                    subTitleCode:subTitleCode,
-                    statisticsYear:''
-                }
-            }).then(res => {
-                if(res.status == 200){
-                    var BottomLeftData = res.data.data;
-                    var cockpitDatatList = BottomLeftData.cockpitDatatList;
-                    var xAxisDataObj = {
-                        xAxisData:[],
-                        data:[],
-                        name:''
-                    };
-                    for(var i = 0; i < cockpitDatatList.length;i++){
-                        xAxisDataObj.xAxisData.push(cockpitDatatList[i].statisticalIndicator);
-                        xAxisDataObj.data.push(cockpitDatatList[i].firstStatisticalContent);
-                        xAxisDataObj.name = cockpitDatatList[i].firstDescription;
-                    }
-                    var renjunweishengChart = echarts.init(document.getElementById('renjunweishengfei'));
-                    var renjunweisheng_option = {
-                        title:{
-                            text:BottomLeftData.chartName,
+                            text:middleLeftBarData.chartName,
                             textStyle:{
                                 color:'#fff',
                                 fontSize:14
@@ -628,14 +509,281 @@ export default {
                             }
                         ]
                     };
-                    renjunweishengChart.setOption(renjunweisheng_option);
+                    middleLeftBarDataChart.setOption(middleLeftBar_option);
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
+
+            //中右柱形图
+            if(subTitleCode == 455672 || subTitleCode == 546798 || subTitleCode == 357228 || subTitleCode == 237562 || subTitleCode == 880812){
+                this.$axios({
+                    method: "post",
+                    url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
+                    data: {
+                        chartLocation:6,
+                        chartType:2,
+                        parentTitle:parentTitle,
+                        subTitleCode:subTitleCode,
+                        statisticsYear:''
+                    }
+                }).then(res => {
+                    if(res.status == 200){
+                        var middleRightPieChart = echarts.init(document.getElementById('middleRightPie'));
+                        var middleRightPieData = res.data.data;
+                        var cockpitDatatList = middleRightPieData.cockpitDatatList;
+                        var formatData = [];
+                        var tipName;
+                        for(var i = 0;i<cockpitDatatList.length;i++){
+                            formatData.push({
+                                value:cockpitDatatList[i].firstStatisticalContent,
+                                name:cockpitDatatList[i].statisticalIndicator,
+                                itemStyle:{color:'#2D8C6A'}
+                            });
+                        }
+                        var middleRightPie_option = {
+                            background:'#2D8C6A',
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{b}:{c}({d}%)'
+                            },
+                            title:{
+                                text:middleRightPieData.chartName,
+                                textStyle:{
+                                    color:'#fff',
+                                    fontSize:14
+                                },
+                                left:'center'
+                            },
+                            series: [
+                                {
+                                    type: 'pie',
+                                    radius: '75%',
+                                    center: ['50%', '50%'],
+                                    data:formatData,
+                                    // label: {normal: {position: 'inner',formatter: "{b}\n {c} ({d}%)"}},labelLine: {normal: {show: false}},
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        middleRightPieChart.setOption(middleRightPie_option);
+                    }
+                }).catch(err=>{
+                    console.log(err);
+                });
+            }
+            else{
+                this.$axios({
+                    method: "post",
+                    url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
+                    data: {
+                        chartLocation:6,
+                        chartType:1,
+                        parentTitle:parentTitle,
+                        subTitleCode:subTitleCode,
+                        statisticsYear:''
+                    }
+                }).then(res => {
+                    if(res.status == 200){
+                        var middleRightPieData = res.data.data;
+                        var cockpitDatatList = middleRightPieData.cockpitDatatList;
+                        var xAxisDataObj = {
+                            xAxisData:[],
+                            data:[],
+                            name:''
+                        };
+                        for(var i = 0; i < cockpitDatatList.length;i++){
+                            xAxisDataObj.xAxisData.push(cockpitDatatList[i].statisticalIndicator);
+                            xAxisDataObj.data.push(cockpitDatatList[i].firstStatisticalContent);
+                            xAxisDataObj.name = cockpitDatatList[i].firstDescription;
+                        }
+                        var middleRightPieChart = echarts.init(document.getElementById('middleRightPie'));
+                        var middleRightPie_option = {
+                            title:{
+                                text:middleRightPieData.chartName,
+                                textStyle:{
+                                    color:'#fff',
+                                    fontSize:14
+                                },
+                                left:'center'
+                            },
+                            color: ['#0FA16D'],
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {            
+                                    type: 'shadow'        
+                                }
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            axisLabel:{
+                                color:'#fff',
+                                fontSize:14
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: xAxisDataObj.xAxisData,
+                                    axisTick: {
+                                        alignWithLabel: true,
+                                        lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
+                                    },
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    axisTick: {
+                                            alignWithLabel: true,
+                                            lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
+                                    },
+                                    axisLine:{
+                                        lineStyle:{
+                                            color:'#2D8C6A' //坐标轴颜色
+                                        }
+                                    },
+                                    axisLabel:{
+                                        color:'#fff',
+                                        fontSize:12
+                                    },
+                                    splitLine:{
+                                        show:true,  //是否显示后面的网格线
+                                        lineStyle:{
+                                            color:'#2D8C6A'  //网格线颜色
+                                        }
+                                    }
+                                }
+                            ],
+                            series: [
+                                {
+                                    name: xAxisDataObj.name,
+                                    type: 'bar',
+                                    barWidth: '30%',
+                                    data: xAxisDataObj.data
+                                }
+                            ]
+                        };
+                        middleRightPieChart.setOption(middleRightPie_option);
+                    }
+                }).catch(err=>{
+                    console.log(err);
+                });
+            }
+
+
+            //下左柱状图 bottomLeftBar
+            this.$axios({
+                method: "post",
+                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
+                data: {
+                    chartLocation:3,
+                    chartType:1,
+                    parentTitle:parentTitle,
+                    subTitleCode:subTitleCode,
+                    statisticsYear:''
+                }
+            }).then(res => {
+                if(res.status == 200){
+                    var bottomLeftBarData = res.data.data;
+                    var cockpitDatatList = bottomLeftBarData.cockpitDatatList;
+                    var xAxisDataObj = {
+                        xAxisData:[],
+                        data:[],
+                        name:''
+                    };
+                    for(var i = 0; i < cockpitDatatList.length;i++){
+                        xAxisDataObj.xAxisData.push(cockpitDatatList[i].statisticalIndicator);
+                        xAxisDataObj.data.push(cockpitDatatList[i].firstStatisticalContent);
+                        xAxisDataObj.name = cockpitDatatList[i].firstDescription;
+                    }
+                    var bottomLeftBarChart = echarts.init(document.getElementById('bottomLeftBar'));
+                    var bottomLeftBar_option = {
+                        title:{
+                            text:bottomLeftBarData.chartName,
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:14
+                            },
+                            left:'center'
+                        },
+                        color: ['#0FA16D'],
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {            
+                                type: 'shadow'        
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        axisLabel:{
+                            color:'#fff',
+                            fontSize:14
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: xAxisDataObj.xAxisData,
+                                axisTick: {
+                                    alignWithLabel: true,
+                                    lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
+                                },
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                axisTick: {
+                                        alignWithLabel: true,
+                                        lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
+                                },
+                                axisLine:{
+                                    lineStyle:{
+                                        color:'#2D8C6A' //坐标轴颜色
+                                    }
+                                },
+                                axisLabel:{
+                                    color:'#fff',
+                                    fontSize:12
+                                },
+                                splitLine:{
+                                    show:true,  //是否显示后面的网格线
+                                    lineStyle:{
+                                        color:'#2D8C6A'  //网格线颜色
+                                    }
+                                }
+                            }
+                        ],
+                        series: [
+                            {
+                                name: xAxisDataObj.name,
+                                type: 'bar',
+                                barWidth: '30%',
+                                data: xAxisDataObj.data
+                            }
+                        ]
+                    };
+                    bottomLeftBarChart.setOption(bottomLeftBar_option);
                 }
             }).catch(err=>{
                 console.log(err);
             });
 
 
-            //下面右边的三角形柱状图
+            //下右三角形柱状图
             this.$axios({
                 method: "post",
                 url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
@@ -648,8 +796,8 @@ export default {
                 }
             }).then(res => {
                 if(res.status == 200){
-                    var BottomRightData = res.data.data;
-                    var cockpitDatatList = BottomRightData.cockpitDatatList;
+                    var bottomRightBarData = res.data.data;
+                    var cockpitDatatList = bottomRightBarData.cockpitDatatList;
                     var xAxisDataObj = {
                         xAxisData:[],
                         data:[],
@@ -660,10 +808,10 @@ export default {
                         xAxisDataObj.data.push(cockpitDatatList[i].firstStatisticalContent);
                         xAxisDataObj.name = cockpitDatatList[i].firstDescription;
                     }
-                    var yiliaoyanChart = echarts.init(document.getElementById('yiliaoyanfaqingkuang')); 
-                    var yiliaoyan_option = {
+                    var bottomRightBarChart = echarts.init(document.getElementById('bottomRightBar')); 
+                    var bottomRightBar_option = {
                         title:{
-                            text:BottomRightData.chartName,
+                            text:bottomRightBarData.chartName,
                             textStyle:{
                                 color:'#fff',
                                 fontSize:14
@@ -749,7 +897,7 @@ export default {
                             symbolOffset: [0, '-120%']
                         }]
                     };
-                    yiliaoyanChart.setOption(yiliaoyan_option);
+                    bottomRightBarChart.setOption(bottomRightBar_option);
                 }
             }).catch(err=>{
                 console.log(err);
@@ -870,18 +1018,21 @@ export default {
                   width: 100%;
                   height: 309px;
                   margin-bottom: 21px;
-                  background-color: blue;
+                  // background-color: blue;
+                  border:rgba(3,169,113,0.3) 1px solid;
                 }
                 .left_bottom_pie{
                   width: 100%;
                   height: 309px;
-                  background-color: green;
+                  // background-color: green;
+                  border:rgba(3,169,113,0.3) 1px solid;
                 }
               }
               .right{
                 height: 100%;
                 flex-grow: 1;
-                background-color: cornflowerblue;
+                // background-color: cornflowerblue;
+                border:rgba(3,169,113,0.3) 1px solid;
               }
             }
             .middle{
@@ -895,12 +1046,14 @@ export default {
                 width: 590px;
                 height: 100%;
                 margin-right: 21px;
-                background-color: red;
+                // background-color: red;
+                border:rgba(3,169,113,0.3) 1px solid;
               }
               .middle_right{
                 height: 100%;
                 width: 590px;
-                background-color: pink;
+                // background-color: pink;
+                border:rgba(3,169,113,0.3) 1px solid;
               }
             }
             .bottom{
@@ -913,12 +1066,14 @@ export default {
                 width: 590px;
                 height: 100%;
                 margin-right: 21px;
-                background-color:orangered;
+                // background-color:orangered;
+                border:rgba(3,169,113,0.3) 1px solid;
               }
               .bottom_right{
                 width: 590px;
                 height: 100%;
-                background-color:skyblue;
+                // background-color:skyblue;
+                border:rgba(3,169,113,0.3) 1px solid;
               }
             }
         }

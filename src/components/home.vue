@@ -368,12 +368,12 @@ export default {
       justify-content: center;
       margin-right: 230px;
       .top{
-        font-size: 30px;
+        font-size: 24px;
         color: #FFFFFF;
         letter-spacing: 0.5px;
       }
       .bottom{
-        font-size: 15px;
+        font-size: 12px;
         color: #FFFFFF;
         letter-spacing: 5px;
       }

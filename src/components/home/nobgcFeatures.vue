@@ -369,7 +369,7 @@ export default {
     justify-content: center;
     .features_title{
         width: 1200px;
-        margin: 80px auto;
+        margin-top:50px;
         .cn_title{
             font-size: 36px;
             color: #1F2D3D;
@@ -389,7 +389,7 @@ export default {
         justify-content: center;
         .features_point_container{
             width: 18%;
-            height: 335px;
+            height: 310px;
             margin-right: 20px;
             display: flex;
             align-items: center;

@@ -200,10 +200,10 @@ export default {
                 this.showTrian3 = false;
             }
             else if(index == 3){
-                this.showMenu = true;
+                this.showMenu = false; //是否显示菜单
                 this.showTrian1 = false;
                 this.showTrian2 = false;
-                this.showTrian3 = true;
+                this.showTrian3 = false; //是否显示下拉三角形
             }
             else{
                 this.showMenu = false;
