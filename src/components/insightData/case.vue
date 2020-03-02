@@ -43,10 +43,10 @@
               <div class="top_ten_title">TOP10案件分布</div>
               <div class="top_ten" id="top_ten"></div>
           </div>
-          <div class="case_time_container">
+          <!-- <div class="case_time_container">
               <div class="case_time_title">案件时间分布</div>
               <div class="case_time" id="case_time"></div>
-          </div>
+          </div> -->
           <div class="case_reason_type_container">
               <div class="case_reason_type_title">总体案由分类</div>
               <div class="case_reason_type" id="case_reason_type"></div>
@@ -59,12 +59,12 @@
               <div class="case_type_title">案件类型分布</div>
               <div class="case_type" id="case_type"></div>
           </div>
-          <div class="plaintiff_type_container">
+          <!-- <div class="plaintiff_type_container">
               <div class="plaintiff_type_title">原告主体类型分布</div>
               <div class="plaintiff_type" id="plaintiff_type"></div>
-          </div>
+          </div> -->
       </div>
-      <div class="judgment_analy_report">法院判决分析报告</div>
+      <!-- <div class="judgment_analy_report">法院判决分析报告</div>
       <div class="court_navigation">
           <div class="court_navigation_left"><img src="../../assets/images/insightData/china_map.jpg" alt=""></div>
           <div class="court_navigation_right">
@@ -84,7 +84,7 @@
                   <div class="court_right"></div>
               </div>
           </div>
-      </div>
+      </div> -->
       <div class="court_echarts_container">
           <div class="case_appeal_container">
               <div class="case_appeal_title">案件上诉、改判、再审率</div>
@@ -122,17 +122,17 @@ export default {
           var echarts = require('echarts');
            //上边中间   中国地图
            let baseUrl='http://106.13.122.156:8083';
-            this.$axios({
-                method: "get",
-                url: baseUrl + "/insight/lawQuery/client_caseType_distribute",
-            }).then(res => {
-                console.log(res.data.data)
-                if(res.status==200){
-                    console.log(res.data)
-                }
-            }).catch(err=>{
-                console.log(err);
-            });
+            // this.$axios({
+            //     method: "get",
+            //     url: baseUrl + "/insight/lawQuery/client_caseType_distribute",
+            // }).then(res => {
+            //     console.log(res.data.data)
+            //     if(res.status==200){
+            //         console.log(res.data)
+            //     }
+            // }).catch(err=>{
+            //     console.log(err);
+            // });
 
             
             this.$axios({
@@ -178,7 +178,7 @@ export default {
                             
                         },
                         series: [{
-                            name: '数据',
+                            name: '报告',
                             type: 'map',
                             mapType: 'china',
                             roam: false,//是否允许鼠标滚轮控制大小
@@ -255,30 +255,30 @@ export default {
     topTenChart.setOption(top_ten_option);
 
     //案件时间分布
-    var caseTimeChart = echarts.init(document.getElementById('case_time'));
-    var case_time_option = {
-        color: ['#03A971'],
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            axisLine:{
-                symbol:['none', 'arrow'],
-                symbolSize:[5,5]
-            }
-        },
-        yAxis: {
-            type: 'value',
-            axisLine:{
-                symbol:['none', 'arrow'],
-                symbolSize:[5,5]
-            }
-        },
-        series: [{
-            data: [1210, 2000, 1510, 1180, 7110, 1110, 5000],
-            type: 'bar'
-        }]
-    };
-    caseTimeChart.setOption(case_time_option);
+    // var caseTimeChart = echarts.init(document.getElementById('case_time'));
+    // var case_time_option = {
+    //     color: ['#03A971'],
+    //     xAxis: {
+    //         type: 'category',
+    //         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    //         axisLine:{
+    //             symbol:['none', 'arrow'],
+    //             symbolSize:[5,5]
+    //         }
+    //     },
+    //     yAxis: {
+    //         type: 'value',
+    //         axisLine:{
+    //             symbol:['none', 'arrow'],
+    //             symbolSize:[5,5]
+    //         }
+    //     },
+    //     series: [{
+    //         data: [1210, 2000, 1510, 1180, 7110, 1110, 5000],
+    //         type: 'bar'
+    //     }]
+    // };
+    // caseTimeChart.setOption(case_time_option);
 
     //总体案由分布
     var caseReasonChart = echarts.init(document.getElementById('case_reason_type'));
@@ -373,36 +373,36 @@ export default {
             formatter: '{a} <br/>{b} : {c} ({d}%)'
         },
         series: [
-            {
-                name: '半径模式',
-                type: 'pie',
-                radius: [20, 110],
-                center: ['25%', '50%'],
-                roseType: 'radius',
-                label: {
-                    show: false
-                },
-                emphasis: {
-                    label: {
-                        show: true
-                    }
-                },
-                data: [
-                    {value: 10, name: '类型1'},
-                    {value: 5, name: '类型2'},
-                    {value: 15, name: '类型3'},
-                    {value: 25, name: '类型4'},
-                    {value: 20, name: '类型5'},
-                    {value: 35, name: '类型6'},
-                    {value: 30, name: '类型7'},
-                    {value: 40, name: '类型8'}
-                ]
-            },
+            // {
+            //     name: '半径模式',
+            //     type: 'pie',
+            //     radius: [20, 110],
+            //     center: ['25%', '50%'],
+            //     roseType: 'radius',
+            //     label: {
+            //         show: false
+            //     },
+            //     emphasis: {
+            //         label: {
+            //             show: true
+            //         }
+            //     },
+            //     data: [
+            //         {value: 10, name: '类型1'},
+            //         {value: 5, name: '类型2'},
+            //         {value: 15, name: '类型3'},
+            //         {value: 25, name: '类型4'},
+            //         {value: 20, name: '类型5'},
+            //         {value: 35, name: '类型6'},
+            //         {value: 30, name: '类型7'},
+            //         {value: 40, name: '类型8'}
+            //     ]
+            // },
             {
                 name: '面积模式',
                 type: 'pie',
                 radius: [30, 110],
-                center: ['75%', '50%'],
+                center: ['50%', '50%'],
                 roseType: 'area',
                 data: [
                     {value: 10, name: '类型1'},
@@ -420,41 +420,41 @@ export default {
     caseTypeChart.setOption(case_type_option);
 
     //原告主体类型分布plaintiff_type
-    var plainTiffChart = echarts.init(document.getElementById('plaintiff_type'));
-    var plain_tiff_type_option = {
-        tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['主体类型1', '主体类型2', '主体类型3', '主体类型4', '主体类型5']
-        },
-        series: [
-            {
-                name: '主体类型',
-                type: 'pie',
-                radius: '55%',
-                center: ['50%', '60%'],
-                data: [
-                    {value: 935, name: '主体类型1'},
-                    {value: 1310, name: '主体类型2'},
-                    {value: 834, name: '主体类型3'},
-                    {value: 735, name: '主体类型4'},
-                    {value: 500, name: '主体类型5'}
-                ],
-                emphasis: {
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        ]
-    };
-    plainTiffChart.setOption(plain_tiff_type_option);
+    // var plainTiffChart = echarts.init(document.getElementById('plaintiff_type'));
+    // var plain_tiff_type_option = {
+    //     tooltip: {
+    //         trigger: 'item',
+    //         formatter: '{a} <br/>{b} : {c} ({d}%)'
+    //     },
+    //     legend: {
+    //         orient: 'vertical',
+    //         left: 'left',
+    //         data: ['主体类型1', '主体类型2', '主体类型3', '主体类型4', '主体类型5']
+    //     },
+    //     series: [
+    //         {
+    //             name: '主体类型',
+    //             type: 'pie',
+    //             radius: '55%',
+    //             center: ['50%', '60%'],
+    //             data: [
+    //                 {value: 935, name: '主体类型1'},
+    //                 {value: 1310, name: '主体类型2'},
+    //                 {value: 834, name: '主体类型3'},
+    //                 {value: 735, name: '主体类型4'},
+    //                 {value: 500, name: '主体类型5'}
+    //             ],
+    //             emphasis: {
+    //                 itemStyle: {
+    //                     shadowBlur: 10,
+    //                     shadowOffsetX: 0,
+    //                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //                 }
+    //             }
+    //         }
+    //     ]
+    // };
+    // plainTiffChart.setOption(plain_tiff_type_option);
 
     //案件上诉、改判、再审率
     var caseAppealChart = echarts.init(document.getElementById('case_appeal'));

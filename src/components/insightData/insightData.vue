@@ -69,7 +69,7 @@
                     </div>
                     <div class="search">
                         <input type="text" placeholder="请输入您想要匹配的案件名称/案件号/案由">
-                        <div class="search_btn"></div>
+                        <div class="search_btn" @click="goLogin"></div>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@ export default {
       ifShowParties:false,
       ifShowRealEstate:false,
       showMenu:false,
-      menuText:'案件',
+      menuText:'律师',
       navType:2,
       ifShowLogin:false,
       ifShowSubBtn:true,
@@ -200,14 +200,13 @@ export default {
         this.ifShowParties = false;
         this.ifShowRealEstate = false;
         this.menuText = '案件';
+      }else if(arg == 'lawyer'){
+        this.ifShowCase = false;
+        this.ifShowLawyer = true;
+        this.ifShowParties = false;
+        this.menuText='律师';
+        this.ifShowRealEstate = false;
       }
-      // else if(arg == 'lawyer'){
-      //   this.ifShowCase = false;
-      //   this.ifShowLawyer = true;
-      //   this.ifShowParties = false;
-      //   this.menuText='律师';
-      //   this.ifShowRealEstate = false;
-      // }
       // else if(arg == 'parties'){
       //   this.ifShowCase = false;
       //   this.ifShowLawyer = false;

@@ -197,19 +197,17 @@ export default {
     .houseContainer{
         display: flex;
         width: 100%;
-        height: 590px;
+        // height: 590px;
         margin-bottom: 40px;
         .map_statistics{
             width: 75%;
-            height: 100%;
-            margin-bottom: 40.6px;
             img{
                 width: 100%;
+                display: block;
                 }
         }
         .total_num{
             width: 25%;
-            height: 590px;
             background: #F2F4F7; 
             padding: 10px;
             .title{
