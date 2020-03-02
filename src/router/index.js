@@ -106,6 +106,16 @@ const Routers = [
     path:'/houseData', //数据洞察部分
     name:'houseData',
     component:resolve=>(require(["@/components/houseData/houseData"],resolve))
+  },
+  {
+    path:'/brandSentiment', //数据洞察部分
+    name:'brandSentiment',
+    component:resolve=>(require(["@/components/insightData/brandSentiment"],resolve))  //
+  },
+  {
+    path:'/geographySearch', //数据洞察部分
+    name:'geographySearch',
+    component:resolve=>(require(["@/components/insightData/geographySearch"],resolve))  //
   }
 ];
 

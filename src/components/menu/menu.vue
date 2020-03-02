@@ -55,8 +55,8 @@
     <div class="insightData_menu_container" v-else-if="navType == 2">
       <div @click="goList(8)" class="border_bottom_style falvzonghefenxi">法律综合分析</div>
       <div @click="goDetails(26)">房产综合分析</div>
-      <div @click="goDetails(27)">品牌舆情洞察</div>
-      <div @click="goDetails(28)">地理综合查询</div>
+      <div @click="goDetails(27)" class="pinpai">品牌舆情洞察</div>
+      <div @click="goDetails(28)" class="dili">地理综合查询</div>
     </div>
     <div class="obserData_menu_container" v-else-if="navType == 3">
       <div @click="goList(9)" class="border_bottom_style">政治数据</div>
@@ -178,6 +178,16 @@
           case 21:
             this.$router.push({
               path:'/shortSpeechRecoDetail'
+            });
+            break;
+          case 27:
+            this.$router.push({
+              path:'/brandSentiment'  //geographySearch 
+            });
+            break;
+          case 28:
+            this.$router.push({
+              path:'/geographySearch'  // 
             });
             break;
           case 29 :
@@ -338,6 +348,18 @@
       color: #7A8499;
     }
     .falvzonghefenxi:hover{
+      color:#03A971;
+      cursor: pointer;
+      background:rgba(128, 128, 128, 0.1);
+      box-shadow: 0 2px 35px 0 #EBECF0;
+    }
+    .pinpai{
+      color:#03A971;
+      cursor: pointer;
+      background:rgba(128, 128, 128, 0.1);
+      box-shadow: 0 2px 35px 0 #EBECF0;
+    }
+    .dili{
       color:#03A971;
       cursor: pointer;
       background:rgba(128, 128, 128, 0.1);
