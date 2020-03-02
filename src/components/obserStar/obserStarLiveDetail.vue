@@ -300,6 +300,7 @@ export default {
                         }
 
                     }
+                    console.log(mapData)
                     var myMapChart = echarts.init(document.getElementById('map'));        
                     var mayMap_option = {
                         title: {//这里是整个图的标题

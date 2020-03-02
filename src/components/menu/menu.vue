@@ -1,5 +1,5 @@
 <template>
-  <div v-show="ifShowMenu">
+  <div v-show="ifShowMenu" >
     <div class="aiSmartApp_menu_container" v-if="navType == 1">
       <div class="yuyanchuli">
         <p @click="goList(0)" class="border_bottom_style ziranyuyanchuli">自然语言处理</p>

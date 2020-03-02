@@ -285,17 +285,18 @@ export default {
   },
   methods:{
     jumpFn(index){
-      if(index === 1){
-        this.$router.push({
-          path:'/aiSmartAppList',
-          query:{type:1}
-        });
-      }else if(index === 2){
-        this.$router.push({
-          path:'/insightData',
-          query:{type:2}
-        });
-      }else if(index === 3){
+      // if(index === 1){
+      //   this.$router.push({
+      //     path:'/aiSmartAppList',
+      //     query:{type:1}
+      //   });
+      // }else if(index === 2){
+      //   this.$router.push({
+      //     path:'/insightData',
+      //     query:{type:2}
+      //   });
+      // }
+      if(index === 3){
         this.$router.push({
           path:'/obserStarData',
           query:{
