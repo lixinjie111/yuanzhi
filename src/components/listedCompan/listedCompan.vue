@@ -12,7 +12,7 @@
           </div>
           <div class="right">
               <div class="top" @click="downLoad">下载</div>
-              <div class="bottom" @click="interFace">接口</div>
+              <!-- <div class="bottom" @click="interFace">接口</div> -->
           </div>
       </div>
   </div>
