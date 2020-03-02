@@ -45,7 +45,7 @@ export default {
                 //     }
                 // });
                 let routerUrl = this.$router.resolve({
-                    path:'/obserStarPoliticDetail',     //obserStarList列表页
+                    path:'/obserStarPoliticDetail',     
                     query:{
                         type:3,
                         dataType:1,
@@ -58,7 +58,18 @@ export default {
                 window.open(routerUrl.href,'_blank')
             }
             else if(this.showData.dataType == 2){  //民生数据跳转列表
-                this.$router.push({
+                // this.$router.push({
+                //     path:'/obserStarLiveDetail',
+                //     query:{
+                //         type:3,
+                //         dataType:2,
+                //         parentTitle:3,
+                //         pointType:index,
+                //         subTitleCode:item.subTitleCode,
+                //         subTitleName:item.subTitleName
+                //     }
+                // });
+                let routerUrl = this.$router.resolve({
                     path:'/obserStarLiveDetail',
                     query:{
                         type:3,
@@ -69,9 +80,21 @@ export default {
                         subTitleName:item.subTitleName
                     }
                 });
+                window.open(routerUrl.href,'_blank')
             }
             else if(this.showData.dataType == 3){  //经济数据跳转列表
-                this.$router.push({
+                // this.$router.push({
+                //     path:'/obserStarEconoDetail',
+                //     query:{
+                //         type:3,
+                //         dataType:3,
+                //         parentTitle:4,
+                //         pointType:index,
+                //         subTitleCode:item.subTitleCode,
+                //         subTitleName:item.subTitleName
+                //     }
+                // });
+                let routerUrl = this.$router.resolve({
                     path:'/obserStarEconoDetail',
                     query:{
                         type:3,
@@ -82,9 +105,21 @@ export default {
                         subTitleName:item.subTitleName
                     }
                 });
+                window.open(routerUrl.href,'_blank')
             }
             else if(this.showData.dataType == 4){  //文化数据跳转列表
-                this.$router.push({
+                // this.$router.push({
+                //     path:'/obserStarCulturDetail',
+                //     query:{
+                //         type:3,
+                //         dataType:4,
+                //         parentTitle:1,
+                //         pointType:index,
+                //         subTitleCode:item.subTitleCode,
+                //         subTitleName:item.subTitleName
+                //     }
+                // });
+                let routerUrl = this.$router.resolve({
                     path:'/obserStarCulturDetail',
                     query:{
                         type:3,
@@ -95,6 +130,7 @@ export default {
                         subTitleName:item.subTitleName
                     }
                 });
+                window.open(routerUrl.href,'_blank')
             }
             else if(this.showData.dataType == 5 && index == 0){  //样本数据跳转列表
                 this.$router.push({
