@@ -8,7 +8,7 @@
               <div class="case_num_container">
                   <div class="case_num" v-for="(item,index) in totalNum" :key='index'>{{item}}</div>
               </div>
-              <div class="increase_container">
+              <!-- <div class="increase_container">
                   <div>
                       <span class="time">今日</span>
                       <span class="increase_num">867</span>
@@ -17,7 +17,7 @@
                       <span class="mom">环比</span>
                       <span class="percent">+2.3↑</span>
                   </div>
-              </div>
+              </div> -->
           </div>
           <div class="first_instance_num">
               <div>一审案件总数</div>
