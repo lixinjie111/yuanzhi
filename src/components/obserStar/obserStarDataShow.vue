@@ -33,7 +33,18 @@ export default {
     methods:{
         goObserStarList(index,item){
             if(this.showData.dataType == 1){   
-                this.$router.push({
+                // this.$router.push({
+                //     path:'/obserStarPoliticDetail',     //obserStarList列表页
+                //     query:{
+                //         type:3,
+                //         dataType:1,
+                //         pointType:index,
+                //         subTitleCode:item.subTitleCode,
+                //         subTitleName:item.subTitleName,
+                //         parentTitle:2
+                //     }
+                // });
+                let routerUrl = this.$router.resolve({
                     path:'/obserStarPoliticDetail',     //obserStarList列表页
                     query:{
                         type:3,
@@ -44,6 +55,7 @@ export default {
                         parentTitle:2
                     }
                 });
+                window.open(routerUrl.href,'_blank')
             }
             else if(this.showData.dataType == 2){  //民生数据跳转列表
                 this.$router.push({
