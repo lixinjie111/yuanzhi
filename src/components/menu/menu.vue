@@ -76,7 +76,7 @@
           <P>传播路径分析</P>
           <P>敏感信息预警</P>
         </div>
-        <div class="view_more">
+        <div class="view_more" @click="goAlgorithm">
           查看更多
         </div>
       </div>
@@ -261,6 +261,11 @@
       },
       hideSelf(){
         this.ifShowMenu = false;
+      },
+      goAlgorithm(){
+        this.$router.push({
+          path:'/algorithm'
+        });
       }
     }
   }
@@ -288,6 +293,7 @@
       }
       div:nth-child(1):hover{
         color: #03A971;
+        cursor: pointer;
       }
       p{
         font-size: 14px;
@@ -296,6 +302,7 @@
       }
       p:hover{
         color: #03A971;
+        cursor: pointer;
       }
       img{
         width: 30px;
