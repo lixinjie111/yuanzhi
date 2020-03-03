@@ -353,13 +353,13 @@
       background:rgba(128, 128, 128, 0.1);
       box-shadow: 0 2px 35px 0 #EBECF0;
     }
-    .pinpai{
+    .pinpai:hover{
       color:#03A971;
       cursor: pointer;
       background:rgba(128, 128, 128, 0.1);
       box-shadow: 0 2px 35px 0 #EBECF0;
     }
-    .dili{
+    .dili:hover{
       color:#03A971;
       cursor: pointer;
       background:rgba(128, 128, 128, 0.1);
