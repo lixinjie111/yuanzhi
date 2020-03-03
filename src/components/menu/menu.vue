@@ -1,9 +1,9 @@
 <template>
   <div v-show="ifShowMenu" >
     <div class="aiSmartApp_menu_container" v-if="navType == 1">
-      <div class="yuyanchuli">
-        <p @click="goList(0)" class="border_bottom_style ziranyuyanchuli">自然语言处理</p>
-        <p @click="goDetails(0)" class="cifafenxi">词法分析</p>
+      <div class="ziranyuyan_container">
+        <div @click="goList(0)">自然语言处理</div>
+        <p @click="goDetails(0)" class="cifafenxi">词法分析<img :src="hotImg" alt="" srcset=""></p>
         <p @click="goDetails(1)">句子成分分析</p>
         <p @click="goDetails(2)">句法依存分析</p>
         <p @click="goDetails(3)">文本分类</p>
@@ -15,41 +15,70 @@
         <p @click="goDetails(9)">词向量表示</p>
         <p @click="goDetails(10)">同义词挖掘</p>
       </div>
-      <div class="renlianyurenti">
-        <p @click="goList(1)" class="border_bottom_style renlianshibieDetail">人脸识别</p>
-        <p @click="goDetails(11)">人脸检测</p>
-        <p @click="goDetails(12)">人脸对比</p>
-        <p @click="goDetails(13)">人脸搜索</p>
-        <p @click="goDetails(14)">活体检测</p>
+      <div class="renlianheshibie_container">
+        <div class="renlian_container">
+          <div @click="goList(1)">人脸识别</div>
+          <p @click="goDetails(11)">人脸检测</p>
+          <p @click="goDetails(12)">人脸对比</p>
+          <p @click="goDetails(13)">人脸搜索</p>
+          <p @click="goDetails(14)">活体检测</p>
+        </div>
+        <div class="shipin_container">
+          <div @click="goList(2)">视频识别</div>
+          <P @click="goDetails(15)">视频内容分析</P>
+          <P @click="goDetails(16)">媒体内容审核</P>
+        </div>
       </div>
-      <div class="shipinjishu">
-        <P @click="goList(2)" class="border_bottom_style shipinjishu1">视频识别</P>
-        <P @click="goDetails(15)">视频内容分析</P>
-        <P @click="goDetails(16)">媒体内容审核</P>
+      <div class="tuxiangyuyin_container">
+        <div class="tuxiang_container">
+          <div @click="goList(5)">图像文字识别</div>
+          <p @click="goDetails(17)">卡证文字识别</p>
+          <p @click="goDetails(18)">票据文字识别</p>
+          <p @click="goDetails(19)">汽车场景文字识别</p>
+          <p @click="goDetails(20)">其他文字识别</p>
+        </div>
+        <div class="yuyin_container">
+          <div @click="goList(6)">语音技术</div>
+          <P @click="goDetails(21)">短语音识别<img :src="hotImg" alt="" srcset=""></P>
+          <P @click="goDetails(22)">实时语音识别</P>
+          <P @click="goDetails(23)">录音文件识别</P>
+          <p @click="goDetails(24)">语音唤醒</p>
+          <p @click="goDetails(25)">语音合成</p>
+        </div>
       </div>
-      <div class="sousuo">
-        <p @click="goList(3)" class="border_bottom_style sousuo1">搜索</p>
+      <div class="tuijiansousuo_container">
+        <div class="tuijian_container">
+          <div @click="goList(7)">推荐</div>
+          <P>基于内容推荐</P>
+          <P>基于产品推荐</P>
+          <P>基于用户推荐</P>
+          <P>标签数值化</P>
+          <P>用户画像</P>
+          <P>相似距离计算</P>
+        </div>
+        <div class="sousuo_container">
+          <div @click="goList(3)">搜索</div>
+          <P>全文大数据搜索</P>
+          <P>热词推荐</P>
+          <P>多语言搜索</P>
+          <P>搜索聚合</P>
+          <P>文档检索</P>
+        </div>
       </div>
-      <div class="yuqingfenxi">
-        <p @click="goList(4)" class="border_bottom_style opinionAnalysisDetail">舆情分析</p>
-      </div>
-      <div class="tuxiangwenzishibie">
-        <p @click="goList(5)" class="border_bottom_style tuxiangwenzishibieDetail">图像文字识别</p>
-        <p @click="goDetails(17)">卡证文字识别</p>
-        <p @click="goDetails(18)">票据文字识别</p>
-        <p @click="goDetails(19)">汽车场景文字识别</p>
-        <p @click="goDetails(20)">其他文字识别</p>
-      </div>
-      <div class="yuyinshibie">
-        <P @click="goList(6)" class="border_bottom_style yuyinjishu">语音技术</P>
-        <P @click="goDetails(21)" class="duanyuyinshibie">短语音识别</P>
-        <P @click="goDetails(22)">实时语音识别</P>
-        <P @click="goDetails(23)">录音文件识别</P>
-        <p @click="goDetails(24)">语音唤醒</p>
-        <p @click="goDetails(25)">语音合成</p>
-      </div>
-      <div class="tuijian">
-        <p @click="goList(7)" class="border_bottom_style recommendDetail">推荐</p>
+      <div class="yuqinfenxi_container">
+        <div class="yuqingfenxi">
+          <div @click="goList(4)">舆情分析</div>
+          <P>舆情数据抓取</P>
+          <P>热度趋势分析</P>
+          <P>地域分布分析</P>
+          <P>情感倾向分析</P>
+          <P>事件演化分析</P>
+          <P>传播路径分析</P>
+          <P>敏感信息预警</P>
+        </div>
+        <div class="view_more">
+          查看更多
+        </div>
       </div>
     </div>
     <div class="insightData_menu_container" v-else-if="navType == 2">
@@ -78,7 +107,8 @@
     },
     data(){
       return{
-        ifShowMenu:true
+        ifShowMenu:true,
+        hotImg:require('../../assets/images/home/hot.png')
       }
     },
     methods:{
@@ -240,94 +270,52 @@
   .aiSmartApp_menu_container{
     position: absolute;
     display: flex;
-    align-items:flex-start;
-    justify-content: space-around;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 30px 45px;
     z-index: 999;
     top: 90px;
     left: 50%;
-    width: 75%;
-    transform: translateX(-50%);
-    background-color: #FFFFFF;
-    .tuxiangwenzishibie,.yuyinshibie,.tuxiangjishu,.renlianyurenti,.shipinjishu,.yuyanchuli,.sousuo,.yuqingfenxi,.tuijian{
-      margin-right: 60px;
-      p{
-        font-size: 13px;
-        color: #7A8499;
-        margin-bottom: 12px;
-      }
-      p:nth-child(1){
-        margin-bottom: 10px;
+    width: 60%;
+    transform: translateX(-60%);
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px 0 #3D4966;
+    .ziranyuyan_container,.renlianheshibie_container,.tuxiangyuyin_container,.tuijiansousuo_container,.yuqinfenxi_container{
+      width: 116px;
+      div:nth-child(1){
+        margin-bottom: 17px;
         font-size: 16px;
         color: #3D4966;
       }
-      .cifafenxi:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;
+      div:nth-child(1):hover{
+        color: #03A971;
       }
-      .ziranyuyanchuli:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;
+      p{
+        font-size: 14px;
+        color: #7A8499;
+        margin-bottom: 12px;
       }
-      .yuyinjishu:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;
+      p:hover{
+        color: #03A971;
       }
-      .shipinjishu1:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;  
+      img{
+        width: 30px;
+        height: 14px;
       }
-      .sousuo1:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;   
+      .shipin_container,.yuyin_container{
+        margin-top: 111px;
       }
-      .recommendDetail:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;  
+      .sousuo_container{
+        margin-top: 47px;
       }
-      .opinionAnalysisDetail:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;     
+      .view_more{
+        margin-top: 172px;
+        border: 1px solid #03A971;
+        border-radius: 3px;
+        height: 30px;
+        line-height: 30px;
+        color: #03A971;
+        text-align: center;
       }
-      .duanyuyinshibie:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0;  
-      }
-      .tuxiangwenzishibieDetail:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0; 
-      }
-      .renlianshibieDetail:hover{
-        color:#03A971;
-        cursor: pointer;
-        background:rgba(128, 128, 128, 0.1);
-        box-shadow: 0 2px 35px 0 #EBECF0; 
-      }
-      .border_bottom_style{
-        padding-bottom:5px;
-        border-bottom:2px gray solid
-      }
-    }
-    .tuijian{
-      margin-right: 0;
     }
   }
   .insightData_menu_container,.obserData_menu_container{
