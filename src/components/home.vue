@@ -227,7 +227,7 @@ export default {
           {
             Text:'民生数据',
             img:require('../assets/images/home/watch2.png'),
-            desc:'提供医疗、社保、就业、安全、交通、企业服务等民生类数据搜索以及数据可视化服务',
+            desc:'提供医疗、社保、就业、安全、交通等民生类数据搜索以及数据可视化服务',
             featurType:1
           },
           {
@@ -296,15 +296,17 @@ export default {
       //     query:{type:2}
       //   });
       // }
-      if(index === 3){
-        this.$router.push({
-          path:'/obserStarData',
-          query:{
-            type:3,
-            featurType:0
-          }
-        });
-      }else if(index === 4 || index === 5){
+      // if(index === 3){
+      //   this.$router.push({
+      //     path:'/obserStarData',
+      //     query:{
+      //       type:3,
+      //       featurType:0
+      //     }
+      //   });
+      // }else 
+      console.log(index)
+      if(index === 4 || index === 5){
         this.ifShowLogin = true;
       }
     },

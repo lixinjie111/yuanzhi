@@ -36,7 +36,7 @@
             <div class="drop_down_menu">
                 <div class="left">
                     <span>房产综合分析</span>
-                    <span> > 楼盘</span>
+                    <span> > 小区</span>
                 </div>
                 <div class="right">
                     <div class="address">
@@ -61,7 +61,7 @@
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
                             <DropdownMenu slot="list">
-                                <DropdownItem name='case'>楼盘</DropdownItem>
+                                <DropdownItem name='case'>小区</DropdownItem>
                                 <DropdownItem name='lawyer'>物业</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
@@ -107,7 +107,7 @@ export default {
       ifShowParties:false,
       ifShowRealEstate:false,
       showMenu:false,
-      menuText:'楼盘',
+      menuText:'小区',
       navType:2,
       ifShowLogin:false,
       ifShowSubBtn:true,
@@ -198,7 +198,7 @@ export default {
         this.ifShowLawyer = false;
         this.ifShowParties = false;
         this.ifShowRealEstate = false;
-        this.menuText = '楼盘';
+        this.menuText = '小区';
       }else{
         this.goLogin()
       }

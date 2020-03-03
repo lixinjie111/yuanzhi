@@ -5,9 +5,14 @@
               <img :src="item.img"  class="big_img">
               <img :src="bofang" class="bofang" v-show="listType == 'shipinshibie'">
           </div>
-          <div class="title">{{item.title}}</div>
+          <div class="title">
+            {{item.title}}
+            <div class="hot" v-if="item.title=='词法分析'">
+                <img src="../../assets/images/home/hot.png"  class="big_img">
+            </div>
+          </div>
           <div class="description">{{item.desc}}</div>
-          <div class="btn">了解详情</div>
+          <div class="btn" @click="jump(item.title)">了解详情</div>
       </div>
   </div>
 </template>
@@ -34,7 +39,20 @@ export default {
       var prodcutArrDom = this.$refs.product_detail_container;
       prodcutArrDom[0].style='margin-right:80px';
     }
+  },
+  methods:{
+    jump(arg){
+      console.log(arg)
+      if(arg=="词法分析"){
+         this.$router.push({
+            path:'/aiSmartAppDetail'
+          });
+      }
+      
+
+    }
   }
+
 }
 </script>
 
@@ -68,6 +86,15 @@ export default {
         margin-top: 30px;
         font-size: 22px;
         color: #121C33;
+        .hot{
+          width:35px;
+          display: inline-block;
+          vertical-align: super;
+          img{
+            width: 100%;
+            display: block
+          }
+        }
       }
       .description{
         margin-top: 10px;

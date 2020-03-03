@@ -202,13 +202,14 @@ export default {
         this.ifShowParties = false;
         this.ifShowRealEstate = false;
         this.menuText = '案件';
-      }else if(arg == 'lawyer'){
-        this.ifShowCase = false;
-        this.ifShowLawyer = true;
-        this.ifShowParties = false;
-        this.menuText='律师';
-        this.ifShowRealEstate = false;
       }
+      // else if(arg == 'lawyer'){
+      //   this.ifShowCase = false;
+      //   this.ifShowLawyer = true;
+      //   this.ifShowParties = false;
+      //   this.menuText='律师';
+      //   this.ifShowRealEstate = false;
+      // }
       // else if(arg == 'parties'){
       //   this.ifShowCase = false;
       //   this.ifShowLawyer = false;

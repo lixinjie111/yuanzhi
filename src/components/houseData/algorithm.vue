@@ -32,8 +32,7 @@
     <div class="banner">
       <img src="../../assets/images/houseData/suanfa.png" alt="">
       <div class="content">
-        <p class="title">开源算法</p>
-        <p class="intro">收集和整理的目前互联网上知名开源算法</p>
+        <p class="title">AI智能服务大全</p>
       </div>
     </div>
 
@@ -42,19 +41,19 @@
         <div class="drop_down_menu_container">
             <div class="drop_down_menu">
                 <div class="left">
-                    <span>开源算法集</span>
-                    <span>资源数：32</span>
+                    <!-- <span>开源算法集</span> -->
+                    <span>资源数：200</span>
                 </div>
                 <div class="right">
-                    <div class="address">
+                    <!-- <div class="address">
                         <Select v-model="model1" style="width:200px">
                             <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
-                    </div>
+                    </div> -->
                     <div class="search">
-                        <input type="text" placeholder="查找开源算法">
+                        <input type="text" placeholder="输入您要查找的算法名称或关键词" @focus="goLogin">
                         <!-- <i-input :value.sync="value" placeholder="查找开源算法" style="width: 300px"></i-input> -->
-                        <div class="search_btn"></div>
+                        <div class="search_btn" @click="goLogin"></div>
                     </div>
                 </div>
             </div>
@@ -70,10 +69,10 @@
           <div class="title">{{item.title}}</div>
           <div class="intro">{{item.intro}}</div>
           <div class="comment">
-            <div class="icon"><img src="../../assets/images/houseData/github.png" alt=""> </div> 
-            <span>github</span>
+            <!-- <div class="icon"><img src="../../assets/images/houseData/github.png" alt=""> </div>  -->
+            <!-- <span>github</span> -->
             <span class="time">{{item.time}}</span>
-            <span class="isPublic">{{item.isPublic}}</span>
+            <!-- <span class="isPublic">{{item.isPublic}}</span> -->
           </div>
         </div>
         <div class="right">
@@ -81,6 +80,9 @@
         </div>
       </li>
     </ul>
+    <div style="margin:auto;margin-bottom:50px;margin-top:-40px;text-align:center">
+        <i-button type="success" @click="goLogin">查看更多</i-button>
+    </div>
 
 
     <!--底部导航及版权说明-->
@@ -377,7 +379,7 @@ export default {
             }
           }
           .time{
-            margin-left:50px;
+            // margin-left:50px;
             font-size: 14px;
             color: #3D4966;
             letter-spacing: 0;

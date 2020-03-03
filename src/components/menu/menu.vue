@@ -210,6 +210,11 @@
               path:'/shortSpeechRecoDetail'
             });
             break;
+          case 26:
+            this.$router.push({
+              path:'/houseData'  //geographySearch 
+            });
+            break;
           case 27:
             this.$router.push({
               path:'/brandSentiment'  //geographySearch 
@@ -322,6 +327,7 @@
         line-height: 30px;
         color: #03A971;
         text-align: center;
+        cursor: pointer;
       }
     }
   }
@@ -342,24 +348,30 @@
       font-size: 14px;
       color: #7A8499;
     }
-    .falvzonghefenxi:hover{
+    div:hover{
       color:#03A971;
       cursor: pointer;
       background:rgba(128, 128, 128, 0.1);
       box-shadow: 0 2px 35px 0 #EBECF0;
     }
-    .pinpai:hover{
-      color:#03A971;
-      cursor: pointer;
-      background:rgba(128, 128, 128, 0.1);
-      box-shadow: 0 2px 35px 0 #EBECF0;
-    }
-    .dili:hover{
-      color:#03A971;
-      cursor: pointer;
-      background:rgba(128, 128, 128, 0.1);
-      box-shadow: 0 2px 35px 0 #EBECF0;
-    }
+    // .falvzonghefenxi:hover{
+    //   color:#03A971;
+    //   cursor: pointer;
+    //   background:rgba(128, 128, 128, 0.1);
+    //   box-shadow: 0 2px 35px 0 #EBECF0;
+    // }
+    // .pinpai:hover{
+    //   color:#03A971;
+    //   cursor: pointer;
+    //   background:rgba(128, 128, 128, 0.1);
+    //   box-shadow: 0 2px 35px 0 #EBECF0;
+    // }
+    // .dili:hover{
+    //   color:#03A971;
+    //   cursor: pointer;
+    //   background:rgba(128, 128, 128, 0.1);
+    //   box-shadow: 0 2px 35px 0 #EBECF0;
+    // }
   }
   .obserData_menu_container{
     transform: translateX(50%);
