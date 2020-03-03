@@ -1,6 +1,6 @@
 <template>
   <div class="case_container">
-      <div class="case_analysis_report">案件分析报告</div>
+      <div class="case_analysis_report">全国案件分布</div>
       <div class="map_statistics" id="map"></div>
       <div class="total_num">
           <div class="case_total_num">
@@ -107,7 +107,6 @@
 </template>
 
 <script>
-import 'echarts/map/js/china.js'
 export default {
   data () {
     return {
@@ -687,19 +686,18 @@ export default {
 <style scoped lang='less'>
 .case_container{
     width: 1200px;
-    padding: 80px 0;
+    padding: 60px 0;
     box-sizing: border-box;
     .case_analysis_report{
         width: 100%;
         text-align: center;
         font-size: 36px;
         color: #121C33;
-        margin-bottom: 40.4px;
+        margin-bottom: -60px;
     }
     .map_statistics{
         width: 100%;
         height: 590px;
-        margin-bottom: 40.6px;
         img{
             width: 100%;
         }
@@ -708,10 +706,10 @@ export default {
         width: 100%;
         display: flex;
         align-items: center;
+        margin-bottom: 30px;
         .case_total_num,.first_instance_num,.two_instance_num,.three_instance_num{
-            width: 277px;
-            height: 153px;
-            margin-right: 30px;
+            flex:1;
+            text-align: center;
             div:nth-child(1){
                 font-size: 18px;
                 color: #121C33;
@@ -719,16 +717,10 @@ export default {
                 margin-bottom: 16px;
             }
             .case_num_container{
-                display: flex;
                 .case_num{
-                    // border: 1px solid #03A971;
-                    // border-radius: 4px;
                     font-size: 20px;
                     color: #03A971;
-                    letter-spacing: 5px;
-                    width: 24px;
-                    height: 32px;
-                    text-align: center;
+                    letter-spacing: 1px;
                 }
             }
             .increase_container{

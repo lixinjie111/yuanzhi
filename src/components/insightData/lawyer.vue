@@ -479,7 +479,7 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 80px;
+    padding: 60px 0;
     box-sizing: border-box;
     .lawyer_analysis_report{
         width: 1200px;

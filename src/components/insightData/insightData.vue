@@ -30,17 +30,19 @@
 
     <vMenu v-show="showMenu" :navType='navType'></vMenu>
 
+
+
     <!--内容区域-->
     <div class="insight_data_container">
         <div class="drop_down_menu_container">
             <div class="drop_down_menu">
                 <div class="left">
                     <span>法律综合分析</span>
-                    <span> > 案件分析报告</span>
+                    <span> > 全国案件分布</span>
                 </div>
                 <div class="right">
                     <div class="address">
-                        <Dropdown>
+                        <Dropdown trigger="click">
                             <a href="javascript:void(0)">
                                 全国
                                 <Icon type="ios-arrow-down"></Icon>
@@ -370,21 +372,17 @@ export default {
                 .address{
                   margin-right: 30px;
                   .ivu-dropdown{
-                    width: 60px;
                     .ivu-dropdown-rel{
-                      display: flex;
+                      // display: flex;
                       width: 65px;
                       a{
-                        font-size: 14px;
                         color: #121C33;
-                        letter-spacing: 0;
                       }
                   }
                   .ivu-select-dropdown{
                       .ivu-dropdown-menu{
                           li:hover{
                             color: #03A971;
-                            width: 100%;
                           }
                       }
                     }
