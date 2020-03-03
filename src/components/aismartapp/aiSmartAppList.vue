@@ -47,7 +47,16 @@ import vLogin from '../login/login';
 export default {
   name: 'home',
   data () {
-    var language_tech = {
+    return {
+      cn_title:'Sophia平台',
+      en_title:'元知智能研究院',
+      nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
+      sub_btn:'立即登录',
+      navType:1,
+      headerImg:require('@/assets/images/home/timg.jpg'),
+      ifShowLogin:false,
+      ifShowSubBtn:true,
+      language_tech:{
         title:'自然语言处理',
         title_desc:'自然语言处理是为各类企业及开发者提供的用于文本分析及挖掘的核心工具，已经广泛应用在电商、文化娱乐、金融、物流等行业客户的多项业务中。',
         use_btn:'立即使用',
@@ -126,17 +135,7 @@ export default {
             desc:'SLA稳定保持99.99%以上，支持千亿量级调用需求，配有完善的统计和监控措施'
           }
       ]
-    }
-    return {
-      cn_title:'Sophia平台',
-      en_title:'元知智能研究院',
-      nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
-      sub_btn:'立即登录',
-      navType:1,
-      headerImg:require('@/assets/images/home/timg.jpg'),
-      ifShowLogin:false,
-      ifShowSubBtn:true,
-      aiListData:language_tech,
+      },
       audion_tech:{
         title:'语音技术',
         title_desc:'采用国际领先的流氏端到端语音语言一体化建模算法，将语音快速识别为文字，支持手机应用语音交互、语音内容分析、机器人对话等多个场景',
@@ -207,7 +206,7 @@ export default {
       showTrian1:false,
       showTrian2:false,
       showTrian3:false,
-      language_tech:language_tech
+      aiListData:{}
     }
   },
   components:{
@@ -238,6 +237,9 @@ export default {
       this.aiListData = this.language_tech;
     }else if(type == 1 && featurType == 1){
       this.aiListData = this.audion_tech;
+    }
+    else{
+      this.aiListData = this.language_tech;
     }
   },
   methods:{
