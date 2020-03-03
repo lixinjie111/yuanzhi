@@ -120,7 +120,7 @@ const Routers = [
 ];
 
 const RouterConfig = {
-  mode:'history',
+  //mode:'history',
   routes:Routers
 };
 

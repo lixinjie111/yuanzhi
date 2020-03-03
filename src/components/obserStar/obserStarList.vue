@@ -42,11 +42,11 @@
     </div>
 
     <!--分页-->
-    <div class='page_container'>
+    <!-- <div class='page_container'>
         <div class="page">
             <Page :total="100" :class-name='pageClass' :current='2'></Page>
         </div>
-    </div>
+    </div> -->
 
     <!--底部及版权组件-->
     <vFooterCopy></vFooterCopy>
@@ -74,10 +74,188 @@ export default {
         rightPointMenuText:'',
         navType:3,
         chart_img:require('@/assets/images/obserStar/chart.jpg'),
-        obserStarListArr:[
+        obserStarListArr:[],
+        obserShipinArr:[
+            {
+                title:'UCF Sport Action 运动视频数据',
+                desc:'UCF体育数据集包括从各种体育运动中收集的一系列动作，这些动作通常在广播电视频道（如BBC和ESPN）上播出。该集合代表了各种场景和视点中的自然行动池。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'UCF101 Action Recognition Data Set/UCF101动作识别数据集',
+                desc:'UCF101是从13320个YouTube视频中，收集到的具有101个操作类别的真实动作识别数据集。此数据集是UCF50数据集的扩展，具有50个操作类别。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Traffic Lights Recognition (TLR) public benchmark/交通信号灯视频数据',
+                desc:'Traffic Lights Recognition (TLR) 是一个交通信号灯识别的视频数据，在真实的道路上采集的交通信号灯视频，分辨率为 640x480，由法国一所大学提供。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'HMDB 人类动作视频',
+                desc:'HMDB 是一个人类动作视频数据，包含 6849段 视频剪辑，51个 人类动作类别，每类动作至少包含 101段视频剪辑。动作主要包括：面部动作、面部操作、身体动作、交互动作、人体动作等类别',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Intel Image Classification/英特尔图像分类数据集',
+                desc:'数据主要是世界各地自然风光的图像数据。此数据集包含大约25,000张大小为150x150的图像，分布在6个类别中。              ',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'ETH Predestrian Dataset/ETH行人数据视频',
+                desc:'ETH Pedestrian dataset 是一个包含行人的视频数据，可用以进行行人检测和识别等机器视觉任务。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'ALOV300++ Dataset/ALOV++ 物体追踪视频数据',
+                desc:'数据集内是一个物体追踪视频数据，旨在对不同的光线、通透度、泛着条件、背景杂乱程度、焦距下的相似物体的追踪。视频主要来自 Youtube 网站，平均长度为9.2秒。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            }
+        ],
+        obserTupianArr:[
+             {
+                title:'斯坦福汽车数据集',
+                desc:'斯坦福汽车数据集包含196类汽车的16,185张图像。数据被分为8,144个训练图像和8,041个测试图像，其中每个类别已大致分为50-50个分割。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Caltech 256 Image Dataset/加州理工256图像数据集',
+                desc:'该数据集中有30,607张图像，涵盖257个对象类别。对象类别极其多样，从蚱hopper到音叉不等。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'IMDB-WIKI 500k 人脸图像、年龄性别数据',
+                desc:'数据集包含名人人脸图像、年龄、性别等的数据，总计 524230 张名人人脸图像及对应的年龄和性别。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'人脸图像数据集',
+                desc:'1500张人脸图像，包含不同区域的多个面部图像。数据集包含不同区域的多个面部图像。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Intel Image Classification/英特尔图像分类数据集',
+                desc:'数据主要是世界各地自然风光的图像数据。此数据集包含大约25,000张大小为150x150的图像，分布在6个类别中。              ',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'字符识别数据集',
+                desc:'自然图像中的（0-9，A-Z，a-z）字符识别数据集包括：64节（0-9，AZ，az）。每个单个字符数据集有目录树。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            }
+        ],
+        obserWenbenArr:[
+             {
+                title:'中国空气质量数据集data2424',
+                desc:'中国各地空气质量检测数据，具体城市以及对于的监测点可以看文件中的站点列表。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Cloud_Theme_Click云主题点击数据',
+                desc:'数据集为淘宝APP中云主题场景的用户点击日志，用以对用户在多个不同场景、以及新场景下的推荐进行优化验证。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'Product Description Dataset / 商品描述文案数据集',
+                desc:'数据集包含两份数据如下：item_desc_dataset.txt（商品文案描述数据）；content_tag_dataset.txt（用户点击内容的用户类型摘要）',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'20new新闻数据集',
+                desc:'20news是一个英文新闻数据集，包含 20个 类别共 20000篇 新闻文档，可用以进行文档分类和自然语言处理等任务。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'携程房型产品用户行为数据集',
+                desc:'数据主要包含以下几个部分：用户数据、酒店数据、房型数据,可以根据在用户的历史信息，挖掘出用户对于某些房型偏好',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            },
+            {
+                title:'OCR-DAS-DATASE/密集不规则文本行数据集',
+                desc:'目前的数据集包含很少密集和任意形状的文本，这些文本经常出现在商品细节图像上。密度来自于有限的引入空间，而不规则则来自于易起皱的包装。',
+                date:{
+                    update:'2020-02-11',
+                    downLoad:571,
+                    invok:743
+                }
+            }
+        ],
+        obserYuyinArr:[
             {
                 title:'Mozilla语音数据集',
-                desc:'总验证时长：11小时288人录音的综合中文语音数据集',
+                desc:'288人进行标准录音的综合中文语音数据集，总验证时长达11小时，可用于中文语音机器学习训练。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -86,7 +264,7 @@ export default {
             },
             {
                 title:'data1784中文语音库',
-                desc:'总验证时长: >10小时志愿者贡献的中文语音数据',
+                desc:'1784名志愿者贡献的中文语音数据，总验证时长超过10小时，可用于中文语音算法训练。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -95,7 +273,7 @@ export default {
             },
             {
                 title:'美国CA＆NV的禽声',
-                desc:'该数据集包含来自美国加利福尼亚州和内华达州的记录子集，包括每个物种均衡数量的样本（30）。记录按物种标记，并且还包含呼叫类型的非标准化标签。',
+                desc:'该数据集包含来自美国加利福尼亚州和内华达州的记录子集，包括每个物种均衡数量的样本。记录按物种标记，包含呼叫类型的非标准化标签。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -104,7 +282,7 @@ export default {
             },
             {
                 title:'心跳声音-从听诊器音频分类心跳异常',
-                desc:'该数据集最初是针对机器学习挑战来对心跳声音进行分类的。数据是从两个来源收集的：A通过iStethoscope Pro iPhone应用程序从公众那里获得的，以及B从使用数字听诊器DigiScope的医院的临床试验中获得的。',
+                desc:'该数据集最初用来对心跳声音进行分类。数据是通过IOS程序从公众那里获得的数据，以及使用数字听诊器DigiScope的临床试验数据。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -113,7 +291,7 @@ export default {
             },
             {
                 title:'DARPA TIMIT连续语音语料库',
-                desc:'TIMIT阅读语音语料库旨在提供语音数据，用于获取语音知识以及开发和评估自动语音识别系统。TIMIT共包含6300个句子，来自美国8个主要方言地区的630位讲话者每人说10个句子。',
+                desc:'TIMIT可用于获取语音知识以及开发和评估自动语音识别系统。TIMIT共包含6300个句子，来自美国8个主要方言地区的630位讲话者每人说10个句子。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -122,34 +300,7 @@ export default {
             },
             {
                 title:'英文同声传异数据竞赛数据',
-                desc:'ChallengerAI 英文同声传译竞赛数据【ChallengerAI 竞赛】',
-                date:{
-                    update:'2020-02-11',
-                    downLoad:571,
-                    invok:743
-                }
-            },
-            {
-                title:'英文同声传异数据竞赛数据',
-                desc:'ChallengerAI 英文同声传译竞赛数据【ChallengerAI 竞赛】',
-                date:{
-                    update:'2020-02-11',
-                    downLoad:571,
-                    invok:743
-                }
-            },
-            {
-                title:'英文同声传异数据竞赛数据',
-                desc:'ChallengerAI 英文同声传译竞赛数据【ChallengerAI 竞赛】',
-                date:{
-                    update:'2020-02-11',
-                    downLoad:571,
-                    invok:743
-                }
-            },
-            {
-                title:'英文同声传异数据竞赛数据',
-                desc:'ChallengerAI 英文同声传译竞赛数据【ChallengerAI 竞赛】',
+                desc:'该数据集是AI Challenger 全球AI挑战赛中英文同声传译竞赛的数据。',
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
@@ -272,6 +423,22 @@ export default {
         var dataType = this.$route.query.dataType;
         var pointType = this.$route.query.pointType;
         var rightPointMenuText = this.$route.query.subTitleName
+        if(pointType == 0){
+            //视频数据集
+            this.obserStarListArr = this.obserShipinArr;
+        }
+        else if(pointType == 1){
+            //图片数据集
+            this.obserStarListArr = this.obserTupianArr;
+        }
+        else if(pointType == 2){
+            //文本数据集
+            this.obserStarListArr = this.obserWenbenArr;
+        }
+        else if(pointType == 3){
+            //语音数据集
+            this.obserStarListArr = this.obserYuyinArr;
+        }
         if(dataType == 1){
             this.leftMenuText = '政治';
             this.rightPointMenuText = rightPointMenuText;

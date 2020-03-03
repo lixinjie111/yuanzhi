@@ -6,7 +6,7 @@
           <div class="case_total_num">
               <div>累计案件总数</div>
               <div class="case_num_container">
-                  <div class="case_num" v-for="(item,index) in totalNum" :key='index'>{{item}}</div>
+                  <div class="case_num">{{totalNum}}</div>
               </div>
               <!-- <div class="increase_container">
                   <div>
@@ -22,19 +22,19 @@
           <div class="first_instance_num">
               <div>一审案件总数</div>
               <div class="case_num_container">
-                  <div class="case_num" v-for="(item,index) in firstInstanceNum" :key='index'>{{item}}</div>
+                  <div class="case_num">{{firstInstanceNum}}</div>
               </div>
           </div>
           <div class="two_instance_num">
               <div>二审案件总数</div>
               <div class="case_num_container">
-                  <div class="case_num" v-for="(item,index) in twoInstanceNum" :key='index'>{{item}}</div>
+                  <div class="case_num">{{twoInstanceNum}}</div>
               </div>
           </div>
           <div class="three_instance_num">
               <div>三审案件总数</div>
               <div class="case_num_container">
-                  <div class="case_num" v-for="(item,index) in threeInstanceNum" :key='index'>{{item}}</div>
+                  <div class="case_num">{{threeInstanceNum}}</div>
               </div>
           </div>
       </div>
@@ -111,10 +111,10 @@ import 'echarts/map/js/china.js'
 export default {
   data () {
     return {
-        totalNum:[8,8,4,8,7,9,2,2],
-        firstInstanceNum:[6,1,4,4,0,7,7,8],
-        twoInstanceNum:[2,4,5,9,8,6,1,0],
-        threeInstanceNum:[2,4,4,8,5,3,4]
+        totalNum:88487922,
+        firstInstanceNum:61440778,
+        twoInstanceNum:24598610,
+        threeInstanceNum:2448534,
     }
   },
   methods:{
@@ -204,6 +204,11 @@ export default {
                                 fontSize:14
                             }
                         },
+                         grid: {
+                            top: '0',
+                            bottom: '0',
+                            containLabel: true
+                        },
                         tooltip: {//图例
                             trigger: 'item',
                             //文本上方的浮动小块
@@ -262,6 +267,15 @@ export default {
     this.getEchartData();
     var topTenChart = echarts.init(document.getElementById('top_ten'));
     var top_ten_option = {
+        grid: {
+            left: '4%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
         xAxis: {
             type: 'category',
             data: ['浙江', '安徽', '福建', '山东', '河南', '湖南', '广东','四川','河北','辽宁'],
@@ -294,20 +308,17 @@ export default {
 
     //案件时间分布
     var caseTimeChart = echarts.init(document.getElementById('case_time'));
-    268968
-19885409
-19178241
-16865258
-12754382
-9964799
-7117914
-1451322
-411372
-218421
-193546
-97137
 
     var case_time_option = {
+        grid: {
+            left: '4%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
         color: ['#03A971'],
         xAxis: {
             type: 'category',
@@ -710,14 +721,13 @@ export default {
             .case_num_container{
                 display: flex;
                 .case_num{
-                    border: 1px solid #03A971;
-                    border-radius: 4px;
+                    // border: 1px solid #03A971;
+                    // border-radius: 4px;
                     font-size: 20px;
                     color: #03A971;
-                    letter-spacing: 0;
+                    letter-spacing: 5px;
                     width: 24px;
                     height: 32px;
-                    margin-right: 5px;
                     text-align: center;
                 }
             }

@@ -132,7 +132,7 @@ export default {
                 });
                 window.open(routerUrl.href,'_blank')
             }
-            else if(this.showData.dataType == 5 && index == 0){  //样本数据跳转列表
+            else if(this.showData.dataType == 5){  //样本数据跳转列表
                 this.$router.push({
                     path:'/obserStarList',
                     query:{

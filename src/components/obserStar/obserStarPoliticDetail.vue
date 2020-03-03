@@ -56,51 +56,26 @@
 <script>
 import vFooterCopy from '../footerCopyright/footerCopyright';
 import vMenu from '../menu/menu';
+import "echarts/map/js/china.js";
 export default {
     name:'obserStarLiveDetail',
     data(){
         return {
-            cn_title:'元知智能研究院',
-            en_title:'YUANZHI AI Research Institute',
-            nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
-            sub_btn:'立即登录',
-            showTrian1:false,
-            showTrian2:false,
-            showTrian3:false,
-            showMenu:false,
-            navType:3,
-            subTitleName:'',
-            chinaMapData:{}
+        cn_title:'元知智能研究院',
+        en_title:'YUANZHI AI Research Institute',
+        nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
+        sub_btn:'立即登录',
+        showTrian1:false,
+        showTrian2:false,
+        showTrian3:false,
+        showMenu:false,
+        navType:3,
+        subTitleName:''
         }
     },
     components:{
         vFooterCopy,
         vMenu
-    },
-    created(){
-        //上右中国地图  topRightChinaMap
-        var baseUrl = 'http://106.13.122.156:8086'; 
-        var parentTitle = this.$route.query.parentTitle;
-        var subTitleCode = this.$route.query.subTitleCode;
-        this.$axios({
-            method: "post",
-            url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
-            data: {
-                chartLocation:4,
-                chartType:3,
-                parentTitle:parentTitle,
-                subTitleCode:subTitleCode,
-                statisticsYear:''
-            }
-        }).then(res => {
-            if(res.status == 200){
-                this.chinaMapData = res.data.data;
-            }
-        }).catch(err=>{
-            console.log(err);
-        });
-
-        console.log(this.chinaMapData+'vvvvvvvvvvvvvvvvvv');
     },
     mounted(){
         if(this.$route.query.type == 3){
@@ -181,82 +156,6 @@ export default {
             var subTitleCode = this.$route.query.subTitleCode;
             var that = this;
             this.subTitleName = this.$route.query.subTitleName;
-            console.log(this.chinaMapData + 'ceshi');
-            //中国地图
-            var chainaMapData = JSON.parse(JSON.stringify(this.chinaMapData));
-            var cockpitDatatList = chainaMapData.cockpitDatatList;
-            var mapData = [];
-            for(var i = 0; i < cockpitDatatList.length;i++){
-                if(i == 0){
-                    mapData.push({
-                        name:cockpitDatatList[i].statisticalIndicator.replace(/\s*/g,''),
-                        value:cockpitDatatList[i].firstStatisticalContent
-                    });
-                }
-                else{
-                    mapData.push({
-                        name:cockpitDatatList[i].statisticalIndicator.replace(/\s*/g,''),
-                        value:parseInt(cockpitDatatList[i].firstStatisticalContent)
-                    });
-                }
-
-            }
-            var myMapChart = echarts.init(document.getElementById('topRightChinaMap'));        
-            var mayMap_option = {
-                title: {//这里是整个图的标题
-                    text: this.chinaMapData.chartName,//大标题
-                    x: 'center',//标题的位置，左边中间或者右边
-                    textStyle:{
-                        color:'#fff',
-                        fontSize:14
-                    }
-                },
-                tooltip: {//图例
-                    trigger: 'item',
-                    //文本上方的浮动小块
-                    backgroundColor:'rgba(255,255,255,0.7)',//文本上方的浮动小块的颜色
-                    padding:[20,20],//文字与边框之间的内边距
-                    textStyle:{//文本样式设置
-                        color:'#00000',//这里要注意一下，必须是标准6位，否则可能显现不出来
-                        fontSize:18,//字号大小
-                        lineHeight:'300px'//最后一个属性不加逗号，行高
-                    }
-                    
-                },
-                series: [{
-                    name: '数据',
-                    type: 'map',
-                    mapType: 'china',
-                    roam: true,//是否允许鼠标滚轮控制大小
-                    label: {
-                        normal:{
-                            show:true,
-                            textStyle:{
-                                color:'rgba(255,255,255,0.3)'
-                            }
-                        },
-                        emphasis: {//鼠标移入动态时显示的样式
-                            show: true,
-                            //backgroundColor控制的就是鼠标移入的时候文字的背景颜色而不是模块的背景颜色
-                            //color:鼠标移入的时候文字的颜色
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            borderWidth: .5, //区域边框宽度
-                            borderColor: 'rgba(255,255,255,0.3)',//区域边框颜色
-                            areaColor: "rgba(3,169,113,0.3)", //区域颜色
-                        },
-                        emphasis: {
-                            borderWidth: .5,
-                            borderColor: '#4b0082',
-                            areaColor: "#2D8C6A",
-                        }
-                    },
-                    data: mapData   // 数据
-                }]
-            };
-            myMapChart.setOption(mayMap_option);
 
             //上面左上 柱状图
             this.$axios({
@@ -523,6 +422,101 @@ export default {
                     console.log(err);
                 });
             }
+
+            //上右中国地图  topRightChinaMap
+
+            this.$axios({
+                method: "post",
+                url: baseUrl + "/stargaze/stargazaCockpit/getCockpitData",
+                data: {
+                    chartLocation:4,
+                    chartType:3,
+                    parentTitle:parentTitle,
+                    subTitleCode:subTitleCode,
+                    statisticsYear:''
+                }
+            }).then(res => {
+                if(res.status == 200){
+                    var topCenterData = res.data.data;
+                    var cockpitDatatList = topCenterData.cockpitDatatList;
+                    var mapData = [];
+                    for(var i = 0; i < cockpitDatatList.length;i++){
+                        if(i == 0){
+                            mapData.push({
+                                name:cockpitDatatList[i].statisticalIndicator.replace(/\s*/g,''),
+                                value:cockpitDatatList[i].firstStatisticalContent
+                            });
+                        }
+                        else{
+                            mapData.push({
+                                name:cockpitDatatList[i].statisticalIndicator.replace(/\s*/g,''),
+                                value:parseInt(cockpitDatatList[i].firstStatisticalContent)
+                            });
+                        }
+
+                    }
+                    console.log(mapData+'aaaaaaaaa')
+                    var myMapChart = echarts.init(document.getElementById('topRightChinaMap'));        
+                    var mayMap_option = {
+                        title: {//这里是整个图的标题
+                            text: topCenterData.chartName,//大标题
+                            x: 'center',//标题的位置，左边中间或者右边
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:14
+                            }
+                        },
+                        tooltip: {//图例
+                            trigger: 'item',
+                            //文本上方的浮动小块
+                            backgroundColor:'rgba(255,255,255,0.7)',//文本上方的浮动小块的颜色
+                            padding:[20,20],//文字与边框之间的内边距
+                            textStyle:{//文本样式设置
+                                color:'#00000',//这里要注意一下，必须是标准6位，否则可能显现不出来
+                                fontSize:18,//字号大小
+                                lineHeight:'300px'//最后一个属性不加逗号，行高
+                            }
+                            
+                        },
+                        series: [{
+                            name: '数据',
+                            type: 'map',
+                            mapType: 'china',
+                            roam: true,//是否允许鼠标滚轮控制大小
+                            label: {
+                                normal:{
+                                    show:true,
+                                    textStyle:{
+                                        color:'rgba(255,255,255,0.3)'
+                                    }
+                                },
+                                emphasis: {//鼠标移入动态时显示的样式
+                                    show: true,
+                                    //backgroundColor控制的就是鼠标移入的时候文字的背景颜色而不是模块的背景颜色
+                                    //color:鼠标移入的时候文字的颜色
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5, //区域边框宽度
+                                    borderColor: 'rgba(255,255,255,0.3)',//区域边框颜色
+                                    areaColor: "rgba(3,169,113,0.3)", //区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor: "#2D8C6A",
+                                }
+                            },
+                            data: mapData   // 数据
+                        }]
+                    };
+                    myMapChart.setOption(mayMap_option);
+
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
 
             //中左柱状图middleLeftBar
             this.$axios({

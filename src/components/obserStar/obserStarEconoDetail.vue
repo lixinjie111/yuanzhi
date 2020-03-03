@@ -56,6 +56,7 @@
 <script>
 import vFooterCopy from '../footerCopyright/footerCopyright';
 import vMenu from '../menu/menu';
+import "echarts/map/js/china.js";
 export default {
     name:'obserStarLiveDetail',
     data(){
