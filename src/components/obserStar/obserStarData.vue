@@ -59,7 +59,7 @@
                 </div>
                 <div class="yangben"  @click="goShowData(4)">
                     <div class="yangben_left_line" v-show="ifshow_yangben_line"></div>
-                    <div class="yangben_right" ref="yangben">样本数据</div>
+                    <div class="yangben_right" ref="yangben">训练数据</div>
                 </div>
             </div>
             <div class="right">
