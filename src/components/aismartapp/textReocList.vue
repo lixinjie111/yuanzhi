@@ -301,6 +301,7 @@ export default {
         .bottom{
           font-size: 12px;
           color: #FFFFFF;
+          letter-spacing: 5px;
         }
       }
       .right{

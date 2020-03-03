@@ -216,14 +216,14 @@ export default {
             justify-content: center;
             margin-right: 230px;
             .top{
-                font-size: 30px;
-                color: #FFFFFF;
-                letter-spacing: 0.5px;
+            font-size: 24px;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
             }
             .bottom{
-                font-size: 15px;
-                color: #FFFFFF;
-                letter-spacing: 5px;
+            font-size: 12px;
+            color: #FFFFFF;
+            letter-spacing: 5px;
             }
             }
             .right{

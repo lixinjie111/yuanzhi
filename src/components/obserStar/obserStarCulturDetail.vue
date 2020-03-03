@@ -864,14 +864,14 @@ export default {
       align-items: center;
       justify-content: center;
       margin-right: 230px;
-      .top {
+      .top{
         font-size: 24px;
-        color: #ffffff;
+        color: #FFFFFF;
         letter-spacing: 0.5px;
       }
-      .bottom {
+      .bottom{
         font-size: 12px;
-        color: #ffffff;
+        color: #FFFFFF;
         letter-spacing: 5px;
       }
     }

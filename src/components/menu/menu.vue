@@ -323,6 +323,9 @@
         color: #03A971;
         text-align: center;
       }
+      .view_more:hover{
+        cursor: pointer;
+      }
     }
   }
   .insightData_menu_container,.obserData_menu_container{

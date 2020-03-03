@@ -27,9 +27,11 @@ export default {
   },
   mounted(){
       if(this.type == 1){
-          var domArr = this.$refs.advant;
-          for(var i=0;i<domArr.length;i++){
-              domArr[i].style='width:30%;';
+          if(this.$refs.advant){
+            var domArr = this.$refs.advant;
+            for(var i=0;i<domArr.length;i++){
+                domArr[i].style='width:30%;';
+            }
           }
       }
   }
