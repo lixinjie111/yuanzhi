@@ -347,19 +347,7 @@
       font-size: 14px;
       color: #7A8499;
     }
-    .falvzonghefenxi:hover{
-      color:#03A971;
-      cursor: pointer;
-      background:rgba(128, 128, 128, 0.1);
-      box-shadow: 0 2px 35px 0 #EBECF0;
-    }
-    .pinpai{
-      color:#03A971;
-      cursor: pointer;
-      background:rgba(128, 128, 128, 0.1);
-      box-shadow: 0 2px 35px 0 #EBECF0;
-    }
-    .dili{
+    div:hover{
       color:#03A971;
       cursor: pointer;
       background:rgba(128, 128, 128, 0.1);

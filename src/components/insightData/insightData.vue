@@ -108,7 +108,7 @@ export default {
       ifShowParties:false,
       ifShowRealEstate:false,
       showMenu:false,
-      menuText:'律师',
+      menuText:'案件',
       navType:2,
       ifShowLogin:false,
       ifShowSubBtn:true,
