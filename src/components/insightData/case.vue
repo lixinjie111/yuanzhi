@@ -196,7 +196,7 @@ export default {
                     var myMapChart = echarts.init(document.getElementById('map'));        
                     var mayMap_option = {
                         title: {//这里是整个图的标题
-                            text: '案件分析报告',//大标题
+                            text: '',//大标题
                             x: 'center',//标题的位置，左边中间或者右边
                             textStyle:{
                                 color:'#fff',

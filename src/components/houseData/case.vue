@@ -2,10 +2,10 @@
   <div class="case_container">
       <div class="case_analysis_report">住房检测指标</div>
       <div class="houseContainer">
-           <div class="map_statistics"><img src="../../assets/images/insightData/map.jpg" alt=""></div>
+           <div class="map_statistics" id="map"></div>
            <div class="total_num">
                 <p class="title">微博热议楼盘榜单</p>
-                <p class="subTitle">2020年1月</p>
+                <p class="subTitle">2020年2月</p>
                 <hr>
                 <ul class="content">
                     <li>
@@ -13,10 +13,10 @@
                         <div>楼盘名称</div>
                         <div>评论数</div>
                     </li>
-                    <li>
-                        <div>1</div>
-                        <div>珠江御景</div>
-                        <div>3,112,234</div>
+                    <li v-for="(item,index) in list" :key="index">
+                        <div>{{index+1}}</div>
+                        <div class="area">{{item.keyWord}}</div>
+                        <div>{{item.num}}</div>
                     </li>
                 </ul>
             </div>
@@ -28,8 +28,8 @@
               <div class="top_ten" id="top_ten"></div>
           </div>
           <div class="case_time_container">
-              <div class="case_time_title">全国微博热议小区</div>
-              <div class="case_time" id="case_time"></div>
+              <div class="case_time_title">网络微博热议小区</div>
+              <div class="case_time" id="hot_net"></div>
           </div>
       </div>
       <div class="loupan">
@@ -107,18 +107,160 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
-        totalNum:[1,3,2,1,3,2,1,3],
-        firstInstanceNum:[1,3,2,1,3,2,1,3],
-        twoInstanceNum:[1,3,2,1,3,2,1,3],
-        threeInstanceNum:[1,3,2,1,3,2,1,3]
+        list:[
+            {
+                keyWord:"天通苑",
+                num:1205
+            },
+            {
+                keyWord:"嘉都",
+                num:580
+            },
+            {
+                keyWord:"恒大绿洲",
+                num:365
+            },
+            {
+                keyWord:"新城家园",
+                num:250
+            },
+            {
+                keyWord:"潮白河孔雀城",
+                num:191
+            },
+            {
+                keyWord:"天润城",
+                num:168
+            },
+            {
+                keyWord:"绿地国际花都",
+                num:109
+            },
+            {
+                keyWord:"水晶城",
+                num:103
+            },
+            {
+                keyWord:"远洋山水",
+                num:92
+            },
+            {
+                keyWord:"桂花园",
+                num:79
+            },
+        ]
     }
   },
   mounted(){
       document.documentElement.scrollTop=0;
     var echarts = require('echarts');
+
+
+        var mapData = [
+                        {name:"北京",value:"24728"},
+                        {name:"天津",value:"13984"},
+                        {name:"河北",value:"27842"},
+                        {name:"山西",value:"9687"},
+                        
+                        {name:"辽宁",value:"18850"},
+                        {name:"吉林",value:"7781"},
+                        {name:"黑龙江",value:"7897"},
+                        {name:"上海",value:"35924"},
+                        {name:"江苏",value:"54324"},
+                        {name:"浙江",value:"34472"},
+                        {name:"安徽",value:"29827"},
+                        {name:"福建",value:"17856"},
+                        {name:"江西",value:"10821"},
+                        {name:"山东",value:"45065"},
+                        {name:"河南",value:"27283"},
+                        {name:"湖北",value:"20305"},
+                        {name:"湖南",value:"15864"},
+                        {name:"广东",value:"63286"},
+                        
+                        {name:"海南",value:"4281"},
+                        {name:"重庆",value:"16245"},
+                        {name:"四川",value:"35964"},
+                        {name:"贵州",value:"5561"},
+                        {name:"云南",value:"8509"},
+                       
+                        {name:"陕西",value:"13552"},
+                        {name:"甘肃",value:"6798"},
+                        {name:"青海",value:"4175"},
+                        {name:"广西",value:"12279"},
+                         {name:"西藏",value:"314"},
+                        {name:"宁夏",value:"2239"},
+                        {name:"新疆",value:"5604"},
+                        {name:"内蒙古",value:"8900"},
+                        {name:"台湾",value:"1"},
+                        {name:"澳门",value:"272"}
+                    ];
+                    var myMapChart = echarts.init(document.getElementById('map'));        
+                    var mayMap_option = {
+                        title: {//这里是整个图的标题
+                            text: '',//大标题
+                            x: 'center',//标题的位置，左边中间或者右边
+                            textStyle:{
+                                color:'#fff',
+                                fontSize:14
+                            }
+                        },
+                         grid: {
+                            top: -20,
+                            bottom: 0,
+                            left:0,
+                            right:0,
+                            containLabel: true
+                        },
+                        tooltip: {//图例
+                            trigger: 'item',
+                            //文本上方的浮动小块
+                            backgroundColor:'rgba(255,255,255,0.7)',//文本上方的浮动小块的颜色
+                            padding:[20,20],//文字与边框之间的内边距
+                            textStyle:{//文本样式设置
+                                color:'#00000',//这里要注意一下，必须是标准6位，否则可能显现不出来
+                                fontSize:18,//字号大小
+                                lineHeight:'300px'//最后一个属性不加逗号，行高
+                            }
+                            
+                        },
+                        series: [{
+                            name: '小区数据',
+                            type: 'map',
+                            mapType: 'china',
+                            roam: false,//是否允许鼠标滚轮控制大小
+                            label: {
+                                normal:{
+                                    show:true,
+                                    textStyle:{
+                                        color:'rgba(255,255,255,0.3)'
+                                    }
+                                },
+                                emphasis: {//鼠标移入动态时显示的样式
+                                    show: true,
+                                    //backgroundColor控制的就是鼠标移入的时候文字的背景颜色而不是模块的背景颜色
+                                    //color:鼠标移入的时候文字的颜色
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5, //区域边框宽度
+                                    borderColor: 'rgba(255,255,255,0.3)',//区域边框颜色
+                                    areaColor: "rgba(3,169,113,0.3)", //区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor: "#2D8C6A",
+                                }
+                            },
+                            data: mapData   // 数据
+                        }]
+                    };
+                   myMapChart.setOption(mayMap_option);
 
     //top10案件分布
     var topTenChart = echarts.init(document.getElementById('top_ten'));
@@ -154,12 +296,15 @@ export default {
     topTenChart.setOption(top_ten_option);
 
     //案件时间分布
-    var caseTimeChart = echarts.init(document.getElementById('case_time'));
+    var caseTimeChart = echarts.init(document.getElementById('hot_net'));
     var case_time_option = {
         color: ['#03A971'],
+        tooltip: {
+            trigger: 'axis'
+        },
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ["天通苑","嘉都","恒大绿洲","新城家园","潮白河孔雀城","天润城","锦绣龙城","绿地国际花都","水晶城","远洋山水","桂花园"],
             axisLine:{
                 symbol:['none', 'arrow'],
                 symbolSize:[5,5]
@@ -173,7 +318,7 @@ export default {
             }
         },
         series: [{
-            data: [1210, 2000, 1510, 1180, 7110, 1110, 5000],
+            data: [1481,169,999,370,43,374,36,103,428,327,674],
             type: 'bar'
         }]
     };
@@ -224,8 +369,9 @@ export default {
                 li{
                     display: flex;
                     padding:5px;
-                    div{
-                        flex:1;
+                    justify-content: space-between;
+                    .area{
+                        color:#03A971; 
                     }
                 }
             }

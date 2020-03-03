@@ -186,26 +186,26 @@
           if(that.$refs.navListText.childNodes){
             var arrnavList = that.$refs.navListText.childNodes;
             if(st<AppScenH || st == AppScenH){
-              arrnavList[0].style = 'color: #03A971;font-size: 22px;';
-              arrnavList[1].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color: #03A971;';
+              arrnavList[1].style = 'color:#3D4966;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color:#3D4966;';
             }else if(st>AppScenH && st < FeaturesAdvanH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #03A971;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #03A971;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color:#3D4966;';
             }else if(st>FeaturesAdvanH && st < SupportCommH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#03A971;font-size: 22px;';
-              arrnavList[3].style = 'color: #3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #3D4966;';
+              arrnavList[2].style = 'color:#03A971;';
+              arrnavList[3].style = 'color: #3D4966;';
             }
             else{
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color: #03A971;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #3D4966;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color: #03A971;';
             }
           }
         }
@@ -325,13 +325,13 @@
     background-color: #F2F4F7;;
     .list_nav {
       width: 1200px;
-      padding: 29px 0;
+      padding: 20px 0;
       box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-around;
       div {
-        font-size: 22px;
+        font-size: 16px;
         color: #3D4966;
         text-align: center;
       }
@@ -420,7 +420,7 @@
             .right-top {
               padding-top: 50px;
               box-sizing: border-box;
-              font-size: 22px;
+              
               color: #121C33;
               margin-bottom: 10px;
               border: none;

@@ -108,6 +108,11 @@ const Routers = [
     component:resolve=>(require(["@/components/houseData/houseData"],resolve))
   },
   {
+    path:'/algorithm', //数据洞察部分
+    name:'algorithm',
+    component:resolve=>(require(["@/components/houseData/algorithm"],resolve))
+  },
+  {
     path:'/brandSentiment', //数据洞察部分
     name:'brandSentiment',
     component:resolve=>(require(["@/components/insightData/brandSentiment"],resolve))  //
