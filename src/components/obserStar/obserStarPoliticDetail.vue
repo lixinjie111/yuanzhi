@@ -61,8 +61,8 @@ export default {
     name:'obserStarLiveDetail',
     data(){
         return {
-        cn_title:'元知智能研究院',
-        en_title:'YUANZHI AI Research Institute',
+        cn_title:'Sophia平台',
+        en_title:'元知智能研究院',
         nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
         sub_btn:'立即登录',
         showTrian1:false,
@@ -1019,6 +1019,7 @@ export default {
         .bottom{
           font-size: 12px;
           color: #FFFFFF;
+          letter-spacing: 5px;
         }
       }
       .right{
@@ -1068,8 +1069,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 80px;
-    box-sizing: border-box;
     flex-direction: column;
     .chart{
         width: 1200px;

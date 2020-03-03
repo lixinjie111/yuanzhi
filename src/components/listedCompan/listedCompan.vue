@@ -5,9 +5,9 @@
               <div class="title">{{item.title}}</div>
               <div class="desc">{{item.desc}}</div>
               <div class="date">
-                  <div class="update_date">{{item.date.update}}更新</div>
-                  <div class="down_load">下载次数:{{item.date.downLoad}}</div>
-                  <div class="invok">调用次数:{{item.date.invok}}</div>
+                  <div class="update_date">{{item.date.update}}更新</div>&nbsp;&nbsp;
+                  <div class="down_load">下载次数:{{item.date.downLoad}}</div>&nbsp;&nbsp;
+                  <div class="invok">数据容量:{{item.date.invok}}</div>
               </div>
           </div>
           <div class="right">
@@ -15,10 +15,12 @@
               <!-- <div class="bottom" @click="interFace">接口</div> -->
           </div>
       </div>
+      <vLogin v-show="ifShowLogin" @closeLoginWin='closeLogin'></vLogin>
   </div>
 </template>
 
 <script>
+import vLogin from '../login/login';
   export default {
       props:{
           obserStarData:{
@@ -27,18 +29,20 @@
               default:[]
           }
       },
+      data(){
+          return{
+              ifShowLogin:false
+          }
+      },
+      components:{
+          vLogin
+      },
       methods:{
           downLoad(){
-            var name = localStorage.getItem('name');
-            if(!name){
-                this.$router.push('/login');
-            }
+              this.ifShowLogin = true;
           },
-          interFace(){
-            var name = localStorage.getItem('name');
-            if(!name){
-                this.$router.push('/login');
-            }
+          closeLogin(arg){
+              this.ifShowLogin = arg;
           }
       }
   }

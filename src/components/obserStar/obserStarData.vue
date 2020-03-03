@@ -127,7 +127,7 @@ export default {
                 contArr:[]    
             },
             yangbenData:{
-                title:'样本数据',
+                title:'训练数据',
                 desc:'提供用于视频、图片、文本、语音算法训练的开源数据集',
                 dataType:5,
                 contArr:[
@@ -490,6 +490,7 @@ export default {
         .bottom{
           font-size: 12px;
           color: #FFFFFF;
+          letter-spacing: 5px;
         }
       }
       .right{

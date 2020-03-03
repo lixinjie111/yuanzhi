@@ -71,8 +71,8 @@ export default {
   name: "obserStarLiveDetail",
   data() {
     return {
-      cn_title: "元知智能研究院",
-      en_title: "YUANZHI AI Research Institute",
+      cn_title:'Sophia平台',
+      en_title:'元知智能研究院',
       nav_text: [
         "首页",
         "AI智能应用",
@@ -872,6 +872,7 @@ export default {
       .bottom {
         font-size: 12px;
         color: #ffffff;
+        letter-spacing: 5px;
       }
     }
     .right {

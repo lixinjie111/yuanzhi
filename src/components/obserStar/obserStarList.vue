@@ -62,8 +62,8 @@ export default {
     name:'obserStarList',
     data(){
         return {
-        cn_title:'元知智能研究院',
-        en_title:'YUANZHI AI Research Institute',
+        cn_title:'Sophia平台',
+        en_title:'元知智能研究院',
         nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
         sub_btn:'立即登录',
         showTrian1:false,
@@ -82,7 +82,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1.66G'
                 }
             },
             {
@@ -91,7 +91,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'6G'
                 }
             },
             {
@@ -100,7 +100,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1.77G'
                 }
             },
             {
@@ -109,7 +109,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'3.86G'
                 }
             },
             {
@@ -118,7 +118,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'840M'
                 }
             },
             {
@@ -127,16 +127,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
-                }
-            },
-            {
-                title:'ALOV300++ Dataset/ALOV++ 物体追踪视频数据',
-                desc:'数据集内是一个物体追踪视频数据，旨在对不同的光线、通透度、泛着条件、背景杂乱程度、焦距下的相似物体的追踪。视频主要来自 Youtube 网站，平均长度为9.2秒。',
-                date:{
-                    update:'2020-02-11',
-                    downLoad:571,
-                    invok:743
+                    invok:'9.83G'
                 }
             }
         ],
@@ -147,7 +138,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'2G'
                 }
             },
             {
@@ -156,7 +147,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'2.12G'
                 }
             },
             {
@@ -165,7 +156,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'10G'
                 }
             },
             {
@@ -174,7 +165,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'294M'
                 }
             },
             {
@@ -183,7 +174,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'352M'
                 }
             },
             {
@@ -192,7 +183,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'188M'
                 }
             }
         ],
@@ -203,7 +194,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1.2G'
                 }
             },
             {
@@ -212,7 +203,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1.65G'
                 }
             },
             {
@@ -221,7 +212,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'760M'
                 }
             },
             {
@@ -230,7 +221,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'95.3M'
                 }
             },
             {
@@ -239,7 +230,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'506M'
                 }
             },
             {
@@ -248,7 +239,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'351M'
                 }
             }
         ],
@@ -259,7 +250,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'358M'
                 }
             },
             {
@@ -268,7 +259,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'342M'
                 }
             },
             {
@@ -277,7 +268,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1.31G'
                 }
             },
             {
@@ -286,7 +277,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'152M'
                 }
             },
             {
@@ -295,7 +286,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1G'
                 }
             },
             {
@@ -304,7 +295,7 @@ export default {
                 date:{
                     update:'2020-02-11',
                     downLoad:571,
-                    invok:743
+                    invok:'1G'
                 }
             }
         ],
@@ -493,6 +484,7 @@ export default {
         .bottom{
           font-size: 12px;
           color: #FFFFFF;
+          letter-spacing: 5px;
         }
       }
       .right{
