@@ -7,6 +7,7 @@ import 'view-design/dist/styles/iview.css';
 import ViewUI  from 'view-design';
 import axios from 'axios';
 import Recorder from 'js-audio-recorder';
+import 'echarts/map/js/china.js';
 axios.defaults.baseURL = 'http://106.13.122.156:8088';
 Vue.prototype.$axios = axios;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
