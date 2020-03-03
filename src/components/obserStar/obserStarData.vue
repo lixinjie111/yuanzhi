@@ -181,7 +181,7 @@ export default {
                     }
                 });
             }else if(index === 4 || index === 5){
-                alert('页面开发中，尽请期待！')
+                this.ifShowLogin = true;
             }
         },
         changeShow(index){

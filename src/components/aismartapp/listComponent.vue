@@ -130,8 +130,11 @@ export default {
     vLogin
   },
   mounted(){
-    var appDomArr = this.$refs.yinyongchangjing;
-    appDomArr[0].style = 'border-bottom:3px #03A971 solid';
+    if(this.$refs.yinyongchangjing)
+    {
+      var appDomArr = this.$refs.yinyongchangjing;
+      appDomArr[0].style = 'border-bottom:3px #03A971 solid';
+    }
     var objListNav = this.$refs.listNav;
     var objProList = this.$refs.proList;
     var objAppScen = this.$refs.appScen;
@@ -157,26 +160,26 @@ export default {
           if(that.$refs.navListText.childNodes){
             var arrnavList = that.$refs.navListText.childNodes;
             if(st<AppScenH || st == AppScenH){
-              arrnavList[0].style = 'color: #03A971;font-size: 22px;';
-              arrnavList[1].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color: #03A971;font-size: 16px;';
+              arrnavList[1].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[3].style = 'color:#3D4966;font-size: 16px;';
             }else if(st>AppScenH && st < FeaturesAdvanH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #03A971;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[1].style = 'color: #03A971;font-size: 16px;';
+              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[3].style = 'color:#3D4966;font-size: 16px;';
             }else if(st>FeaturesAdvanH && st < SupportCommH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#03A971;font-size: 22px;';
-              arrnavList[3].style = 'color: #3D4966;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[1].style = 'color: #3D4966;font-size: 16px;';
+              arrnavList[2].style = 'color:#03A971;font-size: 16px;';
+              arrnavList[3].style = 'color: #3D4966;font-size: 16px;';
             }
             else{
-              arrnavList[0].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 22px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 22px;';
-              arrnavList[3].style = 'color: #03A971;font-size: 22px;';
+              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[1].style = 'color: #3D4966;font-size: 16px;';
+              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[3].style = 'color: #03A971;font-size: 16px;';
             }
           }
         }
@@ -264,13 +267,14 @@ export default {
   background-color: #F2F4F7;
   .list_nav{
     width:1200px;
-    padding: 25px 0;
+    padding: 20px 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 22px;
+    font-size: 16px;
     color: #3D4966;
+    text-align: center;
     :hover{
       cursor: pointer;
     }

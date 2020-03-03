@@ -92,7 +92,7 @@
       <div @click="goDetails(29)">民生数据</div>
       <div @click="goDetails(30)">经济数据</div>
       <div @click="goDetails(31)">文化数据</div>
-      <div @click="goDetails(32)">样本数据</div>
+      <div @click="goDetails(32)">训练数据</div>
     </div>
   </div>
 </template>
@@ -327,6 +327,9 @@
         line-height: 30px;
         color: #03A971;
         text-align: center;
+        cursor: pointer;
+      }
+      .view_more:hover{
         cursor: pointer;
       }
     }
