@@ -3,20 +3,31 @@
     <div class="experience_container" v-if="detailType == 'cifafenxi'">
       <div class="top">
         <textarea cols="30" rows="10" maxlength="150" placeholder="现在，慕尼黑再保险公司不仅是此类行动的倡议者，更是将其大量气候数据整合进保险产品中，并与公众共享大量天气信息，参与到新能源领域的保障中。" v-model="areaText"></textarea>
-        <div class="kaishi_fenxi" @click="inputAreaText">开始分析</div>
+        <div class="kaishi_fenxi" @click="toAnalyze">开始分析</div>
         <div class="max_length">最多输入150个字</div>
       </div>
       <div class="bottom">
         <div class="left">
           <div class="content">
-            <div class="item" v-for="(item,index) in contenArr" :key="index" @click="changeBgc(index,item)" ref="item">
+            <div class="item" 
+            v-for="(item,index) in contenArr" 
+            :key="index" 
+            @click="changeBgc(index,item)" 
+            ref="item" 
+            @mouseover="showCixing(index)" 
+            @mouseleave="hideCixing">
               <div>{{item.word}}</div>
+              <div class="triangle" ref="triangle"></div>  
+              <div class="cixing" ref="cixing">词性：{{item.nature.nameContrast}}</div>
             </div>
           </div>
         </div>
         <div class="right">
           <div class="cixing_leibie">词性类别</div>  
           <div class="cixing_leibie_container">
+            <div v-for="(item,index) in uniqueCixingArr" :key="index" class="cixing" ref="cixing" @click="checkCixing(item,index)">
+              {{item.nature.nameContrast}}
+            </div>
           </div>
         </div>
       </div>
@@ -26,8 +37,7 @@
         <img :src="duanyuyin_experience_img" alt="" srcset="">
         <div class="times">
             <i-button type="success" shape="circle" @click="startRecord">{{buttonMsg}}</i-button>
-        </div>
-        
+        </div> 
       </div>
       <div class="right">
         {{transMsg}}
@@ -52,7 +62,10 @@
         shitishibie:'',
         areaText:'',
         duanyuyin_experience_img:require('@/assets/images/aiSmartAppDetail/duanyuyin_experience_img.png'),
-        contenArr:[]
+        contenArr:[],
+        uniqueCixingArr:[],
+        ifShowCixing:false,
+        showItem:false
       }
     },
     created() {
@@ -69,6 +82,11 @@
         }).then(res => {
           if(res.status == 200){
             this.contenArr = res.data;
+            function unique(arr=[]){
+              const res = new Map();
+              return arr.filter((item)=> !res.has(item.nature.name) && res.set(item.nature.name,1))
+            }
+            this.uniqueCixingArr = unique(res.data);
           }
         }).catch(err=>{
           console.log(err);
@@ -148,7 +166,7 @@
           }
         }
       },
-      inputAreaText(){
+      toAnalyze(){
         var totalText;
         var text = this.areaText;
         if(text != ''){
@@ -166,11 +184,78 @@
         }).then(res => {
           if(res.status == 200){
             var resData = res.data;
+            console.log(111111111111)
+            function unique(arr=[]){
+              const res = new Map();
+              return arr.filter((item)=> !res.has(item.nature.name) && res.set(item.nature.name,1))
+            }
+            this.uniqueCixingArr = unique(res.data);
             this.contenArr = resData;
           }
         }).catch(err=>{
           console.log(err);
         });
+      },
+      checkCixing(item,index){
+        if(this.$refs.cixing){
+          var cixingArr = this.$refs.cixing;
+          var itemDom = this.$refs.item;
+          var contenArr = this.contenArr;
+          var searchArr = [];
+          for(var m = 0;m <itemDom.length;m++){
+            itemDom[m].style = 'background:none;border: 1px solid #03;font-size: 14px;color: #03A971;';
+          }
+          for(var i = 0;i<cixingArr.length;i++){
+            if(index == i){
+              cixingArr[i].style = 'background: #03A971;border: 1px solid #03;font-size: 14px;color: #FFFFFF;';
+            }
+            else{
+              cixingArr[i].style = 'background:none;border: 1px solid #03;font-size: 14px;color: #03A971;';
+            }
+          }
+          for(var j =0 ;j < contenArr.length;j++){
+            if(contenArr[j].nature.name == item.nature.name){
+              searchArr.push(contenArr[j])
+            }
+          }
+          for(var k = 0;k < searchArr.length;k++){
+            for(var l = 0 ;l < itemDom.length;l++){
+              if(searchArr[k].word == itemDom[l].innerText){
+                itemDom[l].style = 'background: #03A971;border: 1px solid #03;font-size: 14px;color: #FFFFFF;';
+              }
+            }
+          }
+        }
+      },
+      showCixing(index){
+        var triangle  = this.$refs.triangle;
+        var cixing = this.$refs.cixing;
+        for(var i = 0; i < triangle.length;i++){
+          if(index == i){
+            triangle[i].style = 'display: block;'
+          }
+          else{
+            triangle[i].style = 'display: none;'
+          }
+        }
+        for(var j =0 ;j < cixing.length;j++){
+          if(index == j){
+            cixing[j].style = 'display: block;'
+          }
+          else{
+            cixing[j].style = 'display: none;'
+          }
+        }
+      },
+      hideCixing(){
+        var triangle  = this.$refs.triangle;
+        var cixing = this.$refs.cixing;
+        for(var i = 0; i < triangle.length;i++){
+            triangle[i].style = 'display: none;'
+        }
+        for(var j =0 ;j < cixing.length;j++){
+          cixing[j].style = 'display: none;'
+        }
       }
     }
   }
@@ -213,6 +298,9 @@
           line-height: 28px;
           margin-top: 10px;
         }
+        .kaishi_fenxi:hover{
+          cursor: pointer;
+        }
         .max_length{
           width: 100%;
           font-size: 12px;
@@ -246,6 +334,26 @@
               text-align: center;
               font-size: 14px;
               color: #03A971;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: flex-start;
+              .triangle{
+                width: 0; 
+                height: 0;
+                display: none;
+                margin-top: -10px;
+                border-width: 10px;
+                border-style: solid;
+                border-color: transparent transparent rgba(3,169,113,0.60) transparent;
+              }
+              .cixing{
+                background-color: rgba(3,169,113,0.60);
+                box-shadow: 0 8px 24px 0 #EBECF0;
+                padding: 13px;
+                display: none;
+                color: #FFFFFF;
+              }
             }
           }
         }
@@ -260,6 +368,19 @@
           }
           .cixing_leibie_container{
             margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            .cixing{
+              height:24px;
+              padding:2px 12px;
+              border: 1px solid #03A971;
+              text-align: center;
+              font-size: 14px;
+              color: #03A971;
+              margin-right: 10px;
+              margin-bottom: 10px;
+            }
           }
         }
       }
