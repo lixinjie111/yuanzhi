@@ -377,7 +377,7 @@
     // }
   }
   .obserData_menu_container{
-    transform: translateX(50%);
+    transform: translateX(17%);
     div:nth-child(1):hover{
       color:#03A971;
       cursor: pointer;
