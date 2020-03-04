@@ -67,7 +67,7 @@
                         </Dropdown>
                     </div>
                      <div class="search">
-                        <i-input v-model="keyword" placeholder="请输入您要查询的楼盘小区">
+                        <i-input v-model="keyword" placeholder="请输入您要查询的楼盘小区" style="width:250px">
                           <i-button slot="append" icon="ios-search" @click="goLogin"></i-button>
                         </i-input>
                     </div>

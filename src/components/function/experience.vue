@@ -33,14 +33,23 @@
       </div>
     </div>
     <div class="duanyuyin_experience_container" v-else-if="detailType == 'duanyuyin'">
-      <div class="left">
-        <img :src="duanyuyin_experience_img" alt="" srcset="">
+      <div class="top">
+        <div class="icon" style="">
+          <div class="luzhi" style="width:15px;">
+             <img src="../../assets/images/aiSmartAppDetail/luzhi.png" alt="">
+          </div>
+          <div v-if="isWork" class="timeline" style="width:293px; margin:0 10px">
+            <img src="../../assets/images/aiSmartAppDetail/Timeline.png" alt="">
+          </div>
+          <span class="time" v-if="isWork" style="color:#fff;">00:{{upTime}} / 00:10</span>
+        </div>
+       
         <div class="times">
-            <i-button type="success" shape="circle" @click="startRecord">{{buttonMsg}}</i-button>
+            <i-button type="success"  @click="startRecord">{{buttonMsg}}</i-button>
         </div>
         
       </div>
-      <div class="right">
+      <div class="bottom">
         {{transMsg}}
       </div>
     </div>
@@ -79,6 +88,8 @@
     },
     data() {
       return {
+        isWork:false,
+        upTime:10,
         transMsg:"请说出你想说的话...",
         buttonMsg:"开始录音",
         flag:0,
@@ -86,31 +97,42 @@
         cixing:'',
         shitishibie:'',
         areaText:'',
-        duanyuyin_experience_img:require('@/assets/images/aiSmartAppDetail/duanyuyin_experience_img.png'),
-        contenArr:[]
+        contenArr:[],
+        recorder:null
       }
+    },
+    mounted(){
+      this.recorder = new Recorder({
+          sampleBits: 16,         // 采样位数，支持 8 或 16，默认是16
+          sampleRate: 16000,      // 采样率，支持 11025、16000、22050、24000、44100、48000，根据浏览器默认值，我的chrome是48000
+          numChannels: 1,         // 声道，支持 1 或 2， 默认是1
+          compiling: false,       // 是否边录边转换，默认是false
+      });
     },
     methods:{
       startRecord(){
-        this.$Recorder.start();
-        let num=10;
         this.flag=!this.flag;
-        console.log(this.flag)
         //当为true，暂停状态
         var timer=null;
         if(this.flag){
-          this.buttonMsg="暂停录音"+10+"s";
+          this.upTime=10;
+          this.recorder.start();
+          this.isWork=true;
+          this.buttonMsg="结束识别";
           timer=setInterval(()=>{
-          if(num==0){
+          if(this.upTime==0){
               this.buttonMsg="开始录音";
               this.flag=false;
               clearInterval(timer)
               this.sendRecord();
+               this.isWork=false;
             }else{
-              num--;
+              this.upTime--;
+              this.upTime="0"+this.upTime;
               if(this.flag){
-                this.buttonMsg="暂停录音"+num+"s";
+                this.buttonMsg="结束识别";
               }else{
+                this.isWork=false;
                 this.sendRecord();
                 clearInterval(timer)
                 this.buttonMsg="开始录音";
@@ -128,9 +150,8 @@
         
       },
       sendRecord(){
-        this.$Recorder.stop();
-        let wav=this.$Recorder.getWAVBlob();
-        console.log(wav)
+        this.recorder.stop();
+        let wav=this.recorder.getWAVBlob();
         let formData = new FormData(); //创建form对象
         formData.append('files', wav);//
         this.$axios({
@@ -148,9 +169,6 @@
         }).catch(err=>{
           console.log(err);
         });
-      },
-      rePlay(){
-        this.$Recorder.play();
       },
       changeBgc(index,item){
         var domArr = this.$refs.item;
@@ -207,6 +225,7 @@
         height: 180px;
         background: rgba(192, 204, 218, 0.10);
         border: 1px solid #EBECF0;
+
         textarea {
           width: 100%;
           height: 100%;
@@ -292,36 +311,31 @@
 
     }
     .duanyuyin_experience_container{
-      width: 100%;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .left{
+      width: 585px;
+      margin: auto;
+      .top{
         position: relative;
-        width: 585px;
-        height: 100%;
+        width: 100%;
+        height: 180px;
+        margin-bottom: 10px;
+        background: url(../../assets/images/aiSmartAppDetail/tiyan.png) no-repeat center center;
+        .icon{
+          display:flex;justify-content:center;align-items:center;padding-top:50px;
+          margin-bottom: 20px;
+        }
+        .times{
+          text-align: center
+        }
         img{
           width: 100%;
           height: 100%;
+          display: block;
         }
-        .times{
-          width:60%;
-          position: absolute;
-          right:0;
-          top:0;
-          height: 100%;
-          color:#fff;
-          font-size: 80px;
-          font-weight: bold;
-          display: flex;
-          align-items: center;
-          justify-content:center;
-        }
+        
       }
-      .right{
-        width: 585px;
-        height: 100%;
+      .bottom{
+        width: 100%;
+        height: 180px;
         background: rgba(192,204,218,0.10);
         border: 1px solid #EBECF0;
         padding: 10px;

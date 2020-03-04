@@ -70,8 +70,9 @@
                         </Dropdown>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="请输入您想要匹配的案件名称/案件号/案由">
-                        <div class="search_btn" @click="goLogin"></div>
+                        <i-input v-model="keyword" placeholder="请输入您想要匹配的案件名称/案件号/案由" style="width:310px">
+                          <i-button slot="append" icon="ios-search" @click="goLogin"></i-button>
+                        </i-input>
                     </div>
                 </div>
             </div>
