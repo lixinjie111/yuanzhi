@@ -18,7 +18,7 @@
             @mouseleave="hideCixing">
               <div>{{item.word}}</div>
               <div class="triangle" ref="triangle"></div>  
-              <div class="cixing" ref="cixing">词性：{{item.nature.nameContrast}}</div>
+              <div class="leftCixing" ref="leftCixing">词性：{{item.nature.nameContrast}}</div>
             </div>
           </div>
         </div>
@@ -229,7 +229,7 @@
       },
       showCixing(index){
         var triangle  = this.$refs.triangle;
-        var cixing = this.$refs.cixing;
+        var cixing = this.$refs.leftCixing;
         for(var i = 0; i < triangle.length;i++){
           if(index == i){
             triangle[i].style = 'display: block;'
@@ -249,7 +249,7 @@
       },
       hideCixing(){
         var triangle  = this.$refs.triangle;
-        var cixing = this.$refs.cixing;
+        var cixing = this.$refs.leftCixing;
         for(var i = 0; i < triangle.length;i++){
             triangle[i].style = 'display: none;'
         }
@@ -347,7 +347,7 @@
                 border-style: solid;
                 border-color: transparent transparent rgba(3,169,113,0.60) transparent;
               }
-              .cixing{
+              .leftCixing{
                 background-color: rgba(3,169,113,0.60);
                 box-shadow: 0 8px 24px 0 #EBECF0;
                 padding: 13px;
