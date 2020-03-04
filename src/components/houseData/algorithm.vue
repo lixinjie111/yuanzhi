@@ -42,7 +42,7 @@
             <div class="drop_down_menu">
                 <div class="left">
                     <!-- <span>开源算法集</span> -->
-                    <span>资源数：200</span>
+                    <span>资源数：{{totalNum}}</span>
                 </div>
                 <div class="right">
                     <div class="address">
@@ -51,7 +51,7 @@
                         </Select>
                     </div>
                     <div class="search">
-                        <i-input v-model="keyword" placeholder="输入您要查找的算法名称或关键词">
+                        <i-input v-model="keyword" placeholder="输入您要查找的算法名称或关键词" style="width:270px">
                           <i-button slot="append" icon="ios-search" @click="searchClick"></i-button>
                         </i-input>
                     </div>
@@ -101,6 +101,7 @@ export default {
   name: 'insightData',
   data () {
     return {
+      totalNum:'',
       cn_title:'Sophia平台',
       en_title:'元知智能研究院',
       nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
@@ -174,6 +175,9 @@ export default {
       this.initData();
     },
     initData(){
+
+
+
        //上边中间   中国地图
             let baseUrl='http://106.13.122.156:8086';
             this.$axios({
@@ -192,6 +196,7 @@ export default {
                   // (文字=01;视频=02;图像=03;自然语言=04;语音=05;人脸=06;推荐=07;搜索=08;人工智能=09;物联网=10;金融=11;风控=12)
                   let result=res.data.data.sophiaOpenData.data;
                   this.paging.total=res.data.data.sophiaOpenData.totalNum;
+                  this.totalNum=res.data.data.sophiaOpenData.totalNum;
                   result.forEach(item=>{
                     if(item.productModule=="01"){
                       item['header']='文字';
@@ -347,6 +352,7 @@ export default {
           height: 60px;
           text-align: center;
           line-height: 60px;
+          color:#fff;
         }
       }
       .center{
