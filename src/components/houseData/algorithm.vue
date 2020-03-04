@@ -63,8 +63,7 @@
     <ul class="list">
       <li v-for="item in content" :key="item.id">
         <div class="left">
-          <!-- :style="{backgroundColor:item.color}" -->
-          <div class="header" >{{item.productModule}}</div>
+          <div class="header" :style="{backgroundColor:item.color}">{{item.header}}</div>
         </div>
         <div class="center">
           <div class="title">{{item.childModule}}</div>
@@ -190,8 +189,60 @@ export default {
             }).then(res => {
                 console.log(res.data.data)
                 if(res.status==200){
-                  this.content=res.data.data.sophiaOpenData.data;
+                  // (文字=01;视频=02;图像=03;自然语言=04;语音=05;人脸=06;推荐=07;搜索=08;人工智能=09;物联网=10;金融=11;风控=12)
+                  let result=res.data.data.sophiaOpenData.data;
                   this.paging.total=res.data.data.sophiaOpenData.totalNum;
+                  result.forEach(item=>{
+                    if(item.productModule=="01"){
+                      item['header']='文字';
+                      item['color']='#FFC10D ';
+                    }
+                    else if(item.productModule=="02"){
+                      item['header']='视频';
+                      item['color']='#13BFC1';
+                    }
+                    else if(item.productModule=="03"){
+                      item['header']='图像';
+                      item['color']='#FE5560 ';
+                    }
+                    else if(item.productModule=="04"){
+                      item['header']='自然语言';
+                      item['color']='#B6B2BC';
+                    }
+                    else if(item.productModule=="05"){
+                      item['header']='语音';
+                      item['color']='#4A90E2';
+                    }
+                    else if(item.productModule=="06"){
+                      item['header']='人脸';
+                      item['color']='#53B884 ';
+                    }
+                    else if(item.productModule=="07"){
+                      item['header']='推荐';
+                      item['color']='#00C2FF';
+                    }
+                    else if(item.productModule=="08"){
+                      item['header']='搜索';
+                      item['color']='#FD6A2B';
+                    }
+                    else if(item.productModule=="09"){
+                      item['header']='人工智能';
+                      item['color']='#4C65A8';
+                    }
+                    else if(item.productModule=="10"){
+                      item['header']='物联网';
+                      item['color']='#71B22E';
+                    }
+                    else if(item.productModule=="11"){
+                      item['header']='金融';
+                      item['color']='#E03FBB';
+                    }
+                    else if(item.productModule=="12"){
+                      item['header']='风控';
+                      item['color']='#407758';
+                    }
+                  })
+                  this.content=result;
                 }
             }).catch(err=>{
                 console.log(err);
