@@ -45,13 +45,13 @@
                                 全国
                                 <Icon type="ios-arrow-down"></Icon>
                             </a>
-                            <!-- <DropdownMenu slot="list">
+                            <DropdownMenu slot="list">
                                 <DropdownItem>全国</DropdownItem>
                                 <DropdownItem>上海</DropdownItem>
                                 <DropdownItem>广州</DropdownItem>
                                 <DropdownItem>深圳</DropdownItem>
                                 <DropdownItem>兰州</DropdownItem>
-                            </DropdownMenu> -->
+                            </DropdownMenu>
                         </Dropdown>
                     </div>
                     <div class="in_type">
@@ -66,9 +66,10 @@
                             </DropdownMenu>
                         </Dropdown>
                     </div>
-                    <div class="search">
-                        <input type="text" placeholder="请输入您要查询的楼盘小区">
-                        <div class="search_btn"></div>
+                     <div class="search">
+                        <i-input v-model="keyword" placeholder="请输入您要查询的楼盘小区">
+                          <i-button slot="append" icon="ios-search" @click="goLogin"></i-button>
+                        </i-input>
                     </div>
                 </div>
             </div>
@@ -96,6 +97,7 @@ export default {
   name: 'insightData',
   data () {
     return {
+      keyword:'',
       cn_title:'Sophia平台',
       en_title:'元知智能研究院',
       nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
