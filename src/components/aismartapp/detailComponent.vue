@@ -152,8 +152,10 @@
     },
     mounted() {
       var detailType = this.objText.detailType;
-      var appDomArr = this.$refs.yinyongchangjing;
-      appDomArr[1].style = 'border-bottom:3px #03A971 solid';
+      if(this.$refs.yinyongchangjing){
+        var appDomArr = this.$refs.yinyongchangjing;
+        appDomArr[1].style = 'border-bottom:3px #03A971 solid';
+      }
       if(detailType == 'searchdetail' || detailType == 'recommendetail' || detailType == 'optionanaly'){
         this.ifShowFnexpe = false;
       }

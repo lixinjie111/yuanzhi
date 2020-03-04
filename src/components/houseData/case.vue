@@ -37,7 +37,7 @@
     <div class="loupan">
       <img src="../../assets/images/houseData/loupan.png" alt />
       <div class="cover">
-        <img src="../../assets/images/houseData/font.png" alt />
+        <img src="@/assets/images/houseData/font.png" alt />
       </div>
     </div>
     <!-- <div class="reyi">
