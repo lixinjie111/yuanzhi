@@ -344,7 +344,7 @@
     z-index: 999;
     top: 90px;
     left: 50%;
-    transform: translateX(-34%);
+    transform: translateX(-64%);
     background-color: #FFFFFF;
     div{
       margin-bottom: 11px;

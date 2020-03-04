@@ -2,32 +2,21 @@
   <div class="experience">
     <div class="experience_container" v-if="detailType == 'cifafenxi'">
       <div class="top">
-        <textarea cols="30" rows="10" placeholder="现在，慕尼黑再保险公司不仅是此类行动的倡议者，更是将其大量气候数据整合进保险产品中，并与公众共享大量天气信息，参与到新能源领域的保障中。" v-model="areaText" @keyup="inputAreaText"></textarea>
+        <textarea cols="30" rows="10" maxlength="150" placeholder="现在，慕尼黑再保险公司不仅是此类行动的倡议者，更是将其大量气候数据整合进保险产品中，并与公众共享大量天气信息，参与到新能源领域的保障中。" v-model="areaText"></textarea>
+        <div class="kaishi_fenxi" @click="inputAreaText">开始分析</div>
+        <div class="max_length">最多输入150个字</div>
       </div>
       <div class="bottom">
-        <!-- <img src="../../assets/images/aiSmartAppDetail/jieguo.png" alt="" srcset=""> -->
         <div class="left">
-          <div class="title">分词词性</div>
           <div class="content">
             <div class="item" v-for="(item,index) in contenArr" :key="index" @click="changeBgc(index,item)" ref="item">
               <div>{{item.word}}</div>
-              <div>{{item.nature.name}}</div>
             </div>
           </div>
         </div>
         <div class="right">
-          <div class="word_desc">词汇详情</div>
-          <div class="word_desc_container">
-            <div>词汇：<span>{{cihui}}</span></div>
-            <div>词性：<span>{{cixing}}</span>
-            </div>
-            <div>实体识别：<span></span></div>
-          </div>
-          <div class="zhuanyouminci">专有名词</div>
-          <div class="zhuanyouminci_container">
-            <div>人名</div>
-            <div>时间</div>
-            <div>机构名</div>
+          <div class="cixing_leibie">词性类别</div>  
+          <div class="cixing_leibie_container">
           </div>
         </div>
       </div>
@@ -55,6 +44,17 @@
         required:true
       }
     },
+    data() {
+      return {
+        transMsg:"请说出你想说的话...",
+        buttonMsg:"开始录音",
+        flag:0,
+        shitishibie:'',
+        areaText:'',
+        duanyuyin_experience_img:require('@/assets/images/aiSmartAppDetail/duanyuyin_experience_img.png'),
+        contenArr:[]
+      }
+    },
     created() {
     },
     mounted(){
@@ -69,25 +69,10 @@
         }).then(res => {
           if(res.status == 200){
             this.contenArr = res.data;
-            this.cihui = res.data[0].word;
-            this.cixing = res.data[0].nature.name;
           }
         }).catch(err=>{
           console.log(err);
         });
-      }
-    },
-    data() {
-      return {
-        transMsg:"请说出你想说的话...",
-        buttonMsg:"开始录音",
-        flag:0,
-        cihui:'',
-        cixing:'',
-        shitishibie:'',
-        areaText:'',
-        duanyuyin_experience_img:require('@/assets/images/aiSmartAppDetail/duanyuyin_experience_img.png'),
-        contenArr:[]
       }
     },
     methods:{
@@ -162,8 +147,6 @@
             domArr[i].style = 'background-color:white;color:gray;';
           }
         }
-        this.cihui = item.word;
-        this.cixing = item.nature.name;
       },
       inputAreaText(){
         var totalText;
@@ -184,8 +167,6 @@
           if(res.status == 200){
             var resData = res.data;
             this.contenArr = resData;
-            this.cihui = resData[0].word;
-            this.cixing = resData[0].nature.name;
           }
         }).catch(err=>{
           console.log(err);
@@ -204,24 +185,46 @@
       .top {
         box-sizing: border-box;
         padding:10px;
-        height: 180px;
-        background: rgba(192, 204, 218, 0.10);
+        background: rgba(192,204,218,0.10);
         border: 1px solid #EBECF0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         textarea {
           width: 100%;
           height: 100%;
           font-size: 14px;
           color: #7A8499;
           text-align: justify;
-          line-height: 22px
+          line-height: 22px;
+          background-color: rgba(192,204,218,0.10);
+          border: none;
+          outline: none;
+          resize: none;
+        }
+        .kaishi_fenxi{
+          width: 100px;
+          height: 28px;
+          text-align: center;
+          background: #03A971;
+          border-radius: 3px;
+          font-size: 14px;
+          color: #FFFFFF;
+          line-height: 28px;
+          margin-top: 10px;
+        }
+        .max_length{
+          width: 100%;
+          font-size: 12px;
+          color: #B8BECC;
+          margin-top: -14px;
         }
       }
       .bottom {
         width: 100%;
-        height: 387px;
-        border:1px gray solid;
+        background: rgba(192,204,218,0.10);
+        border: 1px solid #EBECF0;
         margin-top: 30px;
-        padding: 60px;
         box-sizing: border-box;
         display: flex;
         .left{
@@ -230,62 +233,33 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          .title{
-                margin-bottom: 22px;
-                font-size: 16px;
-                width: 100%;
-          }
+          padding: 22px;
           .content{
             display: flex;
             flex-wrap: wrap;
             .item{
-              padding: 5px;
-              border:gray 1px solid;
+              padding:2px 12px;
+              height:24px;
+              border: 1px solid #03A971;
               margin-right: 10px;
               margin-bottom: 10px;
               text-align: center;
+              font-size: 14px;
+              color: #03A971;
             }
           }
         }
         .right{
           width: 20%;
-          padding: 20px;
+          padding: 22px 29.5px;
           box-sizing: border-box;
-          border-left: gray 1px solid;
-          .word_desc{
-            margin-bottom: 20px;
-            font-size: 16px;
+          border-left:1px solid #EBECF0;  
+          .cixing_leibie{
+            font-size: 18px;
+            color: #121C33;
           }
-          .word_desc_container{
-                position: relative;
-                width: 154px;
-                padding: 14px 12px;
-                background-color: #f0f7ff;
-                span{
-                  color: #000;
-                }
-          }
-          .zhuanyouminci{
-            padding-bottom: 20px;
-            margin-top: 17px;
-            font-size: 16px;
-          }
-          .zhuanyouminci_container{
-            display: flex;
-            flex-wrap: wrap;
-            div{
-              -webkit-box-sizing: border-box;
-              -moz-box-sizing: border-box;
-              box-sizing: border-box;
-              height: 36px;
-              width: 77px;
-              margin: 0 10px 10px 0;
-              text-align: center;
-              cursor: pointer;
-              font-size: 14px;
-              line-height: 34px;
-              border: 1px solid #e0e0e0;
-            }
+          .cixing_leibie_container{
+            margin-top: 10px;
           }
         }
       }
