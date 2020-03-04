@@ -2,21 +2,23 @@
   <div class="case_container">
     <div class="case_analysis_report">住房检测指标</div>
     <div class="houseContainer">
-      <div class="map_statistics" id="map"></div>
+      <div class="map_statistics">
+          <div  id="map"></div>
+      </div>
       <div class="total_num">
         <p class="title">微博热议楼盘榜单</p>
         <p class="subTitle">2020年2月</p>
         <hr />
         <ul class="content">
           <li>
-            <div>序号</div>
-            <div>楼盘名称</div>
-            <div>评论数</div>
+            <div class="num">序号</div>
+            <div class="area">楼盘名称</div>
+            <div class="comment">评论数</div>
           </li>
           <li v-for="(item,index) in list" :key="index">
-            <div>{{index+1}}</div>
+            <div class="num">{{index+1}}</div>
             <div class="area">{{item.keyWord}}</div>
-            <div>{{item.num}}</div>
+            <div class="comment">{{item.num}}</div>
           </li>
         </ul>
       </div>
@@ -269,278 +271,285 @@ export default {
     myMapChart.setOption(mayMap_option);
 
     //top10案件分布
-    // var hot_data = {
-    //   total: 5174544,
-    //   list: [
-    //     {
-    //       date: "2020-02-29",
-    //       data: {
-    //         weibo: 87458,
-    //         wechat: 74749,
-    //         newsSite: 12849
-    //       },
-    //       count: 175056
-    //     },
-    //     {
-    //       date: "2020-02-28",
-    //       data: {
-    //         weibo: 34559,
-    //         wechat: 95339,
-    //         newsSite: 22302
-    //       },
-    //       count: 152200
-    //     },
-    //     {
-    //       date: "2020-02-27",
-    //       data: {
-    //         weibo: 31505,
-    //         wechat: 101611,
-    //         newsSite: 23818
-    //       },
-    //       count: 156934
-    //     },
-    //     {
-    //       date: "2020-02-26",
-    //       data: {
-    //         weibo: 34703,
-    //         wechat: 99693,
-    //         newsSite: 22422
-    //       },
-    //       count: 156818
-    //     },
-    //     {
-    //       date: "2020-02-25",
-    //       data: {
-    //         weibo: 30802,
-    //         wechat: 97963,
-    //         newsSite: 23460
-    //       },
-    //       count: 152225
-    //     },
-    //     {
-    //       date: "2020-02-24",
-    //       data: {
-    //         weibo: 40204,
-    //         wechat: 96038,
-    //         newsSite: 24365
-    //       },
-    //       count: 160607
-    //     },
-    //     {
-    //       date: "2020-02-23",
-    //       data: {
-    //         weibo: 38823,
-    //         wechat: 80898,
-    //         newsSite: 13798
-    //       },
-    //       count: 133519
-    //     },
-    //     {
-    //       date: "2020-02-22",
-    //       data: {
-    //         weibo: 40498,
-    //         wechat: 89398,
-    //         newsSite: 15240
-    //       },
-    //       count: 145136
-    //     },
-    //     {
-    //       date: "2020-02-21",
-    //       data: {
-    //         weibo: 35812,
-    //         wechat: 112722,
-    //         newsSite: 26654
-    //       },
-    //       count: 175188
-    //     },
-    //     {
-    //       date: "2020-02-20",
-    //       data: {
-    //         weibo: 37213,
-    //         wechat: 114377,
-    //         newsSite: 27939
-    //       },
-    //       count: 179529
-    //     },
-    //     {
-    //       date: "2020-02-19",
-    //       data: {
-    //         weibo: 41259,
-    //         wechat: 103487,
-    //         newsSite: 25730
-    //       },
-    //       count: 170476
-    //     },
-    //     {
-    //       date: "2020-02-18",
-    //       data: {
-    //         weibo: 43732,
-    //         wechat: 111897,
-    //         newsSite: 30368
-    //       },
-    //       count: 185997
-    //     },
-    //     {
-    //       date: "2020-02-17",
-    //       data: {
-    //         weibo: 44887,
-    //         wechat: 114630,
-    //         newsSite: 30215
-    //       },
-    //       count: 189732
-    //     },
-    //     {
-    //       date: "2020-02-16",
-    //       data: {
-    //         weibo: 47168,
-    //         wechat: 94903,
-    //         newsSite: 19764
-    //       },
-    //       count: 161835
-    //     },
-    //     {
-    //       date: "2020-02-15",
-    //       data: {
-    //         weibo: 38584,
-    //         wechat: 99158,
-    //         newsSite: 24842
-    //       },
-    //       count: 162584
-    //     },
-    //     {
-    //       date: "2020-02-14",
-    //       data: {
-    //         weibo: 42154,
-    //         wechat: 113502,
-    //         newsSite: 39755
-    //       },
-    //       count: 195411
-    //     },
-    //     {
-    //       date: "2020-02-13",
-    //       data: {
-    //         weibo: 50241,
-    //         wechat: 113741,
-    //         newsSite: 42247
-    //       },
-    //       count: 206229
-    //     },
-    //     {
-    //       date: "2020-02-12",
-    //       data: {
-    //         weibo: 59813,
-    //         wechat: 118995,
-    //         newsSite: 41260
-    //       },
-    //       count: 220068
-    //     },
-    //     {
-    //       date: "2020-02-11",
-    //       data: {
-    //         weibo: 95368,
-    //         wechat: 107616,
-    //         newsSite: 41285
-    //       },
-    //       count: 244269
-    //     },
-    //     {
-    //       date: "2020-02-10",
-    //       data: {
-    //         weibo: 99552,
-    //         wechat: 115810,
-    //         newsSite: 39019
-    //       },
-    //       count: 254381
-    //     },
-    //     {
-    //       date: "2020-02-09",
-    //       data: {
-    //         weibo: 65404,
-    //         wechat: 100498,
-    //         newsSite: 28144
-    //       },
-    //       count: 194046
-    //     },
-    //     {
-    //       date: "2020-02-08",
-    //       data: {
-    //         weibo: 76703,
-    //         wechat: 101984,
-    //         newsSite: 28299
-    //       },
-    //       count: 206986
-    //     },
-    //     {
-    //       date: "2020-02-07",
-    //       data: {
-    //         weibo: 58433,
-    //         wechat: 104517,
-    //         newsSite: 30271
-    //       },
-    //       count: 193221
-    //     },
-    //     {
-    //       date: "2020-02-06",
-    //       data: {
-    //         weibo: 57649,
-    //         wechat: 114516,
-    //         newsSite: 31548
-    //       },
-    //       count: 203713
-    //     },
-    //     {
-    //       date: "2020-02-05",
-    //       data: {
-    //         weibo: 62717,
-    //         wechat: 109608,
-    //         newsSite: 30328
-    //       },
-    //       count: 202653
-    //     },
-    //     {
-    //       date: "2020-02-04",
-    //       data: {
-    //         weibo: 58759,
-    //         wechat: 92412,
-    //         newsSite: 27970
-    //       },
-    //       count: 179141
-    //     },
-    //     {
-    //       date: "2020-02-03",
-    //       data: {
-    //         weibo: 43492,
-    //         wechat: 80438,
-    //         newsSite: 26623
-    //       },
-    //       count: 150553
-    //     },
-    //     {
-    //       date: "2020-02-02",
-    //       data: {
-    //         weibo: 58946,
-    //         wechat: 67688,
-    //         newsSite: 19266
-    //       },
-    //       count: 145900
-    //     },
-    //     {
-    //       date: "2020-02-01",
-    //       data: {
-    //         weibo: 36182,
-    //         wechat: 63793,
-    //         newsSite: 20162
-    //       },
-    //       count: 120137
-    //     }
-    //   ]
-    // };
-    // var time=[];
-    // var series=[];
-    // for(var i=0;i<hot_data.list.length;i++){
-    //     time.push(hot_data.list[i].date);
-
-    // }
+    var hot_data = {
+      total: 5174544,
+      list: [
+        {
+          date: "2020-02-29",
+          data: {
+            weibo: 87458,
+            wechat: 74749,
+            newsSite: 12849
+          },
+          count: 175056
+        },
+        {
+          date: "2020-02-28",
+          data: {
+            weibo: 34559,
+            wechat: 95339,
+            newsSite: 22302
+          },
+          count: 152200
+        },
+        {
+          date: "2020-02-27",
+          data: {
+            weibo: 31505,
+            wechat: 101611,
+            newsSite: 23818
+          },
+          count: 156934
+        },
+        {
+          date: "2020-02-26",
+          data: {
+            weibo: 34703,
+            wechat: 99693,
+            newsSite: 22422
+          },
+          count: 156818
+        },
+        {
+          date: "2020-02-25",
+          data: {
+            weibo: 30802,
+            wechat: 97963,
+            newsSite: 23460
+          },
+          count: 152225
+        },
+        {
+          date: "2020-02-24",
+          data: {
+            weibo: 40204,
+            wechat: 96038,
+            newsSite: 24365
+          },
+          count: 160607
+        },
+        {
+          date: "2020-02-23",
+          data: {
+            weibo: 38823,
+            wechat: 80898,
+            newsSite: 13798
+          },
+          count: 133519
+        },
+        {
+          date: "2020-02-22",
+          data: {
+            weibo: 40498,
+            wechat: 89398,
+            newsSite: 15240
+          },
+          count: 145136
+        },
+        {
+          date: "2020-02-21",
+          data: {
+            weibo: 35812,
+            wechat: 112722,
+            newsSite: 26654
+          },
+          count: 175188
+        },
+        {
+          date: "2020-02-20",
+          data: {
+            weibo: 37213,
+            wechat: 114377,
+            newsSite: 27939
+          },
+          count: 179529
+        },
+        {
+          date: "2020-02-19",
+          data: {
+            weibo: 41259,
+            wechat: 103487,
+            newsSite: 25730
+          },
+          count: 170476
+        },
+        {
+          date: "2020-02-18",
+          data: {
+            weibo: 43732,
+            wechat: 111897,
+            newsSite: 30368
+          },
+          count: 185997
+        },
+        {
+          date: "2020-02-17",
+          data: {
+            weibo: 44887,
+            wechat: 114630,
+            newsSite: 30215
+          },
+          count: 189732
+        },
+        {
+          date: "2020-02-16",
+          data: {
+            weibo: 47168,
+            wechat: 94903,
+            newsSite: 19764
+          },
+          count: 161835
+        },
+        {
+          date: "2020-02-15",
+          data: {
+            weibo: 38584,
+            wechat: 99158,
+            newsSite: 24842
+          },
+          count: 162584
+        },
+        {
+          date: "2020-02-14",
+          data: {
+            weibo: 42154,
+            wechat: 113502,
+            newsSite: 39755
+          },
+          count: 195411
+        },
+        {
+          date: "2020-02-13",
+          data: {
+            weibo: 50241,
+            wechat: 113741,
+            newsSite: 42247
+          },
+          count: 206229
+        },
+        {
+          date: "2020-02-12",
+          data: {
+            weibo: 59813,
+            wechat: 118995,
+            newsSite: 41260
+          },
+          count: 220068
+        },
+        {
+          date: "2020-02-11",
+          data: {
+            weibo: 95368,
+            wechat: 107616,
+            newsSite: 41285
+          },
+          count: 244269
+        },
+        {
+          date: "2020-02-10",
+          data: {
+            weibo: 99552,
+            wechat: 115810,
+            newsSite: 39019
+          },
+          count: 254381
+        },
+        {
+          date: "2020-02-09",
+          data: {
+            weibo: 65404,
+            wechat: 100498,
+            newsSite: 28144
+          },
+          count: 194046
+        },
+        {
+          date: "2020-02-08",
+          data: {
+            weibo: 76703,
+            wechat: 101984,
+            newsSite: 28299
+          },
+          count: 206986
+        },
+        {
+          date: "2020-02-07",
+          data: {
+            weibo: 58433,
+            wechat: 104517,
+            newsSite: 30271
+          },
+          count: 193221
+        },
+        {
+          date: "2020-02-06",
+          data: {
+            weibo: 57649,
+            wechat: 114516,
+            newsSite: 31548
+          },
+          count: 203713
+        },
+        {
+          date: "2020-02-05",
+          data: {
+            weibo: 62717,
+            wechat: 109608,
+            newsSite: 30328
+          },
+          count: 202653
+        },
+        {
+          date: "2020-02-04",
+          data: {
+            weibo: 58759,
+            wechat: 92412,
+            newsSite: 27970
+          },
+          count: 179141
+        },
+        {
+          date: "2020-02-03",
+          data: {
+            weibo: 43492,
+            wechat: 80438,
+            newsSite: 26623
+          },
+          count: 150553
+        },
+        {
+          date: "2020-02-02",
+          data: {
+            weibo: 58946,
+            wechat: 67688,
+            newsSite: 19266
+          },
+          count: 145900
+        },
+        {
+          date: "2020-02-01",
+          data: {
+            weibo: 36182,
+            wechat: 63793,
+            newsSite: 20162
+          },
+          count: 120137
+        }
+      ]
+    };
+    var time=[];
+    var series={};
+    for(var key in hot_data.list[0].data){
+        series[key]=[];
+    }
+    for(var i=0;i<hot_data.list.length;i++){
+        time.push(hot_data.list[i].date);
+        series["weibo"].push(hot_data.list[i].data.weibo);
+        series["wechat"].push(hot_data.list[i].data.wechat);
+        series["newsSite"].push(hot_data.list[i].data.newsSite);
+    }
+    console.log(series)
+   
     var topTenChart = echarts.init(document.getElementById("top_ten"));
     var top_ten_option = {
       tooltip: {
@@ -548,7 +557,7 @@ export default {
       },
       xAxis: {
         type: "category",
-        data: ["201908", "201909", "201910", "201911", "201912", "202001"],
+        data: time,
         axisLine: {
           symbol: ["none", "arrow"],
           symbolSize: [5, 5]
@@ -563,7 +572,7 @@ export default {
       },
       series: [
         {
-          data: [129813, 126243, 130213, 124273, 105213, 115213],
+          data: series["weibo"],
           type: "line",
           name: "微博",
           itemStyle: {
@@ -576,7 +585,7 @@ export default {
           }
         },
         {
-          data: [147201, 155430, 148871, 133201, 129873, 128201],
+          data: series["newsSite"],
           type: "line",
           name: "网站",
           itemStyle: {
@@ -589,7 +598,7 @@ export default {
           }
         },
         {
-          data: [141942, 159942, 160942, 149942, 157942, 150942],
+          data: series["wechat"],
           type: "line",
           name: "微信",
           itemStyle: {
@@ -601,19 +610,19 @@ export default {
             }
           }
         },
-        {
-          data: [99021, 101021, 120323, 109021, 99021, 89021],
-          type: "line",
-          name: "贴吧",
-          itemStyle: {
-            normal: {
-              color: "#275F82",
-              lineStyle: {
-                color: "#f00"
-              }
-            }
-          }
-        }
+        // {
+        //   data: [99021, 101021, 120323, 109021, 99021, 89021],
+        //   type: "line",
+        //   name: "贴吧",
+        //   itemStyle: {
+        //     normal: {
+        //       color: "#275F82",
+        //       lineStyle: {
+        //         color: "#f00"
+        //       }
+        //     }
+        //   }
+        // }
       ]
     };
     topTenChart.setOption(top_ten_option);
@@ -679,13 +688,15 @@ export default {
   .houseContainer {
     display: flex;
     width: 100%;
-    // height: 590px;
     margin-bottom: 40px;
     .map_statistics {
       width: 75%;
-      img {
-        width: 100%;
-        display: block;
+      position: relative;
+      #map{
+          position: absolute;
+          width: 100%;
+         top:-60px;
+         bottom: -60px;
       }
     }
     .total_num {
@@ -707,8 +718,22 @@ export default {
           display: flex;
           padding: 5px;
           justify-content: space-between;
+          .num{
+            display: flex;
+            width:30px; 
+            justify-content: center; 
+            margin-right: 59px; 
+          }
+          .comment{
+            display: flex;
+            width:43px; 
+            justify-content: flex-start;  
+          }
           .area {
+            display: flex;
+            flex:1;
             color: #03a971;
+            justify-content: flex-start;  
           }
         }
       }
@@ -718,25 +743,16 @@ export default {
   .case_echarts_container {
     width: 1200px;
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+     margin-bottom: 30px;
     .top_ten_container,
-    .case_time_container,
-    .case_reason_type_container,
-    .court_level_container,
-    .case_type_container,
-    .plaintiff_type_container {
+    .case_time_container{
       width: 568px;
       height: 340px;
-      margin-right: 30px;
-      margin-bottom: 30px;
       border: 1px solid #ebecf0;
       .top_ten_title,
-      .case_time_title,
-      .case_reason_type_title,
-      .court_level_title,
-      .case_type_title,
-      .plaintiff_type_title {
+      .case_time_title
+      {
         width: 100%;
         height: 60px;
         padding-left: 25px;
@@ -748,11 +764,8 @@ export default {
         background-color: #f2f4f7;
       }
       .top_ten,
-      .case_time,
-      .case_reason_type,
-      .court_level,
-      .case_type,
-      .plaintiff_type {
+      .case_time
+     {
         width: 100%;
         height: 280px;
       }

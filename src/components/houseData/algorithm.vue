@@ -45,15 +45,15 @@
                     <span>资源数：200</span>
                 </div>
                 <div class="right">
-                    <!-- <div class="address">
-                        <Select v-model="model1" style="width:200px">
+                    <div class="address">
+                        <Select v-model="order" style="width:200px">
                             <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
-                    </div> -->
+                    </div>
                     <div class="search">
-                        <input type="text" placeholder="输入您要查找的算法名称或关键词" @focus="goLogin">
-                        <!-- <i-input :value.sync="value" placeholder="查找开源算法" style="width: 300px"></i-input> -->
-                        <div class="search_btn" @click="goLogin"></div>
+                        <i-input v-model="keyword" placeholder="输入您要查找的算法名称或关键词">
+                          <i-button slot="append" icon="ios-search" @click="searchClick"></i-button>
+                        </i-input>
                     </div>
                 </div>
             </div>
@@ -61,27 +61,29 @@
     </div>
 
     <ul class="list">
-      <li v-for="(item,index) in content" :key="index">
+      <li v-for="item in content" :key="item.id">
         <div class="left">
-          <div class="header" :style="{backgroundColor:item.color}">{{item.type}}</div>
+          <!-- :style="{backgroundColor:item.color}" -->
+          <div class="header" >{{item.productModule}}</div>
         </div>
         <div class="center">
-          <div class="title">{{item.title}}</div>
-          <div class="intro">{{item.intro}}</div>
+          <div class="title">{{item.childModule}}</div>
+          <div class="intro">{{item.description}}</div>
           <div class="comment">
             <!-- <div class="icon"><img src="../../assets/images/houseData/github.png" alt=""> </div>  -->
             <!-- <span>github</span> -->
-            <span class="time">{{item.time}}</span>
+            <span class="time">{{item.createTime}}</span>
             <!-- <span class="isPublic">{{item.isPublic}}</span> -->
           </div>
         </div>
         <div class="right">
-           <div class="lookDetail" @click="lookDetail(item.url)">查看详情</div>
+           <div class="lookDetail" @click="lookDetail(item.downloadUrl)">查看详情</div>
         </div>
       </li>
     </ul>
+    
     <div style="margin:auto;margin-bottom:50px;margin-top:-40px;text-align:center">
-        <i-button type="success" @click="goLogin">查看更多</i-button>
+       <Page :total="paging.total" @on-change="pagingChange"></Page>
     </div>
 
 
@@ -117,109 +119,24 @@ export default {
       ifShowSubBtn:true,
       showTrian3:false,
       headerImg:require('@/assets/images/home/timg.jpg'),
-      content:[
-        {
-         title:"拼写检查算法",
-         intro:"此功能基于symspell实现，建议使用检查词等级的错误，对于句子尚未能很好的解决拼写错误问题。",
-         url:"https://github.com/SeanLee97/xmnlp",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FFC10D ",
-         type:"文本"
-        },
-        {
-         title:"汉字部首判断算法",
-         intro:"部首是一种文本的特征，在深度学习中我们有时可以加入部首特征来训练网络。",
-         url:"https://github.com/SeanLee97/xmnlp",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FFC10D ",
-         type:"文本"
-        },
-        {
-         title:"视频文本摘要算法",
-         intro:"输入一段视频，通过深度学习网络和人工智能程序识别视频主要表达的意思。",
-         url:"https://github.com/CaptainEven/VideoCaption",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#13BFC1",
-         type:"视频"
-        },
-        {
-         title:"验证码识别算法",
-         intro:"本项目针对字符型图片验证码，使用tensorflow实现卷积神经网络，进行验证码识别。",
-         url:"https://github.com/nickliqian/cnn_captcha",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FE5560  ",
-         type:"图像"
-        },
-        {
-         title:"CAD三维物体的识别与跟踪算法",
-         intro:"CAD三维物体的识别与跟踪，（识别部分）大模块分为三个部分：1.图像的梯度计算，2图像的相似度计算，3取最大的得分位置。",
-         url:"https://github.com/fatherworld/CAD_TRACKER",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FE5560  ",
-         type:"图像"
-        },
-        {
-         title:"中文语音识别算法",
-         intro:"本项目使用Keras，TensorFlow基于深度卷积神经网络和长短时记忆神经网络，关注机制以及CTC实现。",
-         url:"https://github.com/nl8590687/ASRT_SpeechRecognition",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FFC10D ",
-         type:"图像"
-        },
-        {
-         title:"人脸识别算法",
-         intro:"调用face ++，BaiduAI，Azure，以及开源项目face_recognition实现的人脸识别演示。",
-         url:"https://github.com/seabirdustc/face-recognition-demo",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#4A90E2 ",
-         type:"语音"
-        },
-        {
-         title:"人脸检测算法",
-         intro:"多任务级联卷积神经网络的联合人脸检测与对准。",
-         url:"https://github.com/kpzhang93/MTCNN_face_detection_alignment",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#53B884  ",
-         type:"人脸"
-        },
-        {
-         title:"搜索算法",
-         intro:"通过ahocorasick算法快速进行文本搜索。",
-         url:"https://github.com/pyloque/fastscan",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FD6A2B",
-         type:"搜索"
-        },
-        {
-         title:"图像识别算法",
-         intro:"使用数字图像处理算法根据植物叶片的形状，颜色和纹理特征识别植物。",
-         url:"https://github.com/AayushG159/Plant-Leaf-Identification",
-         time:"2020-03-02 11:49:06",
-         isPublic:"公开",
-         color:"#FE5560 ",
-         type:"图像"
-        },
-      ],
+      content:[],
       cityList: [
         {
-            value: '1',
+            value: 'create_time',
             label: '按时间排序'
         },
         {
-            value: '2',
+            value: 'product_module',
             label: '按算法类型排序'
         },
     ],
-    model1: ''
+    order:'create_time',
+    paging: {
+      index: 1,
+      size: 10,
+      total: 0
+    },
+    keyword:""
             
     }
   },
@@ -229,6 +146,7 @@ export default {
       vLogin
   },
   created(){
+    this.initData();
     var name = localStorage.getItem('name');
     if(name){
       this.ifShowSubBtn = false;
@@ -237,12 +155,48 @@ export default {
     }
   },
   mounted(){
-    document.documentElement.scrollTop=0;
+    
     if(this.$route.query.type == 2){
       this.$refs.navTextTop[2].style='box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
     }
   },
   methods:{
+    initPaging() {
+      this.paging.index = 1;
+      this.paging.size = 10;
+    },
+    searchClick(){
+      this.initPaging();
+      this.initData();
+    },
+    pagingChange(val){
+      this.paging.index = val;
+      document.documentElement.scrollTop=0;
+      this.initData();
+    },
+    initData(){
+       //上边中间   中国地图
+            let baseUrl='http://106.13.122.156:8086';
+            this.$axios({
+                method: "post",
+                url: baseUrl + "/stargaze/sophiaOpenData/listSophiaOpenData",
+                params:{
+                  keyword:this.keyword,
+                  orderField:this.order,
+                  orderType:"desc",
+                  pageIndex:this.paging.index,
+                  pageSize:this.paging.size,
+                }
+            }).then(res => {
+                console.log(res.data.data)
+                if(res.status==200){
+                  this.content=res.data.data.sophiaOpenData.data;
+                  this.paging.total=res.data.data.sophiaOpenData.totalNum;
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
+    },
     lookDetail(url){
       window.open(url);
     },
@@ -614,48 +568,6 @@ export default {
                       }
                     }
                   }
-                }
-                .search{
-                    display: flex;
-                    align-items: center;
-                    input{
-                      width: 331px;
-                      height: 40px;
-                      padding-left: 10px;
-                      box-sizing: border-box;
-                      -webkit-appearance:none;
-                      ::placeholder{
-                        font-size: 14px;
-                        color: #B8BECC;
-                        letter-spacing: 0;
-                      }
-                      :-moz-placeholder{
-                        font-size: 14px;
-                        color: #B8BECC;
-                        letter-spacing: 0;
-                      }
-                      :-ms-input-placeholder{
-                        font-size: 14px;
-                        color: #B8BECC;
-                        letter-spacing: 0;
-                      }
-                      ::-moz-placeholder{
-                        font-size: 14px;
-                        color: #B8BECC;
-                        letter-spacing: 0;
-                      }
-                      ::-webkit-input-placeholder{
-                        font-size: 14px;
-                        color: #B8BECC;
-                        letter-spacing: 0;
-                      }
-                    }
-                    .search_btn{
-                      width: 40px;
-                      height: 40px;
-                      background-image: url('../../assets/images/insightData/search_btn.png');
-                      background-size: 100% 100%;
-                    }
                 }
             }
         }
