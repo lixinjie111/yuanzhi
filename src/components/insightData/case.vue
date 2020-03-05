@@ -217,6 +217,12 @@ export default {
                                 color:'#fff',//这里要注意一下，必须是标准6位，否则可能显现不出来
                                 fontSize:18,//字号大小
                                 lineHeight:'300px'//最后一个属性不加逗号，行高
+                            },
+                             formatter: function(params) {
+                                if (params.data) {
+                                    let str=`<p>${params.data.name}</p><p style="font-size:14px">案件数：${params.data.value}</p>`;
+                                    return str;
+                                }
                             }
                             
                         },
