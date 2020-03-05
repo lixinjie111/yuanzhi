@@ -39,7 +39,7 @@
              <img src="../../assets/images/aiSmartAppDetail/luzhi.png" alt="">
           </div>
           <div v-if="isWork" class="timeline" style="width:293px; margin:0 10px">
-            <img src="../../assets/images/aiSmartAppDetail/Timeline.png" alt="">
+            <img src="../../assets/images/aiSmartAppDetail/timeLine.gif" alt="">
           </div>
           <span class="time" v-if="isWork" style="color:#fff;">00:{{upTime}} / 00:10</span>
         </div>
