@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="right">
-          <div class="word_desc">词汇详情</div>
+          <div class="word_desc">词汇详情：</div>
           <div class="word_desc_container">
             <div>词汇：<span>{{cihui}}</span></div>
             <div>词性：<span>{{cixing}}</span>
