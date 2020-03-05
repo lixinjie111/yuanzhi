@@ -1,9 +1,13 @@
 <template>
   <div class="case_container">
-    <div class="case_analysis_report">住房检测指标</div>
+    <div class="case_analysis_report">住房监测指标</div>
     <div class="houseContainer">
       <div class="map_statistics">
           <div  id="map"></div>
+          <div class="showData">
+              <p> 北京</p>
+              <p style="font-size:14px">小区：24728个</p>
+          </div>
       </div>
       <div class="total_num">
         <p class="title">微博热议楼盘榜单</p>
@@ -35,79 +39,11 @@
       </div>
     </div>
     <div class="loupan">
-      <img src="../../assets/images/houseData/loupan.png" alt />
+        <img src="../../assets/images/houseData/loupan.png" alt />
       <div class="cover">
-        <img src="@/assets/images/houseData/font.png" alt />
+        <img src="../../assets/images/houseData/font.png" alt />
       </div>
     </div>
-    <!-- <div class="reyi">
-          <ul class="house">
-               <li class="title">楼盘微博热搜榜 TOP5</li>
-               <li>
-                    <div>序号</div>
-                    <div>关键词</div>
-                    <div></div>
-                </li>
-                <li>
-                    <div>1</div>
-                    <div>珠江御景</div>
-                    <div>3,112,234</div>
-                </li>
-                <li>
-                    <div>1</div>
-                    <div>珠江御景</div>
-                    <div>3,112,234</div>
-                </li>
-                <li>
-                    <div>1</div>
-                    <div>珠江御景</div>
-                    <div>3,112,234</div>
-                </li>
-                <li>
-                    <div>1</div>
-                    <div>珠江御景</div>
-                    <div>3,112,234</div>
-                </li>
-                <li>
-                    <div>1</div>
-                    <div>珠江御景</div>
-                    <div>3,112,234</div>
-                </li>
-          </ul>
-          <ul class="gard">
-            <li class="title">小区微博热搜榜 TOP5</li>
-            <li>
-                <div>序号</div>
-                <div>关键词</div>
-                <div></div>
-            </li>
-            <li>
-                <div>1</div>
-                <div>珠江御景</div>
-                <div>3,112,234</div>
-            </li>
-            <li>
-                <div>1</div>
-                <div>珠江御景</div>
-                <div>3,112,234</div>
-            </li>
-            <li>
-                <div>1</div>
-                <div>珠江御景</div>
-                <div>3,112,234</div>
-            </li>
-            <li>
-                <div>1</div>
-                <div>珠江御景</div>
-                <div>3,112,234</div>
-            </li>
-            <li>
-                <div>1</div>
-                <div>珠江御景</div>
-                <div>3,112,234</div>
-            </li>
-        </ul>        
-    </div>-->
   </div>
 </template>
 
@@ -555,9 +491,13 @@ export default {
       tooltip: {
         trigger: "axis"
       },
+      legend: {
+            data: ['微博', '网站', '微信'],
+            bottom: 10,
+        },
       xAxis: {
         type: "category",
-        data: time,
+        data: time.reverse(),
         axisLine: {
           symbol: ["none", "arrow"],
           symbolSize: [5, 5]
@@ -572,43 +512,19 @@ export default {
       },
       series: [
         {
-          data: series["weibo"],
+          data: series["weibo"].reverse(),
           type: "line",
           name: "微博",
-          itemStyle: {
-            normal: {
-              color: "#275F82",
-              lineStyle: {
-                color: "#253A5D"
-              }
-            }
-          }
         },
         {
-          data: series["newsSite"],
+          data: series["newsSite"].reverse(),
           type: "line",
           name: "网站",
-          itemStyle: {
-            normal: {
-              color: "#275F82",
-              lineStyle: {
-                color: "#00f"
-              }
-            }
-          }
         },
         {
-          data: series["wechat"],
+          data: series["wechat"].reverse(),
           type: "line",
           name: "微信",
-          itemStyle: {
-            normal: {
-              color: "#275F82",
-              lineStyle: {
-                color: "#0f0"
-              }
-            }
-          }
         },
         // {
         //   data: [99021, 101021, 120323, 109021, 99021, 89021],
@@ -697,6 +613,17 @@ export default {
           width: 100%;
          top:-60px;
          bottom: -60px;
+      }
+      .showData{
+          position: absolute;
+          width: 130px;
+          height:130px;
+          padding:10px;
+          top:0px;
+          right: 36px;
+          background: rgba(0, 0, 0, 0.8);
+          color:#fff;
+          font-size: 18px;
       }
     }
     .total_num {
