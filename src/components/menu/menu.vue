@@ -346,6 +346,7 @@
     left: 50%;
     transform: translateX(-64%);
     background-color: #FFFFFF;
+    box-shadow: 0 8px 24px 0 #3D4966;
     div{
       margin-bottom: 11px;
       font-size: 14px;
@@ -377,7 +378,7 @@
     // }
   }
   .obserData_menu_container{
-    transform: translateX(50%);
+    transform: translateX(17%);
     div:nth-child(1):hover{
       color:#03A971;
       cursor: pointer;

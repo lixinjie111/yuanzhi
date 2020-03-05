@@ -697,10 +697,7 @@ export default {
     }
     .map_statistics{
         width: 100%;
-        height: 590px;
-        img{
-            width: 100%;
-        }
+        height: 650px;
     }
     .total_num{
         width: 100%;
