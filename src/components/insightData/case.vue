@@ -211,10 +211,10 @@ export default {
                         tooltip: {//图例
                             trigger: 'item',
                             //文本上方的浮动小块
-                            backgroundColor:'rgba(255,255,255,0.7)',//文本上方的浮动小块的颜色
+                            backgroundColor:'rgba(0,0,0,0.7)',//文本上方的浮动小块的颜色
                             padding:[20,20],//文字与边框之间的内边距
                             textStyle:{//文本样式设置
-                                color:'#00000',//这里要注意一下，必须是标准6位，否则可能显现不出来
+                                color:'#fff',//这里要注意一下，必须是标准6位，否则可能显现不出来
                                 fontSize:18,//字号大小
                                 lineHeight:'300px'//最后一个属性不加逗号，行高
                             }
@@ -229,7 +229,7 @@ export default {
                                 normal:{
                                     show:true,
                                     textStyle:{
-                                        color:'rgba(255,255,255,0.3)'
+                                        color:'rgba(0,0,0,1)'
                                     }
                                 },
                                 emphasis: {//鼠标移入动态时显示的样式
@@ -240,14 +240,13 @@ export default {
                             },
                             itemStyle: {
                                 normal: {
-                                    borderWidth: .5, //区域边框宽度
-                                    borderColor: 'rgba(255,255,255,0.3)',//区域边框颜色
-                                    areaColor: "rgba(3,169,113,0.3)", //区域颜色
+                //                    areaColor: '#267bee',
+                                    areaColor: 'rgba(61,97,166,0.5)',
+                                    borderWidth: 1,
+                                    borderColor: 'rgba(108,136,216,0.9)'
                                 },
                                 emphasis: {
-                                    borderWidth: .5,
-                                    borderColor: '#4b0082',
-                                    areaColor: "#2D8C6A",
+                                    areaColor: 'rgba(61,97,166,1)'
                                 }
                             },
                             data: mapData   // 数据

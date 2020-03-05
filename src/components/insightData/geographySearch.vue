@@ -57,7 +57,7 @@
     </div>
 
     <div class="qudao_container">
-        <div>气象数据</div>
+         <div>气象数据</div>
         <div>将气象数据与不同领域资源相融合，开拓交通运输、新能源、农业、移动互联软件开发和服务、公共管理及基于大数据技术的智慧城市、智慧交通、智慧粮食等领域的开发建设中应用</div>
     </div>
 
@@ -81,7 +81,10 @@
             <div>降水</div>
         </div>
     </div>
-
+    <div class="qudao_container">
+        <div>人文数据</div>
+        <div>人文大数据应用于空间规划方法和技术、居民个体行为决策优化、企业运营决策、政府宏观政策制定与管理等方面的应用方向</div>
+    </div>
     <div class="qudao_picter_container1">
         <div class="one1">
             <div></div>
