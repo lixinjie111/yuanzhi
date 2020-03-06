@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <vMenu v-show="showMenu" :navType='navType'></vMenu>
+    <vMenu v-show="showMenu" :navType='navType' @closeMenu='closeMenuFa'></vMenu>
     <div class="banner">
       <div class="box" ><img src="../../assets/images/houseData/web-12.png" alt=""></div>
       <div class="content">
@@ -304,6 +304,12 @@ export default {
         this.showTrian2 = false;
         this.showTrian3 = false;
       }
+    },
+    closeMenuFa(arg){
+      this.showMenu = arg;
+      this.showTrian1 = arg;
+      this.showTrian2 = arg;
+      this.showTrian3 = arg;
     },
      hideChange(){
       var navTextArrDom = this.$refs.navTextTop;

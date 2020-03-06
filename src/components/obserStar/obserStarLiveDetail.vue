@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <vMenu v-show="showMenu" :navType='navType'></vMenu>
+    <vMenu v-show="showMenu" :navType='navType' @closeMenu='closeMenuFa'></vMenu>
 
     <!--图形统计区域-->
     <div class="chart_container">
@@ -125,6 +125,12 @@ export default {
             }else if(index === 4 || index === 5){
                 this.ifShowLogin = true;
             }
+        },
+        closeMenuFa(arg){
+            this.showMenu = arg;
+            this.showTrian1 = arg;
+            this.showTrian2 = arg;
+            this.showTrian3 = arg;
         },
         hideChange(){
             var navTextArrDom = this.$refs.navTextTop;

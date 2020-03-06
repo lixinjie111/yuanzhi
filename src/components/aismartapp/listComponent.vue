@@ -133,7 +133,7 @@ export default {
     if(this.$refs.yinyongchangjing)
     {
       var appDomArr = this.$refs.yinyongchangjing;
-      appDomArr[0].style = 'border-bottom:3px #03A971 solid';
+      appDomArr[0].style = 'border-bottom:3px #03A971 solid;color: #121C33;margin-bottom: -2px;';
     }
     var objListNav = this.$refs.listNav;
     var objProList = this.$refs.proList;
@@ -160,26 +160,26 @@ export default {
           if(that.$refs.navListText.childNodes){
             var arrnavList = that.$refs.navListText.childNodes;
             if(st<AppScenH || st == AppScenH){
-              arrnavList[0].style = 'color: #03A971;font-size: 16px;';
-              arrnavList[1].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[0].style = 'color: #03A971;';
+              arrnavList[1].style = 'color:#3D4966;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color:#3D4966;';
             }else if(st>AppScenH && st < FeaturesAdvanH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[1].style = 'color: #03A971;font-size: 16px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[3].style = 'color:#3D4966;font-size: 16px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #03A971;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color:#3D4966;';
             }else if(st>FeaturesAdvanH && st < SupportCommH){
-              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 16px;';
-              arrnavList[2].style = 'color:#03A971;font-size: 16px;';
-              arrnavList[3].style = 'color: #3D4966;font-size: 16px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #3D4966;';
+              arrnavList[2].style = 'color:#03A971;';
+              arrnavList[3].style = 'color: #3D4966;';
             }
             else{
-              arrnavList[0].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[1].style = 'color: #3D4966;font-size: 16px;';
-              arrnavList[2].style = 'color:#3D4966;font-size: 16px;';
-              arrnavList[3].style = 'color: #03A971;font-size: 16px;';
+              arrnavList[0].style = 'color:#3D4966;';
+              arrnavList[1].style = 'color: #3D4966;';
+              arrnavList[2].style = 'color:#3D4966;';
+              arrnavList[3].style = 'color: #03A971;';
             }
           }
         }
@@ -265,10 +265,10 @@ export default {
   align-items:center;
   justify-content:center;
   background-color: #F2F4F7;
+  height: 56px;
   .list_nav{
     width:1200px;
-    height: 56px;
-    box-sizing: border-box;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -333,8 +333,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        // opacity: 0.41;
-        border-bottom: 1px solid #B8BECC;
+        border-bottom: 1px solid rgba(184,190,204,0.41);
         margin-bottom:41px;
         :hover{
           cursor: pointer;
@@ -342,6 +341,7 @@ export default {
         div{
           padding: 13px 0;
           box-sizing: border-box;
+          font-size: 18px;
         }
       }
       .bottom{

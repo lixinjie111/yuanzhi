@@ -1,6 +1,6 @@
 <template>
   <div v-show="ifShowMenu" >
-    <div class="aiSmartApp_menu_container" v-if="navType == 1">
+    <div class="aiSmartApp_menu_container" v-if="navType == 1" @mouseleave="hideMenu">
       <div class="ziranyuyan_container">
         <div @click="goList(0)">自然语言处理</div>
         <p @click="goDetails(0)" class="cifafenxi">词法分析<img :src="hotImg" alt="" srcset=""></p>
@@ -81,13 +81,13 @@
         </div>
       </div>
     </div>
-    <div class="insightData_menu_container" v-else-if="navType == 2">
+    <div class="insightData_menu_container" v-else-if="navType == 2" @mouseleave="hideMenu">
       <div @click="goList(8)" class="border_bottom_style falvzonghefenxi">法律综合分析</div>
       <div @click="goDetails(26)">房产综合分析</div>
       <div @click="goDetails(27)" class="pinpai">品牌舆情洞察</div>
       <div @click="goDetails(28)" class="dili">地理综合查询</div>
     </div>
-    <div class="obserData_menu_container" v-else-if="navType == 3">
+    <div class="obserData_menu_container" v-else-if="navType == 3" @mouseleave="hideMenu">
       <div @click="goList(9)" class="border_bottom_style">政治数据</div>
       <div @click="goDetails(29)">民生数据</div>
       <div @click="goDetails(30)">经济数据</div>
@@ -271,6 +271,9 @@
         this.$router.push({
           path:'/algorithm'
         });
+      },
+      hideMenu(){
+        this.$emit('closeMenu',false);
       }
     }
   }
