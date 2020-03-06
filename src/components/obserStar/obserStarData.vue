@@ -221,7 +221,12 @@ export default {
         hideChange(){
             var navTextArrDom = this.$refs.navTextTop;
             for(var i = 0; i < navTextArrDom.length;i++){
-                navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+                if(i == 3){
+                    navTextArrDom[i].style = 'box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
+                }
+                else{
+                    navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+                }
             }
         },
         goShowData(num){
@@ -460,7 +465,6 @@ export default {
     mounted(){
         var featurType = this.$route.query.featurType;
         var type = this.$route.query.type;
-        console.log(featurType);
         if(type == 3){
             this.$refs.navTextTop[3].style='box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
         }

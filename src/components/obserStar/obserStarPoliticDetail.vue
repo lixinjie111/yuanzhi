@@ -152,7 +152,12 @@ export default {
         hideChange(){
             var navTextArrDom = this.$refs.navTextTop;
             for(var i = 0; i < navTextArrDom.length;i++){
-                navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+                if(i == 3){
+                    navTextArrDom[i].style = 'box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
+                }
+                else{
+                    navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+                }
             }
         },
         getChartData(){

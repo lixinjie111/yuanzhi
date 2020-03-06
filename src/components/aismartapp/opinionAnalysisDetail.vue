@@ -114,7 +114,7 @@
       document.documentElement.scrollTo(0,0);
       document.body.scrollTo(0,0);
       if (this.$route.query.type == 1) {
-        this.$refs.navText.childNodes[1].style = 'box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
+        this.$refs.navTextTop[1].style='box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
       }
     },
     methods: {
@@ -172,7 +172,12 @@
     hideChange(){
       var navTextArrDom = this.$refs.navTextTop;
       for(var i = 0; i < navTextArrDom.length;i++){
-        navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+        if(i == 1){
+          navTextArrDom[i].style = 'box-sizing: border-box;padding-bottom:3px;border-bottom: 3px #ffffff solid;';
+        }
+        else{
+          navTextArrDom[i].style = 'padding-bottom:0;border-bottom:none';
+        }
       }
     },
     goLogin(){

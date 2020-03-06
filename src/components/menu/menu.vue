@@ -202,27 +202,42 @@
         switch(arg){
           case 0:
             this.$router.push({
-              path:'/aiSmartAppDetail'
+              path:'/aiSmartAppDetail',
+              query:{
+                type:1
+              }
             });
             break;
           case 21:
             this.$router.push({
-              path:'/shortSpeechRecoDetail'
+              path:'/shortSpeechRecoDetail',
+              query:{
+                type:1
+              }
             });
             break;
           case 26:
             this.$router.push({
-              path:'/houseData'  //geographySearch 
+              path:'/houseData',
+              query:{
+                type:2
+              }
             });
             break;
           case 27:
             this.$router.push({
-              path:'/brandSentiment'  //geographySearch 
+              path:'/brandSentiment',
+              query:{
+                type:2
+              }
             });
             break;
           case 28:
             this.$router.push({
-              path:'/geographySearch'  // 
+              path:'/geographySearch',
+              query:{
+                type:2
+              }
             });
             break;
           case 29 :
