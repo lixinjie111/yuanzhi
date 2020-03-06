@@ -154,7 +154,12 @@
       var detailType = this.objText.detailType;
       if(this.$refs.yinyongchangjing){
         var appDomArr = this.$refs.yinyongchangjing;
-        appDomArr[1].style = 'border-bottom:3px #03A971 solid';
+        if(detailType == 'searchdetail' || detailType =='duanyuyin'){
+          appDomArr[1].style = 'border-bottom:3px #03A971 solid;color: #121C33;margin-bottom: -2px;';
+        }
+        else{
+          appDomArr[0].style = 'border-bottom:3px #03A971 solid;color: #121C33;margin-bottom: -2px;';
+        }
       }
       if(detailType == 'searchdetail' || detailType == 'recommendetail' || detailType == 'optionanaly'){
         this.ifShowFnexpe = false;
@@ -188,26 +193,42 @@
           if(that.$refs.navListText.childNodes){
             var arrnavList = that.$refs.navListText.childNodes;
             if(st<AppScenH || st == AppScenH){
-              arrnavList[0].style = 'color: #03A971;';
-              arrnavList[1].style = 'color:#3D4966;';
-              arrnavList[2].style = 'color:#3D4966;';
-              arrnavList[3].style = 'color:#3D4966;';
+              for(var i = 0; i<arrnavList.length;i++){
+                if(i == 0){
+                  arrnavList[i].style = 'color: #03A971;';
+                }
+                else{
+                  arrnavList[i].style = 'color:#3D4966;';
+                }
+              }
             }else if(st>AppScenH && st < FeaturesAdvanH){
-              arrnavList[0].style = 'color:#3D4966;';
-              arrnavList[1].style = 'color: #03A971;';
-              arrnavList[2].style = 'color:#3D4966;';
-              arrnavList[3].style = 'color:#3D4966;';
+              for(var i = 0; i<arrnavList.length;i++){
+                if(i == 1){
+                  arrnavList[i].style = 'color: #03A971;';
+                }
+                else{
+                  arrnavList[i].style = 'color:#3D4966;';
+                }
+              }
             }else if(st>FeaturesAdvanH && st < SupportCommH){
-              arrnavList[0].style = 'color:#3D4966;';
-              arrnavList[1].style = 'color: #3D4966;';
-              arrnavList[2].style = 'color:#03A971;';
-              arrnavList[3].style = 'color: #3D4966;';
+              for(var i = 0; i<arrnavList.length;i++){
+                if(i == 2){
+                  arrnavList[i].style = 'color: #03A971;';
+                }
+                else{
+                  arrnavList[i].style = 'color:#3D4966;';
+                }
+              }
             }
             else{
-              arrnavList[0].style = 'color:#3D4966;';
-              arrnavList[1].style = 'color: #3D4966;';
-              arrnavList[2].style = 'color:#3D4966;';
-              arrnavList[3].style = 'color: #03A971;';
+              for(var i = 0; i<arrnavList.length;i++){
+                if(i == 3){
+                  arrnavList[i].style = 'color: #03A971;';
+                }
+                else{
+                  arrnavList[i].style = 'color:#3D4966;';
+                }
+              }
             }
           }
         }
@@ -394,7 +415,7 @@
           display: flex;
           align-items: center;
           justify-content: space-around;
-          border-bottom: 1px solid #B8BECC;
+          border-bottom: 1px solid rgba(184,190,204,0.41);
           margin-bottom: 41px;
           font-size: 18px;
           color: #7A8499;
@@ -402,6 +423,7 @@
           div {
             padding: 13px 0;
             box-sizing: border-box;
+            font-size: 18px;
           }
         }
         .bottom {
@@ -422,7 +444,7 @@
             .right-top {
               padding-top: 50px;
               box-sizing: border-box;
-              
+              font-size: 22px;
               color: #121C33;
               margin-bottom: 10px;
               border: none;

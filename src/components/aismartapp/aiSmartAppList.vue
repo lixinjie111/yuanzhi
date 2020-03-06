@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <vMenu v-show="showMenu" :navType='navType'></vMenu>
+    <vMenu v-show="showMenu" :navType='navType' @closeMenu='closeMenuFa'></vMenu>
 
     <vList :objText='aiListData'></vList>
 
@@ -206,7 +206,86 @@ export default {
       showTrian1:false,
       showTrian2:false,
       showTrian3:false,
-      aiListData:{}
+      aiListData:{
+        title:'自然语言处理',
+        title_desc:'自然语言处理是为各类企业及开发者提供的用于文本分析及挖掘的核心工具，已经广泛应用在电商、文化娱乐、金融、物流等行业客户的多项业务中。',
+        use_btn:'立即使用',
+        tech_file:'技术文档',
+        list_img:require('@/assets/images/aiSmartAppList/audio_tech.png'),
+        product_list_data:[
+          {
+            img:require('@/assets/images/aiSmartAppList/cifafenxi.png'),
+            title:'词法分析',
+            desc:'基于大数据和用户行为的分词、词性标注、命名实体识别，定位基本语言元素，消除歧义，支撑自然语言的准确理解'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/guanjiancitiqu.png'),
+            title:'关键词提取',
+            desc:'TextRank关键词提取'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/zidongzhaiyao.png'),
+            title:'自动摘要',
+            desc:'TextRank自动摘要'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/duanyutiqu.png'),
+            title:'短语提取',
+            desc:'基于互信息和左右信息熵的短语提取'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/pinyinzhuanhuan.png'),
+            title:'拼音转换',
+            desc:'多音字、声母、韵母、声调'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/jianfanzhuanhuan.png'),
+            title:'简繁转换',
+            desc:'简繁分歧词（简体、繁体、臺灣正體、香港繁體）'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/wenbentuijian.png'),
+            title:'文本推荐',
+            desc:'语义推荐、拼音推荐、字词推荐'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/yicunjufa.png'),
+            title:'依存句法分析',
+            desc:'基于神经网络的高性能依存句法分析器;基于ArcEager转移系统的柱搜索依存句法分析器'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/word2vec.png'),
+            title:'文本分类',
+            desc:'识别文本的领域信息，提供在17个领域上分类：歌曲、广播、故事、百科、天气、时间、新闻'
+          },
+          {
+            img:require('@/assets/images/aiSmartAppList/wenbenjulei.png'),
+            title:'文本聚类',
+            desc:'KMeans、Repeated Bisection、自动推断聚类数目k'
+          },
+        ],
+        menu_text:['智能问答系统','相似内容推荐','评论聚合'],
+        weitu:require('../../assets/images/aiSmartAppList/zhinengwenda.png'),
+        app_title:'智能问答系统',
+        app_desc:'通过中文分词、短文本相似度、命名实体识别等自然语言处理相关技术，计算；两个问题对的相似度，可解决问答、对话、语料挖掘、知识库构建等问题。',
+        advant_text:[
+          {
+            img:require('../../assets/images/aiSmartAppList/advant.png'),
+            title:'能力丰富',
+            desc:'数十种自然语言核心算法与解决方案，全面覆盖语言处理的各类需求'
+          },
+          {
+            img:require('../../assets/images/aiSmartAppList/advant.png'),
+            title:'接口易用',
+            desc:'标准化接口封装，通过云计算调用可快速使用工具，大大降低开发人力成本'
+          },
+          {
+            img:require('../../assets/images/aiSmartAppList/advant.png'),
+            title:'服务可靠',
+            desc:'SLA稳定保持99.99%以上，支持千亿量级调用需求，配有完善的统计和监控措施'
+          }
+      ]
+      }
     }
   },
   components:{
@@ -290,6 +369,12 @@ export default {
         this.showTrian2 = false;
         this.showTrian3 = false;
       }
+    },
+    closeMenuFa(arg){
+      this.showMenu = arg;
+      this.showTrian1 = arg;
+      this.showTrian2 = arg;
+      this.showTrian3 = arg;
     },
     hideChange(){
       var navTextArrDom = this.$refs.navTextTop;

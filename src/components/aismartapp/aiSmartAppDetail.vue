@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <vMenu v-show="showMenu" :navType='navType'></vMenu>
+    <vMenu v-show="showMenu" :navType='navType' @closeMenu='closeMenuFa'></vMenu>
     <vList :objText='audion_tech'></vList>
   </div>
 </template>
@@ -154,6 +154,12 @@
           this.showTrian2 = false;
           this.showTrian3 = false;
         }
+    },
+    closeMenuFa(arg){
+      this.showMenu = arg;
+      this.showTrian1 = arg;
+      this.showTrian2 = arg;
+      this.showTrian3 = arg;
     },
     hideChange(){
       var navTextArrDom = this.$refs.navTextTop;

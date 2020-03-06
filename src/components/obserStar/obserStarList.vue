@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <vMenu v-show="showMenu" :navType='navType'></vMenu>
+    <vMenu v-show="showMenu" :navType='navType' @closeMenu='closeMenuFa'></vMenu>
 
     <!--首部菜单、首部图标统计、查看详情按钮-->
 
@@ -347,6 +347,12 @@ export default {
                 this.showTrian1 = false;
                 this.showTrian2 = false;
             }
+        },
+        closeMenuFa(arg){
+            this.showMenu = arg;
+            this.showTrian1 = arg;
+            this.showTrian2 = arg;
+            this.showTrian3 = arg;
         },
         hideChange(){
             var navTextArrDom = this.$refs.navTextTop;
