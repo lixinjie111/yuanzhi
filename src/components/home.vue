@@ -455,10 +455,13 @@ export default {
 }
 .banner{
   width: 100%;
+  height: 500px;
   .ivu-carousel{
-    height: 359px;
     width: 100%;
+    height: 500px;
     .demo-carousel{
+      width: 100%;
+      height: 500px;
       img{
         height: 100%;
         width: 100%;

@@ -259,6 +259,7 @@
     background-repeat: no-repeat;
     .banner_contant {
       width: 1200px;
+      height: 100%;
       .yuqingsousuo{
         background: #FFFFFF;
         border: 1px solid #B8BECC;
@@ -303,6 +304,7 @@
         }
       }
       .desc1 {
+        margin-top: 120px;
         padding-bottom: 20px;
         font-size: 36px;
         color: #FFFFFF;

@@ -544,18 +544,20 @@ export default {
 }
 .banner{
   width: 100%;
+  height: 450px;
   background: #3F3F4B;
   display: flex;
   align-items: center;
   justify-content: center;
   .banner_contant{
-    width: 1200px;
-    height: 500px;
+    width: 1000px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     .left{
       height: 100%;
+      width: 50%;
       .desc{
         box-sizing: border-box;
         padding-top: 138px;
@@ -565,10 +567,10 @@ export default {
       }
     }
     .right{
-      height: 100%;
-      width: 60%;
+      height: 90%;
+      width: 50%;
       img{
-        width: 100%;
+        height: 100%;
       }
     }
   }

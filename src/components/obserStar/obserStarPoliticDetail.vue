@@ -177,7 +177,7 @@ export default {
             }).then(res => {
                 if(res.status == 200){
                     var topLeftTopBarData = res.data.data;
-                    var topLeftTopBarChart = echarts.init(document.getElementById('topLeftTopBar'));  //
+                    var topLeftTopBarChart = echarts.init(document.getElementById('topLeftTopBar'));  
                     var xAxisDataObj = {
                         xAxisData:[],
                         data:[],
@@ -202,7 +202,11 @@ export default {
                         background:'#2D8C6A',
                         color: ['#0FA16D'],
                         tooltip: {
-                            trigger: 'axis'
+                            trigger: 'axis',
+                            axisPointer: {            
+                                type: 'shadow'        
+                            }
+                            
                         },
                         axisLabel:{
                             color:'#fff',
@@ -233,13 +237,17 @@ export default {
                             {
                                 type: 'value',
                                 axisTick: {
-                                    alignWithLabel: true,
-                                    lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
+                                        alignWithLabel: true,
+                                        lineStyle:{color:'#2D8C6A'}    //坐标轴刻度线颜色
                                 },
                                 axisLine:{
                                     lineStyle:{
                                         color:'#2D8C6A' //坐标轴颜色
                                     }
+                                },
+                                axisLabel:{
+                                    color:'#fff',
+                                    fontSize:12
                                 },
                                 splitLine:{
                                     show:true,  //是否显示后面的网格线
@@ -444,6 +452,7 @@ export default {
             }).then(res => {
                 if(res.status == 200){
                     var topCenterData = res.data.data;
+                    console.log(topCenterData+'地图数据');
                     var cockpitDatatList = topCenterData.cockpitDatatList;
                     var mapData = [];
                     for(var i = 0; i < cockpitDatatList.length;i++){

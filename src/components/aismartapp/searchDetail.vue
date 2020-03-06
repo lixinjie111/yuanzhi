@@ -47,7 +47,7 @@
           use_btn: '立即使用',
           tech_file: '技术文档',
           list_img: require('@/assets/images/aiSmartAppDetail/sousuo.png'),
-          menu_text: ['日志分心', '全文搜索', '商业智能（BI）'],
+          menu_text: ['日志分析', '全文搜索', '商业智能（BI）'],
           weitu: require('@/assets/images/aiSmartAppDetail/quanwensousuo.png'),
           app_title: '全文搜索',
           app_desc: '电商商品搜索、移动应用搜索、企业内部信息搜索等海量数据下的站内搜索服务是高效获取信息的必要途径，Elasticsearch Service拥有全文检索功能，对结构化和非结构化数据都有良好的支持，同时还提供了简单易用的RESTful API和各种语言的客户端，方便用户快速搭建稳定的搜索服务，整合到已有到业务框架中。',

@@ -200,12 +200,14 @@ export default {
 <style scoped lang='less'>
 .banner{
   width: 100%;
+  height:450px;
   background: #3F3F4B;
   display: flex;
   align-items: center;
   justify-content: center;
   .banner_contant{
     width: 1000px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
