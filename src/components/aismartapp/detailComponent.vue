@@ -349,6 +349,8 @@
     background-color: #F2F4F7;;
     .list_nav {
       width: 1200px;
+      height: 100%;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-around;

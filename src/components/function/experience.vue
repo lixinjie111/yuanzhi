@@ -114,12 +114,30 @@
     },
     methods:{
       startRecord(){
+        if (navigator.mediaDevices.getUserMedia) {
+          const constraints = { audio: true };
+          navigator.mediaDevices.getUserMedia(constraints).then(
+            stream => {
+              console.log("授权成功！");
+            },
+            () => {
+              console.error("授权失败！");
+            }
+          );
+        } else {
+          console.error("浏览器不支持 getUserMedia");
+        }
         this.flag=!this.flag;
         //当为true，暂停状态
         var timer=null;
         if(this.flag){
           this.upTime=10;
-          this.recorder.start();
+          try {
+            this.recorder.start();
+          } catch (error) {
+            alet("您的浏览器不支持");
+            return;
+          }
           this.isWork=true;
           this.buttonMsg="结束识别";
           timer=setInterval(()=>{
