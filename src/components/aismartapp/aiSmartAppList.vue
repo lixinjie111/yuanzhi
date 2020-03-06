@@ -141,7 +141,7 @@ export default {
         title_desc:'采用国际领先的流氏端到端语音语言一体化建模算法，将语音快速识别为文字，支持手机应用语音交互、语音内容分析、机器人对话等多个场景',
         use_btn:'立即使用',
         tech_file:'技术文档',
-        funText:'即刻获得文字识别能力',
+        funText:'即可获得语音识别能力',
         list_img:require('@/assets/images/aiSmartAppList/audio_tech.png'),
         product_list_data:[
           {
