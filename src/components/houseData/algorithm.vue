@@ -30,7 +30,7 @@
 
     <vMenu v-show="showMenu" :navType='navType'></vMenu>
     <div class="banner">
-      <img src="../../assets/images/houseData/suanfa.png" alt="">
+      <div class="box" ><img src="../../assets/images/houseData/web-12.png" alt=""></div>
       <div class="content">
         <p class="title">AI智能服务大全</p>
       </div>
@@ -101,6 +101,7 @@ export default {
   name: 'insightData',
   data () {
     return {
+      keyword:"",
       totalNum:'',
       cn_title:'Sophia平台',
       en_title:'元知智能研究院',
@@ -136,7 +137,7 @@ export default {
       size: 10,
       total: 0
     },
-    keyword:""
+   
             
     }
   },
@@ -428,10 +429,18 @@ export default {
     position:relative;
     display: flex;
     align-items: center;
-    img{
-      width: 100%;
-      display: block;
+    height: 450px;
+    background: #3F3F4B;
+    .box{
+      margin-left:35%;
+      height: 100%;
+      img{
+        height: 100%;
+        display: block;
+        width: auto;
+      }
     }
+    
     .content{
       position: absolute;
       left:100px;

@@ -137,6 +137,9 @@ export default {
   components:{
       vMenu
   },
+  mounted(){
+     document.documentElement.scrollTop = 0;
+  },
   methods:{
     jumpFn(index){
       if(index === 1){

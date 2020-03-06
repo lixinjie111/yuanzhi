@@ -100,6 +100,7 @@ export default {
   name: 'insightData',
   data () {
     return {
+      keyword:'',
       cn_title:'Sophia平台',
       en_title:'元知智能研究院',
       nav_text:['首页','AI智能应用','数据洞察','观星台','大数据平台','行为图谱'],
