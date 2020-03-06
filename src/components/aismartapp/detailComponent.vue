@@ -342,19 +342,18 @@
 
   .list_nav_container {
     width: 100%;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #F2F4F7;;
     .list_nav {
       width: 1200px;
-      padding: 20px 0;
-      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-around;
       div {
-        font-size: 16px;
+        font-size: 18px;
         color: #3D4966;
         text-align: center;
       }
